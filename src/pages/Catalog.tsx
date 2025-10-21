@@ -1,0 +1,79 @@
+import { Bike, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ProductCard } from '../components/ProductCard';
+import { featuredProducts } from '../products';
+
+export function Catalog() {
+  return (
+    <div className="min-h-screen bg-white">
+      <nav className="fixed top-0 w-full bg-[#144D3A] shadow-lg z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <Link to="/" className="flex items-center gap-3">
+              <Bike className="w-10 h-10 text-[#F5E100]" />
+              <span className="text-2xl font-bold text-white">Velocity Cycles</span>
+            </Link>
+
+            <Link
+              to="/"
+              className="flex items-center gap-2 text-white hover:text-[#F5E100] transition-colors font-medium"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to Home
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-[#144D3A] via-[#1a6048] to-[#144D3A]">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            Featured Bikes
+          </h1>
+          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Discover our hand-picked selection of premium bikes. Each model has been carefully chosen to represent the best in its category, offering exceptional quality and performance for riders of all levels.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 bg-gradient-to-br from-[#144D3A] to-[#1a6048]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Find Your Perfect Ride?
+          </h2>
+          <p className="text-xl text-white/90 mb-8">
+            Visit our store for a test ride or contact us to discuss which bike is right for you.
+          </p>
+          <Link
+            to="/"
+            className="inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg"
+          >
+            Contact Us Today
+          </Link>
+        </div>
+      </section>
+
+      <footer className="bg-[#144D3A] py-8 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Bike className="w-8 h-8 text-[#F5E100]" />
+            <span className="text-xl font-bold text-white">Velocity Cycles</span>
+          </div>
+          <p className="text-white/60">
+            © 2024 Velocity Cycles. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
