@@ -81,10 +81,10 @@ export function Home() {
             Serving Northern Virginia's cycling community for 18 years with expert service, quality bikes, and a community of cycling enthusiasts.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button onClick={() => scrollToSection('services')} className="bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
+            <button onClick={() => scrollToSection('services')} className="bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
               Our Services
             </button>
-            <button onClick={() => scrollToSection('products')} className="bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
+            <button onClick={() => scrollToSection('products')} className="bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
               Shop Now
             </button>
           </div>
