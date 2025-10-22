@@ -85,7 +85,7 @@ export function Home() {
               Our Services
             </button>
             <button onClick={() => scrollToSection('products')} className="bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
-              Shop Now
+              Our Products
             </button>
           </div>
         </div>
