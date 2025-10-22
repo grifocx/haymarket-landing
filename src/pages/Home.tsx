@@ -447,15 +447,15 @@ export function Home() {
               <h4 className="text-white font-bold text-lg mb-4">Connect</h4>
               <p className="text-white/70 mb-2">Follow us for cycling tips, events, and special offers!</p>
               <div className="flex gap-4 mt-4">
-                <div className="w-10 h-10 bg-[#F36E32] rounded-full flex items-center justify-center hover:bg-[#e05d21] transition-colors cursor-pointer">
+                <a href="https://www.facebook.com/HaymarketBicycles/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#F36E32] rounded-full flex items-center justify-center hover:bg-[#e05d21] transition-colors cursor-pointer">
                   <span className="text-white font-bold">f</span>
-                </div>
-                <div className="w-10 h-10 bg-[#73BB44] rounded-full flex items-center justify-center hover:bg-[#5fa535] transition-colors cursor-pointer">
-                  <span className="text-white font-bold">in</span>
-                </div>
-                <div className="w-10 h-10 bg-[#F5E100] rounded-full flex items-center justify-center hover:bg-[#e5d100] transition-colors cursor-pointer">
+                </a>
+                <a href="https://www.instagram.com/haymarketbikes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#F5E100] rounded-full flex items-center justify-center hover:bg-[#e5d100] transition-colors cursor-pointer">
                   <span className="text-[#144D3A] font-bold">ig</span>
-                </div>
+                </a>
+                <a href="https://www.tiktok.com/@haymarketbicycles" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#73BB44] rounded-full flex items-center justify-center hover:bg-[#5fa535] transition-colors cursor-pointer">
+                  <span className="text-white font-bold">tt</span>
+                </a>
               </div>
             </div>
           </div>
