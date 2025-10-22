@@ -341,8 +341,8 @@ export function Home() {
                 </div>
                 <h3 className="font-montserrat text-xl font-bold text-[#144D3A] mb-3">Location</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  123 Pedal Lane<br />
-                  Biketown, BT 12345
+                  4414 Costello Way<br />
+                  Haymarket, VA 20169
                 </p>
               </div>
             </div>
