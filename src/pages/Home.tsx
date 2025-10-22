@@ -390,9 +390,9 @@ export function Home() {
                   <Mail className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="font-montserrat text-xl font-bold text-[#144D3A] mb-3">Email</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <a href="mailto:info@haymarketbicycles.com" className="text-gray-600 hover:text-[#F36E32] transition-colors leading-relaxed cursor-pointer">
                   info@haymarketbicycles.com
-                </p>
+                </a>
               </div>
             </div>
 
