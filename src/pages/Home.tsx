@@ -30,7 +30,8 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center gap-3">
-              <img src="/Haymarket Bicycles Logo 2024_Patch - Color - Horizontal.png" alt="Haymarket Bicycles - Premier Bike Shop in Haymarket, Virginia" className="h-12" width="120" height="48" />
+              <img src="/Haymarket Bicycles Logo 2024_Patch - Color - Vertical.png" alt="Haymarket Bicycles - Premier Bike Shop in Haymarket, Virginia" className="h-16" width="64" height="64" />
+              <span className="font-montserrat text-2xl font-extrabold text-[#144D3A]">Haymarket Bicycles</span>
             </div>
 
             <div className="hidden md:flex items-center gap-8">
