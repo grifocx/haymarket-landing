@@ -99,7 +99,7 @@ export function Home() {
             </div>
             <div>
               <p className="font-semibold text-[#144D3A] text-lg">Visit Us</p>
-              <p className="text-gray-600">123 Pedal Lane, Biketown, BT 12345</p>
+              <p className="text-gray-600">4414 Costello Way, Haymarket, VA 20169</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -303,7 +303,7 @@ export function Home() {
                   <div className="text-gray-600 font-medium">Happy Riders</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[#CBD92A] mb-2">500+</div>
+                  <div className="text-4xl font-bold text-[#CBD92A] mb-2">1000+</div>
                   <div className="text-gray-600 font-medium">Bikes Sold</div>
                 </div>
               </div>
