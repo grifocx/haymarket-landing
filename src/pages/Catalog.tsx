@@ -11,12 +11,12 @@ export function Catalog() {
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center gap-3">
               <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-14 w-14" />
-              <span className="text-2xl font-bold text-[#144D3A]">Haymarket Bicycles</span>
+              <span className="font-montserrat text-2xl font-bold text-[#144D3A]">Haymarket Bicycles</span>
             </Link>
 
             <Link
               to="/"
-              className="flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-medium"
+              className="font-montserrat flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Home
@@ -31,7 +31,7 @@ export function Catalog() {
           style={{ backgroundImage: "url('/Haymarket Bicycles Logo 2024_Color Bar without Name.png')" }}
         ></div>
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold text-[#144D3A] mb-6">
+          <h1 className="font-montserrat text-5xl md:text-6xl font-extrabold text-[#144D3A] mb-6">
             Featured Bikes
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -52,7 +52,7 @@ export function Catalog() {
 
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[#144D3A] mb-4">
+          <h2 className="font-montserrat text-3xl font-bold text-[#144D3A] mb-4">
             Ready to Find Your Perfect Ride?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
@@ -60,7 +60,7 @@ export function Catalog() {
           </p>
           <Link
             to="/"
-            className="inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg"
+            className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg"
           >
             Contact Us Today
           </Link>
@@ -71,7 +71,7 @@ export function Catalog() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-10 w-10" />
-            <span className="text-xl font-bold text-white">Haymarket Bicycles</span>
+            <span className="font-montserrat text-xl font-bold text-white">Haymarket Bicycles</span>
           </div>
           <p className="text-white/60">
             © 2024 Haymarket Bicycles. All rights reserved.
