@@ -461,7 +461,7 @@ export function Home() {
           </div>
           <div className="border-t border-white/20 pt-8 text-center">
             <p className="text-white/60">
-              © 2024 Haymarket Bicycles. All rights reserved.
+              © 2025 Haymarket Bicycles. All rights reserved.
             </p>
           </div>
         </div>
