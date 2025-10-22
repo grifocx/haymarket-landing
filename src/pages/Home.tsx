@@ -65,35 +65,28 @@ export function Home() {
         )}
       </nav>
 
-      <section className="pt-32 pb-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-left">
-              <div className="inline-block bg-[#F5E100] text-[#144D3A] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                Since 2007
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold text-[#144D3A] mb-6 leading-tight">
-                Haymarket's Neighborhood Bicycle Shop
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Serving Northern Virginia's cycling community for 18 years with expert service, quality bikes, and a community of cycling enthusiasts.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button onClick={() => scrollToSection('products')} className="bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
-                  Shop Now
-                </button>
-                <button onClick={() => scrollToSection('services')} className="bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
-                  Our Services
-                </button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-[#F5E100] via-[#CBD92A] to-[#73BB44] rounded-3xl p-1 shadow-2xl">
-                <div className="bg-white rounded-3xl p-12 flex items-center justify-center">
-                  <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="w-full h-full max-w-sm" />
-                </div>
-              </div>
-            </div>
+      <section className="pt-32 pb-20 px-4 bg-white relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10 bg-center bg-no-repeat bg-cover"
+          style={{ backgroundImage: "url('/Haymarket Bicycles Logo 2024_Color Bar without Name.png')" }}
+        ></div>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="inline-block bg-[#F5E100] text-[#144D3A] px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            Since 2007
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-[#144D3A] mb-6 leading-tight">
+            Haymarket's Neighborhood Bicycle Shop
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+            Serving Northern Virginia's cycling community for 18 years with expert service, quality bikes, and a community of cycling enthusiasts.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <button onClick={() => scrollToSection('products')} className="bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
+              Shop Now
+            </button>
+            <button onClick={() => scrollToSection('services')} className="bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-semibold text-lg shadow-lg">
+              Our Services
+            </button>
           </div>
         </div>
       </section>
