@@ -3,8 +3,6 @@
 ## Overview
 This document outlines the comprehensive SEO strategy implemented for the Haymarket Bicycles website, focusing on local SEO, technical optimization, and content strategy.
 
-## Completed Optimizations
-
 ### Title Tag Optimization ✅
 - Added geo-modifiers to all page titles
 - Included primary keywords in title tags
