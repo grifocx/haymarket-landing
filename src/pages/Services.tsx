@@ -10,7 +10,7 @@ export function Services() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center gap-3">
-              <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-14 w-14" />
+              <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles - Bicycle Repair Services in Haymarket, VA" className="h-14 w-14" width="56" height="56" />
               <span className="font-montserrat text-2xl font-bold text-[#144D3A]">Haymarket Bicycles</span>
             </Link>
 
