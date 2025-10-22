@@ -6,17 +6,17 @@ import { bikeServices } from '../services';
 export function Services() {
   return (
     <div className="min-h-screen bg-white">
-      <nav className="fixed top-0 w-full bg-[#144D3A] shadow-lg z-50">
+      <nav className="fixed top-0 w-full bg-white shadow-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center gap-3">
-              <Bike className="w-10 h-10 text-[#F5E100]" />
-              <span className="text-2xl font-bold text-white">Velocity Cycles</span>
+              <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-14 w-14" />
+              <span className="text-2xl font-bold text-[#144D3A]">Haymarket Bicycles</span>
             </Link>
 
             <Link
               to="/"
-              className="flex items-center gap-2 text-white hover:text-[#F5E100] transition-colors font-medium"
+              className="flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Home
@@ -25,12 +25,16 @@ export function Services() {
         </div>
       </nav>
 
-      <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-[#144D3A] via-[#1a6048] to-[#144D3A]">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+      <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10 bg-center bg-no-repeat bg-cover"
+          style={{ backgroundImage: "url('/Haymarket Bicycles Logo 2024_Color Bar without Name.png')" }}
+        ></div>
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-bold text-[#144D3A] mb-6">
             Our Services
           </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Expert bike maintenance and repair services to keep you rolling smoothly. From quick tune-ups to complete overhauls, our certified mechanics are here to help.
           </p>
         </div>
@@ -46,12 +50,12 @@ export function Services() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-br from-[#144D3A] to-[#1a6048]">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl font-bold text-[#144D3A] mb-4">
             Ready to Book Your Service?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-xl text-gray-600 mb-8">
             Stop by our shop or give us a call to schedule your bike service appointment.
           </p>
           <Link
@@ -66,11 +70,11 @@ export function Services() {
       <footer className="bg-[#144D3A] py-8 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Bike className="w-8 h-8 text-[#F5E100]" />
-            <span className="text-xl font-bold text-white">Velocity Cycles</span>
+            <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-10 w-10" />
+            <span className="text-xl font-bold text-white">Haymarket Bicycles</span>
           </div>
           <p className="text-white/60">
-            © 2024 Velocity Cycles. All rights reserved.
+            © 2024 Haymarket Bicycles. All rights reserved.
           </p>
         </div>
       </footer>
