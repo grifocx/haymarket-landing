@@ -290,9 +290,117 @@ Potential features to add:
 - Live chat support integration
 - Customer account portal
 
+## Managing Product Catalog Images
+
+### Standard Operating Procedure (SOP)
+
+This SOP outlines the process for adding, updating, and managing product images in the catalog.
+
+#### Image Storage Location
+
+All product catalog images are stored in:
+```
+/public/catalog/
+```
+
+#### Image Specifications
+
+**Recommended Image Properties:**
+- **Format**: JPG (for photos) or PNG (if transparency needed)
+- **Dimensions**: 800-1200px wide minimum
+- **Aspect Ratio**: 16:9 or 4:3 work best, but any aspect ratio is supported
+- **File Size**: Keep under 500KB per image for optimal web performance
+- **Image Composition**: Center the bike in the frame (the display crops from center)
+
+**Technical Details:**
+- Images automatically resize to fit a 256px height card (`h-64` in Tailwind)
+- CSS `object-cover` class crops and scales images to fill the container
+- Width is responsive and adjusts to screen size
+- Images maintain aspect ratio while filling the card
+
+#### Adding or Updating Product Images
+
+**Step 1: Prepare Your Image**
+1. Edit/crop your image to showcase the bike prominently
+2. Ensure the bike is centered in the frame
+3. Optimize file size (compress if needed to stay under 500KB)
+4. Name the file descriptively using lowercase and hyphens
+   - Good: `velocity-pro-carbon.jpg`
+   - Good: `trailblazer-elite-mountain.jpg`
+   - Avoid spaces or special characters
+
+**Step 2: Save Image to Public Folder**
+1. Place the image file in `/public/catalog/`
+2. Verify the file name matches your naming convention
+
+**Step 3: Update Product Data**
+1. Open `/src/products.ts`
+2. Locate the product object you want to update
+3. Update the `imageUrl` field with the new path:
+   ```typescript
+   imageUrl: '/catalog/your-image-name.jpg'
+   ```
+
+**Step 4: Test the Display**
+1. Run the dev server (`npm run dev`)
+2. Navigate to the catalog page
+3. Verify the image displays correctly
+4. Check that the image quality is acceptable
+5. Ensure the bike is properly centered in the card
+
+#### Example Product Entry
+
+```typescript
+{
+  id: '1',
+  name: 'Velocity Pro Carbon Road Bike',
+  category: 'Road Bikes',
+  price: '$3,299',
+  description: 'Experience the perfect blend of speed and comfort...',
+  features: [
+    'Lightweight carbon fiber frame',
+    'Shimano 105 groupset',
+    '700c wheels with tubeless ready tires',
+    'Hydraulic disc brakes'
+  ],
+  imageUrl: '/catalog/velocity-pro-carbon.jpg',
+  highlightColor: '#F36E32'
+}
+```
+
+#### Troubleshooting
+
+**Image Not Displaying:**
+- Verify the file exists in `/public/catalog/`
+- Check that the filename in `imageUrl` exactly matches the file (including extension)
+- Ensure the path starts with `/catalog/` not `public/catalog/`
+- Clear browser cache and refresh
+
+**Image Quality Issues:**
+- Use higher resolution source images (1200px wide minimum)
+- Ensure JPG quality is set to 80-90% when saving
+- Avoid heavily compressed images
+
+**Image Appears Cropped Incorrectly:**
+- Recenter the bike in your source image before saving
+- Remember: vertical center is most important (card has fixed height)
+- The card crops to 256px height, keeping center-most content
+
+#### Quick Reference
+
+| Attribute | Value |
+|-----------|-------|
+| Storage Path | `/public/catalog/` |
+| URL Format | `/catalog/filename.jpg` |
+| Min Width | 800px |
+| Max File Size | 500KB recommended |
+| Format | JPG preferred |
+| Card Height | 256px (fixed) |
+| Card Width | Responsive (fluid) |
+
 ## Notes
 
-- All product images are currently using Pexels stock photos
+- Product images are stored locally in `/public/catalog/`
 - The site is fully responsive and works on all device sizes
 - Smooth scroll behavior is implemented for navigation
 - The design avoids purple/indigo colors per project requirements
