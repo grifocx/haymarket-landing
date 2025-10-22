@@ -98,7 +98,14 @@ export function Home() {
             </div>
             <div>
               <p className="font-montserrat font-bold text-[#144D3A] text-lg">Visit Us</p>
-              <p className="text-gray-600">4414 Costello Way, Haymarket, VA 20169</p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=4414+Costello+Way+Haymarket+VA+20169"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#F36E32] hover:underline transition-colors cursor-pointer"
+              >
+                4414 Costello Way, Haymarket, VA 20169
+              </a>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -334,18 +341,23 @@ export function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F5E100] transition-all shadow-sm hover:shadow-md">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=4414+Costello+Way+Haymarket+VA+20169"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F5E100] transition-all shadow-sm hover:shadow-md block group"
+            >
               <div className="flex flex-col items-center text-center">
-                <div className="bg-[#F5E100] w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                <div className="bg-[#F5E100] w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <MapPin className="w-8 h-8 text-[#144D3A]" />
                 </div>
                 <h3 className="font-montserrat text-xl font-bold text-[#144D3A] mb-3">Location</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed group-hover:text-[#F36E32] transition-colors">
                   4414 Costello Way<br />
                   Haymarket, VA 20169
                 </p>
               </div>
-            </div>
+            </a>
 
             <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#73BB44] transition-all shadow-sm hover:shadow-md">
               <div className="flex flex-col items-center text-center">
