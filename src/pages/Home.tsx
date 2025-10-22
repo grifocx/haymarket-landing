@@ -1,9 +1,22 @@
 import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PhoneModal } from '../components/PhoneModal';
 
 export function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [phoneModalOpen, setPhoneModalOpen] = useState(false);
+
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+  };
+
+  const handleCallClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isMobile()) {
+      e.preventDefault();
+      setPhoneModalOpen(true);
+    }
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -123,7 +136,7 @@ export function Home() {
             </div>
             <div>
               <p className="font-montserrat font-bold text-[#144D3A] text-lg">Call Us</p>
-              <p className="text-gray-600">(555) BIKE-NOW</p>
+              <p className="text-gray-600">(703) 754-1911</p>
             </div>
           </div>
         </div>
@@ -366,8 +379,7 @@ export function Home() {
                 </div>
                 <h3 className="font-montserrat text-xl font-bold text-[#144D3A] mb-3">Phone</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  (555) BIKE-NOW<br />
-                  (555) 245-3669
+                  (703) 754-1911
                 </p>
               </div>
             </div>
@@ -413,8 +425,9 @@ export function Home() {
               We're here to help with all your cycling needs!
             </p>
             <a
-              href="tel:5552453669"
-              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg"
+              href="tel:7037541911"
+              onClick={handleCallClick}
+              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg cursor-pointer"
             >
               Call Us Now
             </a>
@@ -477,6 +490,13 @@ export function Home() {
           </div>
         </div>
       </footer>
+
+      <PhoneModal
+        isOpen={phoneModalOpen}
+        onClose={() => setPhoneModalOpen(false)}
+        phoneNumber="7037541911"
+        displayNumber="(703) 754-1911"
+      />
     </div>
   );
 }
