@@ -439,8 +439,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-10 w-10" />
+              <div className="mb-4">
                 <span className="font-montserrat text-xl font-bold text-white">Haymarket Bicycles</span>
               </div>
               <p className="text-white/70 leading-relaxed">
