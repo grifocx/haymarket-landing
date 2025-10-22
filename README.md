@@ -86,17 +86,39 @@ src/
 
 ### Color Palette
 
-- **Primary Green**: `#144D3A` - Main brand color
-- **Secondary Green**: `#73BB44` - Accent and highlights
-- **Orange**: `#F36E32` - Call-to-action buttons and accents
-- **Yellow**: `#F5E100` - Secondary accents and highlights
-- **White**: Background and text contrast
+The color scheme is based on Haymarket Bicycles' official brand guidelines:
+
+- **Primary Green (Deep Forest)**: `#144D3A` - Main brand color, used for headings and primary text
+- **Secondary Green (Lime)**: `#73BB44` - Accent and highlights, hover states
+- **Orange (Vibrant Coral)**: `#F36E32` - Primary call-to-action buttons and key accents
+- **Bright Yellow**: `#F5E100` - Secondary accents and highlights
+- **Lime Green**: `#CBD92A` - Additional accent color for variety
+- **White/Gray**: Background colors and text contrast
+
+These colors are derived from the official Haymarket Bicycles logo and brand identity, ensuring complete visual consistency across all touchpoints.
 
 ### Typography
 
-- Clean, modern sans-serif fonts
-- Bold headings for impact
-- Clear hierarchy with varied font sizes
+**Primary Font: Montserrat**
+
+The site uses **Montserrat** throughout to match the official logo typeface. This Google Font provides excellent readability and brand consistency.
+
+**Font Weights Used:**
+- **Montserrat Regular (400)**: Button text, labels, and UI elements
+- **Montserrat Bold (700)**: Subheadings (h2, h3), navigation links, smaller headings
+- **Montserrat Extra Bold (800)**: Main page headings (h1) - matches the exact weight used in the logo
+
+**Font Application:**
+- All headings, navigation, buttons, and labels use Montserrat
+- Body text uses system fonts for optimal readability
+- Font loaded via Google Fonts CDN with preconnect for performance
+
+**Typography Hierarchy:**
+- H1 headings: Montserrat Extra Bold 800 (5xl-7xl sizes)
+- H2/H3 headings: Montserrat Bold 700 (2xl-5xl sizes)
+- Navigation & buttons: Montserrat Bold 700
+- Labels & statistics: Montserrat Bold 700
+- Body paragraphs: System fonts (default)
 
 ### Design Principles
 
@@ -105,6 +127,8 @@ src/
 - Card-based layouts for content organization
 - Generous white space for readability
 - Colorful accent icons for visual interest
+- Bold typography for confident brand presence
+- Professional color application matching official brand guidelines
 
 ## Development Changes Made
 
@@ -122,6 +146,29 @@ src/
 - Updated services section title to "Professional Bicycle Services in Haymarket"
 - Changed contact section to "Visit Us at Haymarket Bicycles"
 - Emphasized convenient location serving Haymarket, Gainesville, and Northern Virginia
+
+### Session 3: Brand Color Implementation
+- Implemented official Haymarket Bicycles brand colors throughout the site
+- Primary Green (`#144D3A`): Applied to all headings, primary text, and main brand elements
+- Secondary Green (`#73BB44`): Used for hover states and interactive elements
+- Orange (`#F36E32`): Call-to-action buttons and key accent elements
+- Bright Yellow (`#F5E100`): Secondary highlights and accent badges
+- Lime Green (`#CBD92A`): Additional variety in icons and cards
+- Ensured consistent color application across all pages and components
+- Colors extracted from official logo files to maintain brand integrity
+
+### Session 4: Typography System Implementation
+- Integrated **Montserrat** font family to match official logo typeface
+- Added Google Fonts CDN link with preconnect optimization
+- Configured Tailwind CSS to support `font-montserrat` utility class
+- Implemented three font weights:
+  - Regular 400: Button text and labels
+  - Bold 700: Subheadings, navigation, and secondary elements
+  - Extra Bold 800: Main h1 headings (matching logo exactly)
+- Applied Montserrat to all headings, navigation links, buttons, and UI labels
+- Kept system fonts for body text to optimize readability
+- Updated all page components (Home, Catalog, Services) and card components
+- Created clear typographic hierarchy with consistent weight application
 
 ## Store Information
 
