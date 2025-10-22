@@ -70,7 +70,6 @@ export function Catalog() {
       <footer className="bg-[#144D3A] py-8 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <img src="/Haymarket Bicycles Logo 2024_Social Icon - X - 400px.png" alt="Haymarket Bicycles" className="h-10 w-10" />
             <span className="font-montserrat text-xl font-bold text-white">Haymarket Bicycles</span>
           </div>
           <p className="text-white/60">
