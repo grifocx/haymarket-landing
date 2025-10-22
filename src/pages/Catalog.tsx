@@ -73,7 +73,7 @@ export function Catalog() {
             <span className="font-montserrat text-xl font-bold text-white">Haymarket Bicycles</span>
           </div>
           <p className="text-white/60">
-            © 2024 Haymarket Bicycles. All rights reserved.
+            © 2025 Haymarket Bicycles. All rights reserved.
           </p>
         </div>
       </footer>
