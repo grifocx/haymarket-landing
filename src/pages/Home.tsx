@@ -305,13 +305,13 @@ export function Home() {
             <div>
               <h2 className="font-montserrat text-5xl font-extrabold text-[#144D3A] mb-6">Our Story</h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                Founded in 2007, Haymarket Bicycles began with a simple mission: to share our passion for cycling with our community. What started as a small repair shop has grown into Northern Virginia's trusted full-service bike destination.
+                Founded in 2007, Haymarket Bicycles began with a simple mission: to deliver exceptional hospitality and service to our community. What started as a small repair shop has grown into Northern Virginia's trusted full-service bike destination.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                We believe that cycling is more than just transportation—it's a lifestyle, a sport, and a way to connect with the world around us. Whether you're a seasoned racer or just learning to ride, we're here to support your journey.
+                Haymarket Bicycles core principles center around approaching the cycling industry differently. Exemplary treatment of the customer is the number one priority. All too many bicycle shops have impersonal and unapproachable atmospheres. Haymarket Bicycles was founded on the idea to be different; every customer, whether a first-time bike buyer or world-class racer, is to be treated well, with their individual wants and needs addressed with care and respect.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Our team of passionate cyclists brings decades of combined experience to help you find the perfect bike, maintain your ride, and discover the joy of cycling.
+                Haymarket Bicycles has become renowned for their expertise of all manner of bicycles, and customer service that is second to none.  Our staff decades of combined experience to help you find the perfect bike, maintain your ride, and discover the joy of cycling.
               </p>
               <div className="flex items-center gap-8">
                 <div className="text-center">
