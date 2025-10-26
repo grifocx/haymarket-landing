@@ -319,11 +319,11 @@ export function Home() {
                   <div className="font-montserrat text-gray-600 font-bold">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="font-montserrat text-4xl font-extrabold text-[#73BB44] mb-2">10K+</div>
+                  <div className="font-montserrat text-4xl font-extrabold text-[#73BB44] mb-2">15K+</div>
                   <div className="font-montserrat text-gray-600 font-bold">Happy Riders</div>
                 </div>
                 <div className="text-center">
-                  <div className="font-montserrat text-4xl font-extrabold text-[#CBD92A] mb-2">1000+</div>
+                  <div className="font-montserrat text-4xl font-extrabold text-[#CBD92A] mb-2">2000+</div>
                   <div className="font-montserrat text-gray-600 font-bold">Bikes Sold</div>
                 </div>
               </div>
