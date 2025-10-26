@@ -279,17 +279,12 @@ You can test the structured data implementation using:
 ## Future Enhancements
 
 Potential features to add:
-- Online booking system for services
-- E-commerce functionality for bike sales
 - Customer testimonials carousel
 - Blog for cycling tips and news
-- Integration with Supabase for dynamic content management
-- Newsletter signup with email marketing
 - Google Maps embed on contact section
 - Event calendar for group rides and community events
-- Live chat support integration
-- Customer account portal
-
+- e-bike landing page for SEO
+  
 ## Managing Product Catalog Images
 
 ### Standard Operating Procedure (SOP)
