@@ -44,16 +44,16 @@ export const bikeServices: Service[] = [
   },
   {
     id: '6',
-    title: 'Wheel Building & Truing',
-    description: 'Custom wheel builds or precision truing to eliminate wobbles and ensure smooth rides.',
-    cost: '$75',
+    title: 'E-bike Service Lefel 1',
+    description: 'Adjust all systems and software.',
+    cost: '$129',
     highlightColor: '#73BB44'
   },
   {
     id: '7',
-    title: 'Drivetrain Overhaul',
-    description: 'Deep cleaning and lubrication of chain, cassette, and derailleurs for optimal shifting performance.',
-    cost: '$65',
+    title: 'Level 3 Tune-Up',
+    description: 'Level 1+2 Plus Deep cleaning and lubrication of chain, cassette, and derailleurs for optimal shifting performance.',
+    cost: '$325',
     highlightColor: '#F5E100'
   },
   {
@@ -66,8 +66,8 @@ export const bikeServices: Service[] = [
   {
     id: '9',
     title: 'Custom Bike Fitting',
-    description: 'Professional fitting session to optimize comfort, efficiency, and injury prevention.',
-    cost: '$150',
+    description: 'Professional fitting session to optimize comfort, efficiency, and injury prevention using motion capture technology',
+    cost: '$250',
     highlightColor: '#F36E32'
   }
 ];
