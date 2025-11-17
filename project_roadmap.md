@@ -160,16 +160,16 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
 
 ### SEO Enhancements
 
-- [x] **Add page-specific meta tags** - *Medium Effort* ✅ COMPLETED
-  - Installed and configured react-helmet-async
-  - Added HelmetProvider in main.tsx
-  - Unique titles and descriptions for all pages:
-    - Home: "Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007"
-    - Catalog: "Bike Catalog | Premium Bikes for Sale in Haymarket, VA"
-    - Services: "Bike Repair Services | Expert Maintenance in Haymarket, VA"
-  - Added page-specific keywords for local SEO
-  - Risk: Low
-  - Impact: Better SEO for individual pages
+- [x] **Add page-specific meta tags** - *Medium Effort* ⚠️ ROLLED BACK
+  - ~~Installed and configured react-helmet-async~~ REMOVED
+  - ~~Added HelmetProvider in main.tsx~~ REMOVED
+  - ~~Unique titles and descriptions for all pages~~ REMOVED
+  - **Reason for Rollback**: Deployment build failures due to react-helmet-async dependency resolution issues
+  - **Resolution**: Removed all react-helmet-async code and dependency from package.json
+  - **Status**: Static SEO via index.html remains functional
+  - **Alternative**: Consider implementing page-specific meta tags via React Router or Vite plugins in future
+  - Risk: Low (rollback completed successfully)
+  - Impact: No negative impact - site SEO still strong with static implementation
 
 - [ ] **Enhance image alt text** - *Medium Effort*
   - Review all images for descriptive alt text
@@ -464,16 +464,15 @@ All low-risk, low and medium effort tasks have been completed. The codebase is n
 - Keyboard support (Enter/Space) for all mobile menu items
 - All interactive elements meet WCAG 2.1 Level AA standards
 
-### SEO Enhancements ✅
+### SEO Enhancements ⚠️
 
-**4. Page-Specific Meta Tags**
-- Installed and configured react-helmet-async library
-- Added unique titles and descriptions for each page:
-  - **Home**: "Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007"
-  - **Catalog**: "Bike Catalog | Premium Bikes for Sale in Haymarket, VA"
-  - **Services**: "Bike Repair Services | Expert Maintenance in Haymarket, VA"
-- Location-specific keywords for local SEO optimization
-- Improved search engine rankings for individual pages
+**4. Page-Specific Meta Tags** - ROLLED BACK
+- ~~Installed and configured react-helmet-async library~~ REMOVED
+- ~~Added unique titles and descriptions for each page~~ REMOVED
+- **Issue**: Deployment build failures - "Failed to resolve import react-helmet-async"
+- **Resolution**: Complete rollback of react-helmet-async integration
+- **Current Status**: Static SEO implementation via index.html remains in place
+- **Impact**: No negative SEO impact - site retains all previous optimization
 
 ### User Experience Improvements ✅
 
@@ -537,21 +536,29 @@ All low-risk, low and medium effort tasks have been completed. The codebase is n
 - `src/utils/helpers.ts` - Utility functions library
 
 **Updated Files:**
-- `src/pages/Home.tsx` - Uses Layout, added meta tags, integrated new components
-- `src/pages/Catalog.tsx` - Uses Layout, added meta tags
-- `src/pages/Services.tsx` - Uses Layout, added meta tags
+- `src/pages/Home.tsx` - Uses Layout, integrated new components
+- `src/pages/Catalog.tsx` - Uses Layout
+- `src/pages/Services.tsx` - Uses Layout
 - `src/components/PhoneModal.tsx` - Focus trap implementation
 - `src/App.tsx` - Lazy loading with Suspense
-- `src/main.tsx` - HelmetProvider integration
+- `src/main.tsx` - Clean entry point (HelmetProvider removed after rollback)
 
 **Dependencies Added:**
-- `react-helmet-async` - Page-specific SEO meta tags
+- ~~`react-helmet-async`~~ - REMOVED due to deployment issues
 
 **Results:**
-- ✅ 11 medium-effort tasks completed
+- ✅ 10 medium-effort tasks completed (1 rolled back)
 - ✅ Significant code quality improvements
 - ✅ Enhanced accessibility (WCAG 2.1 Level AA compliant)
-- ✅ Better SEO with page-specific optimization
+- ⚠️ Page-specific meta tags rolled back due to deployment issues
 - ✅ Improved performance with lazy loading
 - ✅ Better UX with real-time store hours and back-to-top button
-- ✅ Production build successful
+- ✅ Production build successful after rollback
+
+**Rollback Summary (November 17, 2025):**
+- Removed `react-helmet-async` dependency causing deployment build failures
+- Cleaned all Helmet imports and JSX from Home.tsx, Catalog.tsx, Services.tsx
+- Removed HelmetProvider wrapper from main.tsx
+- Updated package.json to exclude react-helmet-async
+- Build now succeeds: 178.66 kB (gzip: 58.96 kB) - reduced from 193.35 kB
+- All other improvements remain intact and functional

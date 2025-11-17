@@ -37,7 +37,7 @@ src/
 ├── services.ts              # Service data and types
 ├── theme.ts                 # Centralized theme configuration
 ├── App.tsx                  # Main app with lazy-loaded routes
-└── main.tsx                 # Application entry point with HelmetProvider
+└── main.tsx                 # Application entry point
 ```
 
 ## Key Components
@@ -302,12 +302,9 @@ All SEO implementations are backend-only with no visual changes to the website a
 - Added keyboard support (Enter/Space) for mobile menu items
 
 **SEO Enhancements:**
-- Installed and configured react-helmet-async for dynamic meta tags
-- Added page-specific titles and descriptions:
-  - Home: "Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007"
-  - Catalog: "Bike Catalog | Premium Bikes for Sale in Haymarket, VA"
-  - Services: "Bike Repair Services | Expert Maintenance in Haymarket, VA"
-- Location-specific keywords for better local SEO
+- ~~Installed and configured react-helmet-async for dynamic meta tags~~ (Rolled back due to deployment issues)
+- ~~Added page-specific titles and descriptions~~ (Removed - caused build failures in production)
+- Static SEO implementation remains via index.html meta tags
 
 **User Experience:**
 - Created BackToTop button (appears after 300px scroll)
