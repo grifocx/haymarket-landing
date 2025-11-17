@@ -1,5 +1,5 @@
 import { X, Phone, Check } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface PhoneModalProps {
   isOpen: boolean;
@@ -10,6 +10,18 @@ interface PhoneModalProps {
 
 export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: PhoneModalProps) {
   const [copied, setCopied] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      closeButtonRef.current?.focus();
+    } else {
+      previousFocusRef.current?.focus();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -18,8 +30,38 @@ export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: Phon
       }
     };
 
+    const handleTab = (e: KeyboardEvent) => {
+      if (!isOpen || !modalRef.current) return;
+
+      const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement?.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement?.focus();
+          }
+        }
+      }
+    };
+
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', handleTab);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleTab);
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -36,8 +78,9 @@ export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: Phon
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative animate-slideUp">
+      <div ref={modalRef} className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative animate-slideUp">
         <button
+          ref={closeButtonRef}
           onClick={onClose}
           aria-label="Close phone modal"
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"

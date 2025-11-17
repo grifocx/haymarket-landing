@@ -1,16 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { Catalog } from './pages/Catalog';
-import { Services } from './pages/Services';
+import { lazy, Suspense } from 'react';
+import { LoadingSpinner } from './components/LoadingSpinner';
+
+const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const Catalog = lazy(() => import('./pages/Catalog').then(module => ({ default: module.Catalog })));
+const Services = lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/services" element={<Services />} />
-      </Routes>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/services" element={<Services />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

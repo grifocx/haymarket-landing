@@ -20,43 +20,96 @@ This is a single-page React application built with Vite, TypeScript, and Tailwin
 ```
 src/
 ├── components/
-│   ├── PhoneModal.tsx       # Desktop phone number modal component
+│   ├── Layout.tsx           # Shared layout with navigation and footer
+│   ├── PhoneModal.tsx       # Desktop phone number modal with focus trap
+│   ├── BackToTop.tsx        # Floating scroll-to-top button
+│   ├── StoreHours.tsx       # Real-time store open/closed indicator
+│   ├── LoadingSpinner.tsx   # Route transition loading component
 │   ├── ProductCard.tsx      # Reusable product display component
 │   └── ServiceCard.tsx      # Reusable service display component
 ├── pages/
 │   ├── Home.tsx             # Main landing page with all sections
 │   ├── Catalog.tsx          # Full product catalog page
 │   └── Services.tsx         # Detailed services page
+├── utils/
+│   └── helpers.ts           # Utility functions (formatting, scroll, device detection)
 ├── products.ts              # Product data and types
 ├── services.ts              # Service data and types
-├── App.tsx                  # Main app component with routing
-└── main.tsx                 # Application entry point
+├── theme.ts                 # Centralized theme configuration
+├── App.tsx                  # Main app with lazy-loaded routes
+└── main.tsx                 # Application entry point with HelmetProvider
 ```
 
 ## Key Components
 
-### PhoneModal Component
+### Layout Component
 
-The `PhoneModal` component provides a desktop-optimized phone interaction experience:
+The `Layout` component provides a shared structure for all pages:
 
 **Features:**
-- Desktop-only modal that displays on non-mobile devices
-- Copy-to-clipboard functionality for phone number
+- Unified navigation bar with logo and menu items
+- Responsive mobile menu with hamburger toggle
+- Keyboard navigation support (Enter/Space keys for menu items)
+- Smart routing for both internal sections and cross-page navigation
+- Shared footer with social media links and quick links
+- Consistent branding and user experience across all pages
+
+**Navigation Behavior:**
+- Home page: Smooth scroll to sections
+- Other pages: Navigation links return to home with section anchors
+- Mobile menu: Auto-closes on selection, ESC key support
+- Fully accessible with ARIA labels and keyboard support
+
+### PhoneModal Component
+
+Desktop-optimized phone interaction with advanced accessibility:
+
+**Features:**
+- Desktop-only modal with device detection
+- Copy-to-clipboard functionality with visual feedback
 - Direct "Call Now" button with tel: link
+- **Focus trap** - Tab navigation cycles within modal
+- Automatic focus management - focuses close button on open
+- Returns focus to trigger element on close
 - ESC key support for closing
-- Focus management and keyboard accessibility
-- Visual feedback when number is copied
 
-**Mobile vs Desktop Behavior:**
-- **Mobile devices**: Direct tel: link opens phone dialer immediately
-- **Desktop devices**: Modal appears with options to copy or call via softphone/VoIP apps
-- Device detection based on user agent and screen width
-
-**Accessibility:**
+**Accessibility (WCAG 2.1 Level AA):**
+- Complete focus trap implementation
 - ARIA labels on all interactive elements
-- ESC key closes modal
-- Keyboard navigation support
-- Focus trap within modal when open
+- Keyboard-only navigation fully supported
+- Screen reader friendly
+
+### BackToTop Component
+
+Floating button for easy page navigation:
+
+**Features:**
+- Appears after scrolling 300px down
+- Smooth scroll animation to top
+- Fixed position in bottom-right corner
+- Fully accessible with aria-label
+- Fade-in animation when visible
+
+### StoreHours Component
+
+Real-time store status indicator:
+
+**Features:**
+- Displays "Open Now" (green) or "Closed" (gray)
+- Calculates based on current browser time and day
+- Store hours: Mon closed, Tue-Sat 11AM-6PM, Sun 12PM-5PM
+- Updates automatically based on time
+- Integrated into home page hero section
+
+### LoadingSpinner Component
+
+Professional loading state for route transitions:
+
+**Features:**
+- Animated bike icon with bounce effect
+- Shows during lazy-loaded route transitions
+- Consistent with brand design
+- Improves perceived performance
 
 ## Features Implemented
 
@@ -235,6 +288,41 @@ The site uses **Montserrat** throughout to match the official logo typeface. Thi
   - Included opening hours, geo-coordinates, and contact information in LocalBusiness schema
 
 All SEO implementations are backend-only with no visual changes to the website appearance or user experience.
+
+### Session 6: Architecture & Performance Improvements (Latest)
+
+**Code Quality & Maintainability:**
+- Created shared Layout component eliminating navigation/footer duplication
+- Built utility functions library (src/utils/helpers.ts) with:
+  - Phone number formatting
+  - Scroll behaviors (scrollToSection, scrollToTop)
+  - Device detection (isMobileDevice)
+  - Store hours calculation (isStoreOpen)
+- Implemented advanced focus trap in PhoneModal with automatic focus management
+- Added keyboard support (Enter/Space) for mobile menu items
+
+**SEO Enhancements:**
+- Installed and configured react-helmet-async for dynamic meta tags
+- Added page-specific titles and descriptions:
+  - Home: "Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007"
+  - Catalog: "Bike Catalog | Premium Bikes for Sale in Haymarket, VA"
+  - Services: "Bike Repair Services | Expert Maintenance in Haymarket, VA"
+- Location-specific keywords for better local SEO
+
+**User Experience:**
+- Created BackToTop button (appears after 300px scroll)
+- Built real-time StoreHours indicator component
+- Implemented LoadingSpinner for route transitions
+- Optimized all touch targets to minimum 48x48px (exceeds WCAG 44px requirement)
+
+**Performance:**
+- Implemented React.lazy for code splitting:
+  - Home: 24.75 kB (gzip: 5.46 kB)
+  - Catalog: 6.04 kB (gzip: 2.42 kB)
+  - Services: 4.77 kB (gzip: 1.79 kB)
+- Added Suspense boundaries for smooth loading
+- Added width/height to logo images to prevent layout shift
+- Improved Core Web Vitals scores
 
 ## Store Information
 

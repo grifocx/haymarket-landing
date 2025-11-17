@@ -1,95 +1,36 @@
-import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { Layout } from '../components/Layout';
 import { PhoneModal } from '../components/PhoneModal';
+import { BackToTop } from '../components/BackToTop';
+import { StoreHours } from '../components/StoreHours';
+import { isMobileDevice, scrollToSection } from '../utils/helpers';
 
 export function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [phoneModalOpen, setPhoneModalOpen] = useState(false);
 
-  const isMobile = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-  };
-
   const handleCallClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!isMobile()) {
+    if (!isMobileDevice()) {
       e.preventDefault();
       setPhoneModalOpen(true);
     }
   };
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    setMobileMenuOpen(false);
-  };
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [mobileMenuOpen]);
-
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="fixed top-0 w-full bg-white shadow-md z-50 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center gap-3">
-              <img src="/Haymarket Bicycles Logo 2024_Patch - Color - Vertical.png" alt="Haymarket Bicycles - Premier Bike Shop in Haymarket, Virginia" className="h-16 w-auto" />
-              <span className="font-montserrat text-2xl font-extrabold text-[#144D3A]">Haymarket Bicycles</span>
-            </div>
-
-            <div className="hidden md:flex items-center gap-8">
-              <button onClick={() => scrollToSection('services')} aria-label="Navigate to services section" className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
-                Services
-              </button>
-              <button onClick={() => scrollToSection('products')} aria-label="Navigate to products section" className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
-                Products
-              </button>
-              <button onClick={() => scrollToSection('story')} aria-label="Navigate to our story section" className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
-                Our Story
-              </button>
-              <button onClick={() => scrollToSection('contact')} aria-label="Navigate to contact section" className="font-montserrat bg-[#F36E32] text-white px-6 py-2.5 rounded-full hover:bg-[#e05d21] transition-colors font-bold shadow-md">
-                Contact Us
-              </button>
-            </div>
-
-            <button
-              className="md:hidden text-[#144D3A]"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-4 py-4 space-y-3">
-              <button onClick={() => scrollToSection('services')} className="block w-full text-left text-[#144D3A] hover:text-[#73BB44] py-2 font-medium">
-                Services
-              </button>
-              <button onClick={() => scrollToSection('products')} className="block w-full text-left text-[#144D3A] hover:text-[#73BB44] py-2 font-medium">
-                Products
-              </button>
-              <button onClick={() => scrollToSection('story')} className="block w-full text-left text-[#144D3A] hover:text-[#73BB44] py-2 font-medium">
-                Our Story
-              </button>
-              <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-[#144D3A] hover:text-[#73BB44] py-2 font-medium">
-                Contact Us
-              </button>
-            </div>
-          </div>
-        )}
-      </nav>
+    <Layout>
+      <Helmet>
+        <title>Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007</title>
+        <meta
+          name="description"
+          content="Northern Virginia's trusted bicycle shop since 2007. Expert repairs, quality bikes, and professional service in Haymarket, VA. Serving cyclists with passion for 18 years."
+        />
+        <meta
+          name="keywords"
+          content="bike shop haymarket va, bicycle repair haymarket, bikes for sale northern virginia, cycling haymarket, bike service gainesville va"
+        />
+      </Helmet>
 
       <section className="pt-32 pb-20 px-4 bg-white relative overflow-hidden">
         <div
@@ -97,8 +38,11 @@ export function Home() {
           style={{ backgroundImage: "url('/Haymarket Bicycles Logo 2024_Color Bar without Name.png')" }}
         ></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-block bg-[#F5E100] text-[#144D3A] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            Since 2007
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="inline-block bg-[#F5E100] text-[#144D3A] px-4 py-2 rounded-full text-sm font-semibold">
+              Since 2007
+            </div>
+            <StoreHours />
           </div>
           <h1 className="font-montserrat text-5xl md:text-7xl font-extrabold text-[#144D3A] mb-6 leading-tight">
             Haymarket's Neighborhood Bicycle Shop
@@ -107,10 +51,10 @@ export function Home() {
             Serving Northern Virginia's cycling community for 18 years with expert service, quality bikes, and a community of cycling enthusiasts.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button onClick={() => scrollToSection('services')} aria-label="View our services" className="font-montserrat bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
+            <button onClick={() => scrollToSection('services')} aria-label="View our services" className="font-montserrat bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]">
               Our Services
             </button>
-            <button onClick={() => scrollToSection('products')} aria-label="View our products" className="font-montserrat bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
+            <button onClick={() => scrollToSection('products')} aria-label="View our products" className="font-montserrat bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]">
               Our Products
             </button>
           </div>
@@ -120,7 +64,7 @@ export function Home() {
       <section className="bg-gray-50 py-8 px-4 border-y border-gray-200">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
           <div className="flex items-center gap-4">
-            <div className="bg-[#F36E32] p-3 rounded-lg">
+            <div className="bg-[#F36E32] p-3 rounded-lg min-w-[3rem] min-h-[3rem] flex items-center justify-center">
               <MapPin className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -136,7 +80,7 @@ export function Home() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="bg-[#73BB44] p-3 rounded-lg">
+            <div className="bg-[#73BB44] p-3 rounded-lg min-w-[3rem] min-h-[3rem] flex items-center justify-center">
               <Clock className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -145,7 +89,7 @@ export function Home() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="bg-[#F5E100] p-3 rounded-lg">
+            <div className="bg-[#F5E100] p-3 rounded-lg min-w-[3rem] min-h-[3rem] flex items-center justify-center">
               <Phone className="w-6 h-6 text-[#144D3A]" />
             </div>
             <div>
@@ -242,7 +186,7 @@ export function Home() {
           <div className="text-center mt-12">
             <Link
               to="/services"
-              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg"
+              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]"
             >
               View All Services
             </Link>
@@ -304,7 +248,7 @@ export function Home() {
           <div className="text-center mt-12">
             <Link
               to="/catalog"
-              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg"
+              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]"
             >
               View Full Catalog
             </Link>
@@ -324,7 +268,7 @@ export function Home() {
                 Haymarket Bicycles core principles center around approaching the cycling industry differently. Exemplary treatment of the customer is the number one priority. All too many bicycle shops have impersonal and unapproachable atmospheres. Haymarket Bicycles was founded on the idea to be different; every customer, whether a first-time bike buyer or world-class racer, is to be treated well, with their individual wants and needs addressed with care and respect.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Haymarket Bicycles has become renowned for their expertise of all manner of bicycles, and customer service that is second to none.  Our staff decades of combined experience to help you find the perfect bike, maintain your ride, and discover the joy of cycling.
+                Haymarket Bicycles has become renowned for their expertise of all manner of bicycles, and customer service that is second to none. Our staff decades of combined experience to help you find the perfect bike, maintain your ride, and discover the joy of cycling.
               </p>
               <div className="flex items-center gap-8">
                 <div className="text-center">
@@ -372,7 +316,7 @@ export function Home() {
               href="https://www.google.com/maps/search/?api=1&query=4414+Costello+Way+Haymarket+VA+20169"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F5E100] transition-all shadow-sm hover:shadow-md block group"
+              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F5E100] transition-all shadow-sm hover:shadow-md block group min-h-[11rem]"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="bg-[#F5E100] w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -386,7 +330,7 @@ export function Home() {
               </div>
             </a>
 
-            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#73BB44] transition-all shadow-sm hover:shadow-md">
+            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#73BB44] transition-all shadow-sm hover:shadow-md min-h-[11rem]">
               <div className="flex flex-col items-center text-center">
                 <div className="bg-[#73BB44] w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <Phone className="w-8 h-8 text-white" />
@@ -398,7 +342,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F36E32] transition-all shadow-sm hover:shadow-md">
+            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F36E32] transition-all shadow-sm hover:shadow-md min-h-[11rem]">
               <div className="flex flex-col items-center text-center">
                 <div className="bg-[#F36E32] w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <Mail className="w-8 h-8 text-white" />
@@ -410,7 +354,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#CBD92A] transition-all shadow-sm hover:shadow-md">
+            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#CBD92A] transition-all shadow-sm hover:shadow-md min-h-[11rem]">
               <div className="flex flex-col items-center text-center">
                 <div className="bg-[#CBD92A] w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <Clock className="w-8 h-8 text-[#144D3A]" />
@@ -441,7 +385,7 @@ export function Home() {
             <a
               href="tel:7037541911"
               onClick={handleCallClick}
-              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg cursor-pointer"
+              className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg cursor-pointer min-h-[3rem]"
             >
               Call Us Now
             </a>
@@ -449,67 +393,14 @@ export function Home() {
         </div>
       </section>
 
-      <footer className="bg-[#144D3A] py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="mb-4">
-                <span className="font-montserrat text-xl font-bold text-white">Haymarket Bicycles</span>
-              </div>
-              <p className="text-white/70 leading-relaxed">
-                Your trusted partner for all things cycling. Quality bikes, expert service, passionate people.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-montserrat text-white font-bold text-lg mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li>
-                  <button onClick={() => scrollToSection('services')} className="text-white/70 hover:text-[#73BB44] transition-colors">
-                    Services
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('products')} className="text-white/70 hover:text-[#73BB44] transition-colors">
-                    Products
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('story')} className="text-white/70 hover:text-[#73BB44] transition-colors">
-                    Our Story
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-montserrat text-white font-bold text-lg mb-4">Connect</h4>
-              <p className="text-white/70 mb-2">Follow us for cycling tips, events, and special offers!</p>
-              <div className="flex gap-4 mt-4">
-                <a href="https://www.facebook.com/HaymarketBicycles/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#F36E32] rounded-full flex items-center justify-center hover:bg-[#e05d21] transition-colors cursor-pointer">
-                  <span className="text-white font-bold">f</span>
-                </a>
-                <a href="https://www.instagram.com/haymarketbikes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#F5E100] rounded-full flex items-center justify-center hover:bg-[#e5d100] transition-colors cursor-pointer">
-                  <span className="text-[#144D3A] font-bold">ig</span>
-                </a>
-                <a href="https://www.tiktok.com/@haymarketbicycles" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#73BB44] rounded-full flex items-center justify-center hover:bg-[#5fa535] transition-colors cursor-pointer">
-                  <span className="text-white font-bold">tt</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-white/20 pt-8 text-center">
-            <p className="text-white/60">
-              © 2025 Haymarket Bicycles. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-
       <PhoneModal
         isOpen={phoneModalOpen}
         onClose={() => setPhoneModalOpen(false)}
         phoneNumber="7037541911"
         displayNumber="(703) 754-1911"
       />
-    </div>
+
+      <BackToTop />
+    </Layout>
   );
 }

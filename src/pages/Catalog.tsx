@@ -1,30 +1,25 @@
-import { Bike, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { Layout } from '../components/Layout';
 import { ProductCard } from '../components/ProductCard';
+import { BackToTop } from '../components/BackToTop';
 import { featuredProducts } from '../products';
 
 export function Catalog() {
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="fixed top-0 w-full bg-white shadow-md z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link to="/" className="flex items-center gap-3">
-              <img src="/Haymarket Bicycles Logo 2024_Patch - Color - Vertical.png" alt="Haymarket Bicycles - Quality Bikes for Sale in Northern Virginia" className="h-16 w-auto" />
-              <span className="font-montserrat text-2xl font-extrabold text-[#144D3A]">Haymarket Bicycles</span>
-            </Link>
+    <Layout>
 
-            <Link
-              to="/"
-              aria-label="Navigate back to home page"
-              className="font-montserrat flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              Back to Home
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Helmet>
+        <title>Bike Catalog | Premium Bikes for Sale in Haymarket, VA</title>
+        <meta
+          name="description"
+          content="Browse our selection of premium bicycles. Road bikes, mountain bikes, electric bikes, and accessories from Haymarket Bicycles in Northern Virginia."
+        />
+        <meta
+          name="keywords"
+          content="bikes for sale haymarket va, road bikes northern virginia, mountain bikes gainesville, electric bikes haymarket, cycling accessories"
+        />
+      </Helmet>
 
       <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">
         <div
@@ -61,23 +56,14 @@ export function Catalog() {
           </p>
           <Link
             to="/"
-            className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg"
+            className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]"
           >
             Contact Us Today
           </Link>
         </div>
       </section>
 
-      <footer className="bg-[#144D3A] py-8 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="font-montserrat text-xl font-bold text-white">Haymarket Bicycles</span>
-          </div>
-          <p className="text-white/60">
-            © 2025 Haymarket Bicycles. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+      <BackToTop />
+    </Layout>
   );
 }
