@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { Layout } from '../components/Layout';
 import { ProductCard } from '../components/ProductCard';
 import { BackToTop } from '../components/BackToTop';
@@ -8,18 +7,6 @@ import { featuredProducts } from '../products';
 export function Catalog() {
   return (
     <Layout>
-
-      <Helmet>
-        <title>Bike Catalog | Premium Bikes for Sale in Haymarket, VA</title>
-        <meta
-          name="description"
-          content="Browse our selection of premium bicycles. Road bikes, mountain bikes, electric bikes, and accessories from Haymarket Bicycles in Northern Virginia."
-        />
-        <meta
-          name="keywords"
-          content="bikes for sale haymarket va, road bikes northern virginia, mountain bikes gainesville, electric bikes haymarket, cycling accessories"
-        />
-      </Helmet>
 
       <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">
         <div

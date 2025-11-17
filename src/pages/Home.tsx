@@ -1,7 +1,6 @@
 import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { Layout } from '../components/Layout';
 import { PhoneModal } from '../components/PhoneModal';
 import { BackToTop } from '../components/BackToTop';
@@ -20,17 +19,6 @@ export function Home() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007</title>
-        <meta
-          name="description"
-          content="Northern Virginia's trusted bicycle shop since 2007. Expert repairs, quality bikes, and professional service in Haymarket, VA. Serving cyclists with passion for 18 years."
-        />
-        <meta
-          name="keywords"
-          content="bike shop haymarket va, bicycle repair haymarket, bikes for sale northern virginia, cycling haymarket, bike service gainesville va"
-        />
-      </Helmet>
 
       <section className="pt-32 pb-20 px-4 bg-white relative overflow-hidden">
         <div

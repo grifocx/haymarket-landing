@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { Layout } from '../components/Layout';
 import { ServiceCard } from '../components/ServiceCard';
 import { BackToTop } from '../components/BackToTop';
@@ -8,18 +7,6 @@ import { bikeServices } from '../services';
 export function Services() {
   return (
     <Layout>
-
-      <Helmet>
-        <title>Bike Repair Services | Expert Maintenance in Haymarket, VA</title>
-        <meta
-          name="description"
-          content="Professional bicycle repair and maintenance services in Haymarket, VA. From tune-ups to complete overhauls, our certified mechanics keep you rolling smoothly."
-        />
-        <meta
-          name="keywords"
-          content="bike repair haymarket va, bicycle maintenance northern virginia, bike tune-up gainesville, e-bike service haymarket, wheel truing"
-        />
-      </Helmet>
 
       <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">
         <div
