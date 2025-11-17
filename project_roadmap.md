@@ -343,13 +343,6 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
   - Risk: Low
   - Impact: Better search result appearance
 
-- [ ] **Create blog/news section** - *High Effort*
-  - Design blog layout
-  - Create blog post template
-  - Add routing for blog posts
-  - Risk: Low
-  - Impact: Content marketing, SEO
-
 ---
 
 ## Completed Tasks
