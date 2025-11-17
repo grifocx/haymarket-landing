@@ -44,7 +44,7 @@ export const bikeServices: Service[] = [
   },
   {
     id: '6',
-    title: 'E-bike Service Lefel 1',
+    title: 'E-bike Service Level 1',
     description: 'Adjust all systems and software.',
     cost: '$129',
     highlightColor: '#73BB44'

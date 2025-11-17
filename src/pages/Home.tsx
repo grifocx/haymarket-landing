@@ -1,5 +1,5 @@
 import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PhoneModal } from '../components/PhoneModal';
 
@@ -24,6 +24,17 @@ export function Home() {
     setMobileMenuOpen(false);
   };
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [mobileMenuOpen]);
+
   return (
     <div className="min-h-screen bg-white">
       <nav className="fixed top-0 w-full bg-white shadow-md z-50 transition-all">
@@ -35,16 +46,16 @@ export function Home() {
             </div>
 
             <div className="hidden md:flex items-center gap-8">
-              <button onClick={() => scrollToSection('services')} className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
+              <button onClick={() => scrollToSection('services')} aria-label="Navigate to services section" className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
                 Services
               </button>
-              <button onClick={() => scrollToSection('products')} className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
+              <button onClick={() => scrollToSection('products')} aria-label="Navigate to products section" className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
                 Products
               </button>
-              <button onClick={() => scrollToSection('story')} className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
+              <button onClick={() => scrollToSection('story')} aria-label="Navigate to our story section" className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold">
                 Our Story
               </button>
-              <button onClick={() => scrollToSection('contact')} className="font-montserrat bg-[#F36E32] text-white px-6 py-2.5 rounded-full hover:bg-[#e05d21] transition-colors font-bold shadow-md">
+              <button onClick={() => scrollToSection('contact')} aria-label="Navigate to contact section" className="font-montserrat bg-[#F36E32] text-white px-6 py-2.5 rounded-full hover:bg-[#e05d21] transition-colors font-bold shadow-md">
                 Contact Us
               </button>
             </div>
@@ -52,6 +63,8 @@ export function Home() {
             <button
               className="md:hidden text-[#144D3A]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -94,10 +107,10 @@ export function Home() {
             Serving Northern Virginia's cycling community for 18 years with expert service, quality bikes, and a community of cycling enthusiasts.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button onClick={() => scrollToSection('services')} className="font-montserrat bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
+            <button onClick={() => scrollToSection('services')} aria-label="View our services" className="font-montserrat bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
               Our Services
             </button>
-            <button onClick={() => scrollToSection('products')} className="font-montserrat bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
+            <button onClick={() => scrollToSection('products')} aria-label="View our products" className="font-montserrat bg-[#73BB44] text-white px-8 py-4 rounded-full hover:bg-[#5fa535] transition-all transform hover:scale-105 font-bold text-lg shadow-lg">
               Our Products
             </button>
           </div>

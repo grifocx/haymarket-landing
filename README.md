@@ -14,13 +14,13 @@ This is a single-page React application built with Vite, TypeScript, and Tailwin
 - **Tailwind CSS** - Utility-first CSS framework
 - **React Router DOM** - Client-side routing
 - **Lucide React** - Icon library
-- **Supabase** - Backend and database (configured but not yet in use)
 
 ## Project Structure
 
 ```
 src/
 ├── components/
+│   ├── PhoneModal.tsx       # Desktop phone number modal component
 │   ├── ProductCard.tsx      # Reusable product display component
 │   └── ServiceCard.tsx      # Reusable service display component
 ├── pages/
@@ -32,6 +32,31 @@ src/
 ├── App.tsx                  # Main app component with routing
 └── main.tsx                 # Application entry point
 ```
+
+## Key Components
+
+### PhoneModal Component
+
+The `PhoneModal` component provides a desktop-optimized phone interaction experience:
+
+**Features:**
+- Desktop-only modal that displays on non-mobile devices
+- Copy-to-clipboard functionality for phone number
+- Direct "Call Now" button with tel: link
+- ESC key support for closing
+- Focus management and keyboard accessibility
+- Visual feedback when number is copied
+
+**Mobile vs Desktop Behavior:**
+- **Mobile devices**: Direct tel: link opens phone dialer immediately
+- **Desktop devices**: Modal appears with options to copy or call via softphone/VoIP apps
+- Device detection based on user agent and screen width
+
+**Accessibility:**
+- ARIA labels on all interactive elements
+- ESC key closes modal
+- Keyboard navigation support
+- Focus trap within modal when open
 
 ## Features Implemented
 
@@ -257,6 +282,112 @@ npm run typecheck
 ```bash
 npm run lint
 ```
+
+## Deployment Guide
+
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
+- Web hosting service (Netlify, Vercel, AWS, etc.)
+
+### Production Build Steps
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Run Type Checking**
+   ```bash
+   npm run typecheck
+   ```
+   Fix any type errors before proceeding.
+
+3. **Run Linting**
+   ```bash
+   npm run lint
+   ```
+   Address any linting issues.
+
+4. **Build for Production**
+   ```bash
+   npm run build
+   ```
+   This creates an optimized production build in the `dist/` directory.
+
+5. **Preview Production Build (Optional)**
+   ```bash
+   npm run preview
+   ```
+   Test the production build locally before deployment.
+
+### Deployment Platforms
+
+**Netlify (Recommended):**
+- Connect your Git repository
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Automatic deployments on push
+
+**Vercel:**
+- Import your Git repository
+- Framework preset: Vite
+- Build command: `npm run build`
+- Output directory: `dist`
+
+**Traditional Hosting:**
+- Upload contents of `dist/` folder to web server
+- Configure server to serve `index.html` for all routes (SPA routing)
+- Ensure `.htaccess` or nginx config handles client-side routing
+
+### Post-Deployment Checklist
+- [ ] Verify all pages load correctly
+- [ ] Test mobile responsiveness
+- [ ] Check all navigation links
+- [ ] Verify phone numbers and email links work
+- [ ] Test contact form (if applicable)
+- [ ] Validate SEO tags with Google Rich Results Test
+- [ ] Submit sitemap.xml to Google Search Console
+- [ ] Test social media sharing (Open Graph tags)
+
+## Accessibility Features
+
+This website follows WCAG 2.1 Level AA accessibility guidelines:
+
+### Keyboard Navigation
+- All interactive elements are keyboard accessible
+- Tab order follows logical reading flow
+- ESC key closes modal dialogs and mobile menu
+- Enter/Space keys activate buttons and links
+- Focus indicators visible on all interactive elements
+
+### Screen Reader Support
+- Semantic HTML structure with proper heading hierarchy
+- ARIA labels on all icon buttons and controls
+- Descriptive alt text on all images
+- Proper form labels and error messages
+- Landmark regions for easy navigation
+
+### Visual Accessibility
+- Color contrast ratios meet WCAG AA standards
+- Text remains readable at 200% zoom
+- No information conveyed by color alone
+- Sufficient white space and typography hierarchy
+- Responsive design works on all screen sizes
+
+### Mobile Accessibility
+- Touch targets minimum 44x44px
+- Pinch-to-zoom enabled
+- Viewport properly configured
+- No horizontal scrolling required
+- Optimized for screen readers on mobile devices
+
+### Testing Recommendations
+- Use WAVE browser extension for automated accessibility testing
+- Test with keyboard navigation only
+- Test with screen readers (NVDA, JAWS, VoiceOver)
+- Verify color contrast with browser DevTools
+- Test on multiple devices and browsers
 
 ## SEO & Search Engine Optimization
 

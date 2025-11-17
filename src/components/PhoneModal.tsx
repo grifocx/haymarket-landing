@@ -1,5 +1,5 @@
 import { X, Phone, Check } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface PhoneModalProps {
   isOpen: boolean;
@@ -10,6 +10,17 @@ interface PhoneModalProps {
 
 export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: PhoneModalProps) {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -28,6 +39,7 @@ export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: Phon
       <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative animate-slideUp">
         <button
           onClick={onClose}
+          aria-label="Close phone modal"
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
         >
           <X className="w-6 h-6" />
@@ -52,6 +64,7 @@ export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: Phon
           <div className="flex gap-3">
             <button
               onClick={handleCopy}
+              aria-label="Copy phone number to clipboard"
               className="flex-1 font-montserrat bg-gray-100 text-[#144D3A] px-6 py-3 rounded-full hover:bg-gray-200 transition-all font-bold flex items-center justify-center gap-2"
             >
               {copied ? (
@@ -65,6 +78,7 @@ export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: Phon
             </button>
             <a
               href={`tel:${phoneNumber}`}
+              aria-label="Call Haymarket Bicycles now"
               className="flex-1 font-montserrat bg-[#F36E32] text-white px-6 py-3 rounded-full hover:bg-[#e05d21] transition-all font-bold text-center"
             >
               Call Now

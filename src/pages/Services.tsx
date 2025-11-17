@@ -16,6 +16,7 @@ export function Services() {
 
             <Link
               to="/"
+              aria-label="Navigate back to home page"
               className="font-montserrat flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold"
             >
               <ArrowLeft className="w-5 h-5" />
