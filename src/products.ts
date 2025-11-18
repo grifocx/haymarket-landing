@@ -22,7 +22,7 @@ export const featuredProducts: Product[] = [
       '700c wheels with tubeless ready tires',
       'Hydraulic disc brakes'
     ],
-    imageUrl: 'https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg',
+    imageUrl: '/images/velocity-pro-carbon-road-bike.jpeg',
     highlightColor: '#F36E32'
   },
   {
@@ -37,7 +37,7 @@ export const featuredProducts: Product[] = [
       'Dropper post for technical descents',
       '1x12 drivetrain for simplicity'
     ],
-    imageUrl: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg',
+    imageUrl: '/images/trailblazer-elite-mountain-bike.jpeg',
     highlightColor: '#73BB44'
   },
   {
@@ -52,37 +52,7 @@ export const featuredProducts: Product[] = [
       'Built-in lights and fenders',
       'Upright comfortable geometry'
     ],
-    imageUrl: 'https://images.pexels.com/photos/7319274/pexels-photo-7319274.jpeg',
+    imageUrl: '/images/urban-e-commuter.jpeg',
     highlightColor: '#F5E100'
-  },
-  {
-    id: '4',
-    name: 'Classic City Cruiser',
-    category: 'City Bikes',
-    price: '$899',
-    description: 'Timeless style meets everyday practicality. Perfect for leisurely rides around town with vintage-inspired design.',
-    features: [
-      'Step-through frame for easy mounting',
-      'Comfortable wide saddle',
-      'Rear rack and basket compatible',
-      '7-speed for versatile riding'
-    ],
-    imageUrl: 'https://images.pexels.com/photos/1571660/pexels-photo-1571660.jpeg',
-    highlightColor: '#144D3A'
-  },
-  {
-    id: '5',
-    name: 'Performance Gravel Bike',
-    category: 'Gravel Bikes',
-    price: '$2,199',
-    description: 'Adventure awaits on and off the pavement. This versatile gravel bike handles dirt roads, bike paths, and pavement with equal confidence.',
-    features: [
-      'Aluminum frame with carbon fork',
-      'Wide tire clearance (up to 45mm)',
-      'Multiple mounting points for gear',
-      'Mechanical disc brakes'
-    ],
-    imageUrl: 'https://images.pexels.com/photos/8959279/pexels-photo-8959279.jpeg',
-    highlightColor: '#F36E32'
   }
 ];
