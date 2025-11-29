@@ -368,7 +368,7 @@ export function Home() {
 
           <div className="text-center mt-12">
             <p className="text-gray-600 text-lg mb-6">
-              We're here to help with all your cycling needs!
+              Thanks for stopping by. We're here to help with all your cycling needs!
             </p>
             <a
               href="tel:7037541911"
