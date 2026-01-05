@@ -18,7 +18,7 @@ export function Catalog() {
             Featured Bikes
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover our hand-picked selection of premium bikes. Each model has been carefully chosen to represent the best in its category, offering exceptional quality and value for riders of all levels.
+            Discover our hand-picked selection of bikes. Each model has been carefully chosen to represent the best in its category, offering exceptional quality and value for riders of all levels.
           </p>
         </div>
       </section>
