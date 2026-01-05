@@ -1,4 +1,4 @@
-import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star } from 'lucide-react';
+import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Zap } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
@@ -124,24 +124,24 @@ export function Home() {
 
             <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-2 border border-gray-200">
               <div className="bg-[#73BB44] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                <Bike className="w-8 h-8 text-white" />
+                <Zap className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-montserrat text-2xl font-bold text-[#144D3A] mb-4">Custom Builds</h3>
+              <h3 className="font-montserrat text-2xl font-bold text-[#144D3A] mb-4">E-Bike Specialists</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Design your dream bike with our expert guidance and premium components.
+                Power up your ride with expert e-bike sales and service.
               </p>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#73BB44] rounded-full"></div>
-                  Personalized consultations
+                  Premium e-bike sales & demos
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#73BB44] rounded-full"></div>
-                  Frame fitting & selection
+                  Battery service & diagnostics
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#73BB44] rounded-full"></div>
-                  Component customization
+                  Motor & electrical system repairs
                 </li>
               </ul>
             </div>
