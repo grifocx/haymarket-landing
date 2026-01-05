@@ -12,7 +12,7 @@ export const bikeServices: Service[] = [
     title: 'Level 1 Tune-Up',
     description: 'Complete safety check, gear adjustment, brake adjustment, tire inspection, and basic cleaning.',
     cost: '$99',
-    highlightColor: '#F36E32'
+    highlightColor: '#73BB44'
   },
     {
     id: '2',
@@ -33,7 +33,7 @@ export const bikeServices: Service[] = [
     title: 'Drivetrain Cleaning and Ultrasonic Bath',
     description: 'Professional level deep clean of all drivetrain parts to restore operational efficiency.',
     cost: '$150',
-    highlightColor: '#144D3A'
+    highlightColor: '#73BB44'
   },
   {
     id: '5',
@@ -75,20 +75,20 @@ export const bikeServices: Service[] = [
     title: 'E-bike Service Level 1',
     description: 'Basic adjust all systems and software. Inspect all systems and components.',
     cost: '$149',
-    highlightColor: '#73BB44'
+    highlightColor: '#F5E100'
   },
   {
     id: '11',
     title: 'E-Bike Assembly',
     description: 'Professional assembly of new e-bikes from the box, including safety checks and adjustments.',
     cost: '$384.99',
-    highlightColor: '#73BB44'
+    highlightColor: '#144D3A'
   },
   {
     id: '12',
     title: 'Custom Bike Fitting',
     description: 'Professional fitting session to optimize comfort, efficiency, and injury prevention using motion capture technology',
     cost: '$250',
-    highlightColor: '#F36E32'
+    highlightColor: '#73BB44'
   }
 ];
