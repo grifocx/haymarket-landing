@@ -289,7 +289,7 @@ The site uses **Montserrat** throughout to match the official logo typeface. Thi
 
 All SEO implementations are backend-only with no visual changes to the website appearance or user experience.
 
-### Session 6: Architecture & Performance Improvements (Latest)
+### Session 6: Architecture & Performance Improvements
 
 **Code Quality & Maintainability:**
 - Created shared Layout component eliminating navigation/footer duplication
@@ -320,6 +320,40 @@ All SEO implementations are backend-only with no visual changes to the website a
 - Added Suspense boundaries for smooth loading
 - Added width/height to logo images to prevent layout shift
 - Improved Core Web Vitals scores
+
+### Session 7: Navigation & User Flow Improvements (Latest - January 5, 2026)
+
+**Service Card Updates:**
+- Changed button text from "Book This Service" to "Contact for Service"
+- Converted button to Link component routing to /#contact
+- Improved call-to-action clarity and user flow consistency
+- Users now navigate to contact section when clicking service cards
+
+**Cross-Page Contact Navigation:**
+- Fixed "Contact Us Today" button on Services page to link to /#contact
+- Fixed "Contact Us Today" button on Catalog page to link to /#contact
+- Standardized contact navigation across all pages
+- Ensures consistent user experience throughout the site
+
+**Hash Navigation Implementation:**
+- Added useEffect hook to Home page for hash-based navigation
+- Automatically scrolls to correct section when navigating with hash fragments
+- Supports /#contact, /#services, /#products, and /#story anchors
+- Integrated with react-router-dom's useLocation hook
+- 100ms delay ensures DOM is ready before scrolling
+- Enables seamless navigation from any page to specific Home sections
+
+**Files Modified:**
+- src/components/ServiceCard.tsx - Updated button component and text
+- src/pages/Services.tsx - Fixed CTA button routing
+- src/pages/Catalog.tsx - Fixed CTA button routing
+- src/pages/Home.tsx - Added hash navigation handler
+
+**Impact:**
+- Clearer call-to-action messaging on service cards
+- Consistent contact flow from all pages
+- Smooth cross-page navigation to specific sections
+- Better user experience when navigating between pages and sections
 
 ## Store Information
 

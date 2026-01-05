@@ -409,7 +409,62 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
 
 ---
 
-**Last Updated**: November 17, 2025
+**Last Updated**: January 5, 2026
+
+---
+
+## Latest Update - January 5, 2026
+
+### Navigation & User Flow Improvements ✅
+
+**1. Service Card Button Updates**
+- Changed button text from "Book This Service" to "Contact for Service"
+- Updated button action to navigate to home page contact section (/#contact)
+- Converted button to Link component for proper routing
+- Ensures users can easily contact the shop about any service
+- Risk: None
+- Impact: Clearer call-to-action and improved user flow
+
+**2. Cross-Page Contact Navigation**
+- Fixed "Contact Us Today" buttons on Services page to navigate to /#contact
+- Fixed "Contact Us Today" buttons on Catalog page to navigate to /#contact
+- Both pages now properly direct users to the contact section on home page
+- Consistent navigation behavior across all pages
+- Risk: None
+- Impact: Improved user experience and streamlined contact flow
+
+**3. Hash Navigation Implementation**
+- Added useEffect hook to Home page for hash-based navigation
+- Automatically scrolls to sections when navigating from other pages
+- Handles /#contact, /#services, /#products, and /#story anchors
+- 100ms delay ensures DOM is ready before scrolling
+- Integrated with react-router-dom's useLocation hook
+- Risk: None
+- Impact: Seamless navigation between pages and sections
+
+### Technical Details
+
+**Files Modified:**
+- `src/components/ServiceCard.tsx` - Updated button to Link with new text
+- `src/pages/Services.tsx` - Fixed CTA button link
+- `src/pages/Catalog.tsx` - Fixed CTA button link
+- `src/pages/Home.tsx` - Added hash navigation handler
+
+**Implementation:**
+- All service cards now use Link component routing to /#contact
+- Cross-page navigation properly triggers scroll behavior
+- Hash fragment navigation works from any page to Home sections
+- Maintains smooth scroll behavior for better UX
+
+**Build Verification:**
+- ✅ Production build successful
+- ✅ All routes compile without errors
+- ✅ Navigation tested across all pages
+- ✅ Hash navigation works correctly
+
+### Summary
+
+Implemented comprehensive navigation improvements ensuring users can easily navigate to the contact section from any page. Service cards now have clearer call-to-action text, and all contact buttons properly route to the home page contact section with smooth scrolling.
 
 ---
 
