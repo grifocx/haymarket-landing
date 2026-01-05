@@ -60,7 +60,7 @@ export const bikeServices: Service[] = [
     id: '8',
     title: 'Bike Assembly',
     description: 'Professional assembly of new bikes from the box, including safety checks and adjustments.',
-    cost: '$184.99',
+    cost: '$185',
     highlightColor: '#73BB44'
   },
     {
@@ -81,7 +81,7 @@ export const bikeServices: Service[] = [
     id: '11',
     title: 'E-Bike Assembly',
     description: 'Professional assembly of new e-bikes from the box, including safety checks and adjustments.',
-    cost: '$384.99',
+    cost: '$385',
     highlightColor: '#144D3A'
   },
   {
