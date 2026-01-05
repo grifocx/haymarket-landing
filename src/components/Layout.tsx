@@ -236,7 +236,7 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                 </div>
               </div>
               <div className="border-t border-white/20 pt-8 text-center">
-                <p className="text-white/60">© 2025 Haymarket Bicycles. All rights reserved.</p>
+                <p className="text-white/60">© 2026 Haymarket Bicycles. All rights reserved.</p>
               </div>
             </>
           ) : (
