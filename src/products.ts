@@ -22,7 +22,7 @@ export const featuredProducts: Product[] = [
       '700c wheels with tubeless ready tires',
       'Hydraulic disc brakes'
     ],
-    imageUrl: 'https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg',
+    imageUrl: '/catalog/trek-domane.png',
     highlightColor: '#F36E32'
   },
   {
@@ -37,7 +37,7 @@ export const featuredProducts: Product[] = [
       'Dropper post for technical descents',
       '1x12 drivetrain for simplicity'
     ],
-    imageUrl: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg',
+    imageUrl: '/catalog/trek-fuel.png',
     highlightColor: '#73BB44'
   },
   {
@@ -52,7 +52,7 @@ export const featuredProducts: Product[] = [
       'Built-in lights and fenders',
       'Upright comfortable geometry'
     ],
-    imageUrl: 'https://images.pexels.com/photos/7319274/pexels-photo-7319274.jpeg',
+    imageUrl: '/catalog/aventon-level3.png',
     highlightColor: '#F5E100'
   },
   {
@@ -67,7 +67,7 @@ export const featuredProducts: Product[] = [
       'Rear rack and basket compatible',
       '7-speed for versatile riding'
     ],
-    imageUrl: 'https://images.pexels.com/photos/1571660/pexels-photo-1571660.jpeg',
+    imageUrl: '/catalog/trek-fx.png',
     highlightColor: '#144D3A'
   },
   {
@@ -82,7 +82,7 @@ export const featuredProducts: Product[] = [
       'World-class geometry',
       'European heritage'
     ],
-    imageUrl: 'https://images.pexels.com/photos/8959279/pexels-photo-8959279.jpeg',
+    imageUrl: 'time-gravel.png',
     highlightColor: '#F36E32'
   }
 ];
