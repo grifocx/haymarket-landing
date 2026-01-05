@@ -71,8 +71,8 @@ export function PhoneModal({ isOpen, onClose, phoneNumber, displayNumber }: Phon
       await navigator.clipboard.writeText(phoneNumber);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+    } catch {
+      // Silently fail if clipboard access is denied
     }
   };
 
