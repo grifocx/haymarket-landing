@@ -22,7 +22,7 @@ export const featuredProducts: Product[] = [
       '700c wheels with tubeless ready tires',
       'Hydraulic disc brakes'
     ],
-    imageUrl: '/catalog/trek-domane.png',
+    imageUrl: 'trek-domane.png',
     highlightColor: '#F36E32'
   },
   {
@@ -37,7 +37,7 @@ export const featuredProducts: Product[] = [
       'Dropper post for technical descents',
       '1x12 drivetrain for simplicity'
     ],
-    imageUrl: '/catalog/trek-fuel.png',
+    imageUrl: 'trek-fuel.png',
     highlightColor: '#73BB44'
   },
   {
@@ -52,7 +52,7 @@ export const featuredProducts: Product[] = [
       'Built-in lights and fenders',
       'Upright comfortable geometry'
     ],
-    imageUrl: '/catalog/aventon-level3.png',
+    imageUrl: 'aventon-level3.png',
     highlightColor: '#F5E100'
   },
   {
@@ -67,7 +67,7 @@ export const featuredProducts: Product[] = [
       'Rear rack and basket compatible',
       '7-speed for versatile riding'
     ],
-    imageUrl: '/catalog/trek-fx.png',
+    imageUrl: 'trek-fx.png',
     highlightColor: '#144D3A'
   },
   {
