@@ -12,13 +12,13 @@ export interface Product {
 export const featuredProducts: Product[] = [
   {
     id: '1',
-    name: 'Velocity Pro Carbon Road Bike',
+    name: 'Trek Domane SL 7 Gen 4',
     category: 'Road Bikes',
-    price: '$3,299',
-    description: 'Experience the perfect blend of speed and comfort with our flagship carbon road bike. Built for serious cyclists who demand performance.',
+    price: '$6,799',
+    description: 'Experience the perfect blend of speed and comfort with this flagship carbon road bike. Built for serious cyclists who demand performance.',
     features: [
       'Lightweight carbon fiber frame',
-      'Shimano 105 groupset',
+      'Shimano 12s DI2 groupset',
       '700c wheels with tubeless ready tires',
       'Hydraulic disc brakes'
     ],
@@ -27,7 +27,7 @@ export const featuredProducts: Product[] = [
   },
   {
     id: '2',
-    name: 'TrailBlazer Elite Mountain Bike',
+    name: 'Trek Fuel EX 9.8 XT DI2 Gen 7',
     category: 'Mountain Bikes',
     price: '$2,899',
     description: 'Conquer any terrain with confidence. Full suspension design and aggressive geometry make this bike ready for the toughest trails.',
@@ -42,10 +42,10 @@ export const featuredProducts: Product[] = [
   },
   {
     id: '3',
-    name: 'Urban E-Commuter',
+    name: 'Aventon Level 3',
     category: 'Electric Bikes',
     price: '$2,499',
-    description: 'Transform your daily commute with pedal-assist technology. Arrive refreshed with up to 50 miles of battery range.',
+    description: 'Take your commutes to the next LEVEL. The all new Level 3 comes fully equipped with everything you need to trade your daily drives for daily rides. A rear rack and fenders ensures you can carry necessities while staying clean and dry during your rides.',
     features: [
       '500W rear hub motor',
       'Integrated battery (removable)',
@@ -57,10 +57,10 @@ export const featuredProducts: Product[] = [
   },
   {
     id: '4',
-    name: 'Classic City Cruiser',
+    name: 'Trek FX',
     category: 'City Bikes',
     price: '$899',
-    description: 'Timeless style meets everyday practicality. Perfect for leisurely rides around town with vintage-inspired design.',
+    description: 'Exercise, commute, or ride for fun with the wide range of speeds, reliable disc brakes that let you stop on a dime, and loads of mounts for accessories.',
     features: [
       'Step-through frame for easy mounting',
       'Comfortable wide saddle',
@@ -72,15 +72,15 @@ export const featuredProducts: Product[] = [
   },
   {
     id: '5',
-    name: 'Performance Gravel Bike',
+    name: 'Time ADHX',
     category: 'Gravel Bikes',
     price: '$2,199',
-    description: 'Adventure awaits on and off the pavement. This versatile gravel bike handles dirt roads, bike paths, and pavement with equal confidence.',
+    description: 'The ADHX 45 is a full on gravel bike with plenty of clearance for rowdy off-road fun. The ADHX 45 has 430mm chainstays and can fit a 45c tire. This is the bike for you if you want to get lost on the back roads.',
     features: [
-      'Aluminum frame with carbon fork',
+      'Bespoke carbon frameset',
       'Wide tire clearance (up to 45mm)',
-      'Multiple mounting points for gear',
-      'Mechanical disc brakes'
+      'World-class geometry',
+      'European heritage'
     ],
     imageUrl: 'https://images.pexels.com/photos/8959279/pexels-photo-8959279.jpeg',
     highlightColor: '#F36E32'
