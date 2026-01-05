@@ -145,9 +145,9 @@ Professional loading state for route transitions:
    - High-quality visuals
 
 7. **Contact Section**
-   - Store location: 123 Pedal Lane, Biketown, BT 12345
-   - Phone: (555) BIKE-NOW / (555) 245-3669
-   - Email: info@velocitycycles.com
+   - Store location: 4414 Costello Way, Haymarket, VA 20169
+   - Phone: (703) 754-1911
+   - Email: info@vhaymarketbicycles.com
    - Store hours:
      - Monday: Closed
      - Tuesday - Saturday: 11AM - 6PM
