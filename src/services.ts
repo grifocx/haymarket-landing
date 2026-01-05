@@ -26,7 +26,7 @@ export const bikeServices: Service[] = [
     title: 'Level 3 Tune-Up',
     description: 'Level 1+2 Plus Deep cleaning and lubrication of chain, cassette, and derailleurs for optimal shifting performance. Huge value!',
     cost: '$349',
-    highlightColor: '#F5E100'
+    highlightColor: '#144D3A'
   },
     {
     id: '4',
@@ -40,7 +40,7 @@ export const bikeServices: Service[] = [
     title: 'Flat Tire Repair',
     description: 'Quick tube replacement or patch, including tire inspection and proper inflation.',
     cost: '$15',
-    highlightColor: '#144D3A'
+    highlightColor: '#F36E32'
   },
     {
     id: '6',
