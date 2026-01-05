@@ -36,10 +36,10 @@ export function Services() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-montserrat text-3xl font-bold text-[#144D3A] mb-4">
-            Ready to Book Your Service?
+            Ready for Service?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Stop by our shop or give us a call to schedule your bike service appointment.
+            Stop by our shop or give us a call to schedule your bike service today!
           </p>
           <Link
             to="/"
