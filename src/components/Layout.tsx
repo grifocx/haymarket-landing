@@ -246,7 +246,7 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                   Haymarket Bicycles
                 </span>
               </div>
-              <p className="text-white/60">© 2025 Haymarket Bicycles. All rights reserved.</p>
+              <p className="text-white/60">© 2026 Haymarket Bicycles. All rights reserved.</p>
             </div>
           )}
         </div>
