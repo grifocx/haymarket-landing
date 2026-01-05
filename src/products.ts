@@ -29,7 +29,7 @@ export const featuredProducts: Product[] = [
     id: '2',
     name: 'Trek Fuel EX 9.8 XT DI2 Gen 7',
     category: 'Mountain Bikes',
-    price: '$2,899',
+    price: '$6499',
     description: 'Conquer any terrain with confidence. Full suspension design and aggressive geometry make this bike ready for the toughest trails.',
     features: [
       '29" wheels with aggressive tread',
@@ -44,7 +44,7 @@ export const featuredProducts: Product[] = [
     id: '3',
     name: 'Aventon Level 3',
     category: 'Electric Bikes',
-    price: '$2,499',
+    price: '$1,899',
     description: 'Take your commutes to the next LEVEL. The all new Level 3 comes fully equipped with everything you need to trade your daily drives for daily rides. A rear rack and fenders ensures you can carry necessities while staying clean and dry during your rides.',
     features: [
       '500W rear hub motor',
@@ -65,17 +65,17 @@ export const featuredProducts: Product[] = [
       'Step-through frame for easy mounting',
       'Comfortable wide saddle',
       'Rear rack and basket compatible',
-      '7-speed for versatile riding'
+      '9-speed for versatile riding'
     ],
     imageUrl: 'trek-fx.png',
     highlightColor: '#144D3A'
   },
   {
     id: '5',
-    name: 'Time ADHX',
+    name: 'Time ADHX Shimano GRX',
     category: 'Gravel Bikes',
-    price: '$2,199',
-    description: 'The ADHX 45 is a full on gravel bike with plenty of clearance for rowdy off-road fun. The ADHX 45 has 430mm chainstays and can fit a 45c tire. This is the bike for you if you want to get lost on the back roads.',
+    price: '$6,290',
+    description: 'The ADHX 45 is smooth, stable, and uncommonly durable; when asked, it rips. Meticulously crafted to be perfect inside and out.',
     features: [
       'Bespoke carbon frameset',
       'Wide tire clearance (up to 45mm)',
