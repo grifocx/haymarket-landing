@@ -94,7 +94,13 @@ export function Home() {
             </div>
             <div>
               <p className="font-montserrat font-bold text-[#144D3A] text-lg">Call Us</p>
-              <p className="text-gray-600">(703) 754-1911</p>
+              <a
+                href="tel:7037541911"
+                onClick={handleCallClick}
+                className="text-gray-600 hover:text-[#F36E32] transition-colors cursor-pointer"
+              >
+                (703) 754-1911
+              </a>
             </div>
           </div>
         </div>
@@ -330,17 +336,21 @@ export function Home() {
               </div>
             </a>
 
-            <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#73BB44] transition-all shadow-sm hover:shadow-md min-h-[11rem]">
+            <a
+              href="tel:7037541911"
+              onClick={handleCallClick}
+              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#73BB44] transition-all shadow-sm hover:shadow-md min-h-[11rem] block cursor-pointer"
+            >
               <div className="flex flex-col items-center text-center">
                 <div className="bg-[#73BB44] w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <Phone className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="font-montserrat text-xl font-bold text-[#144D3A] mb-3">Phone</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 hover:text-[#73BB44] transition-colors leading-relaxed">
                   (703) 754-1911
                 </p>
               </div>
-            </div>
+            </a>
 
             <div className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-[#F36E32] transition-all shadow-sm hover:shadow-md min-h-[11rem]">
               <div className="flex flex-col items-center text-center">
