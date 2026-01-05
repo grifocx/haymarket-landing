@@ -283,9 +283,9 @@ export function Home() {
                   <Star className="w-6 h-6 text-[#F5E100] fill-current" />
                 </div>
                 <p className="text-[#144D3A] text-lg leading-relaxed mb-4 italic">
-                  "The team at Haymarket Bicycles helped me find the perfect bike for my daily commute. Their expertise and friendly service made all the difference!"
+                  "I've purchased three bikes from Haymarket Bicycles and had installations, repairs, and service on several occasions. I'm always impressed with their awesome customer service and knowledgeable mechanics."
                 </p>
-                <p className="text-gray-600 font-semibold">— Sarah M., Local Cyclist</p>
+                <p className="text-gray-600 font-semibold">— Dale S., Local Cyclist</p>
               </div>
             </div>
           </div>
