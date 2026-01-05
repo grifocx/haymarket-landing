@@ -49,7 +49,7 @@ export function Catalog() {
             Visit our store for a test ride or contact us to discuss which bike is right for you.
           </p>
           <Link
-            to="/"
+            to="/#contact"
             className="font-montserrat inline-block bg-[#F36E32] text-white px-10 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]"
           >
             Contact Us Today

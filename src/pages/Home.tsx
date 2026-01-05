@@ -1,6 +1,6 @@
 import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Zap } from 'lucide-react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { PhoneModal } from '../components/PhoneModal';
 import { BackToTop } from '../components/BackToTop';
@@ -10,6 +10,16 @@ import { isMobileDevice, scrollToSection } from '../utils/helpers';
 
 export function Home() {
   const [phoneModalOpen, setPhoneModalOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.substring(1);
+      setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 100);
+    }
+  }, [location]);
 
   const handleCallClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!isMobileDevice()) {

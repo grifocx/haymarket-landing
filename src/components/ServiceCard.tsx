@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Service } from '../services';
 
 interface ServiceCardProps {
@@ -24,9 +25,12 @@ export function ServiceCard({ service }: ServiceCardProps) {
           {service.description}
         </p>
 
-        <button className="font-montserrat w-full bg-[#F36E32] text-white px-6 py-3 rounded-lg hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold shadow-lg">
-          Book This Service
-        </button>
+        <Link
+          to="/#contact"
+          className="font-montserrat w-full bg-[#F36E32] text-white px-6 py-3 rounded-lg hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold shadow-lg block text-center"
+        >
+          Contact for Service
+        </Link>
       </div>
     </div>
   );
