@@ -274,7 +274,7 @@ export function Home() {
                 Haymarket Bicycles core principles center around approaching the cycling industry differently. Exemplary treatment of the customer is the number one priority. All too many bicycle shops have impersonal and unapproachable atmospheres. Haymarket Bicycles was founded on the idea to be different; every customer, whether a first-time bike buyer or world-class racer, is to be treated well, with their individual wants and needs addressed with care and respect.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Haymarket Bicycles has become renowned for their expertise of all manner of bicycles, and customer service that is second to none. Our staff decades of combined experience to help you find the perfect bike, maintain your ride, and discover the joy of cycling.
+                Haymarket Bicycles has become renowned for their expertise of all manner of bicycles, and customer service that is second to none. Our staff decades of combined experience to help you find the perfect bike, maintain your ride, and discover the joy of cycling. Whether you're a weekend warrior, daily commuter, or competitive racer, we're here to keep you rolling with confidence.
               </p>
               <div className="flex items-center gap-8">
                 <div className="text-center">
