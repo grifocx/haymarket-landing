@@ -1,12 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Info } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { ServiceCard } from '../components/ServiceCard';
 import { BackToTop } from '../components/BackToTop';
 import { SEO } from '../components/SEO';
 import { bikeServices } from '../services';
+import { scrollToSection } from '../utils/helpers';
 
 export function Services() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.substring(1);
+      setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <Layout>
       <SEO
@@ -31,7 +44,7 @@ export function Services() {
         </div>
       </section>
 
-      <section className="py-12 px-4 bg-gray-50">
+      <section id="ebike-requirements" className="py-12 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white border-l-4 border-[#73BB44] rounded-lg shadow-md p-6">
             <div className="flex items-start gap-4">

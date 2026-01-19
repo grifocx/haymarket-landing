@@ -164,7 +164,7 @@ export function Home() {
               </ul>
               <p className="text-sm text-gray-500 italic border-t border-gray-200 pt-4">
                 We service e-bikes from major bicycle manufacturers with standard bicycle components.{' '}
-                <Link to="/services" className="text-[#73BB44] hover:text-[#5fa535] underline">
+                <Link to="/services#ebike-requirements" className="text-[#73BB44] hover:text-[#5fa535] underline">
                   View requirements
                 </Link>
               </p>
