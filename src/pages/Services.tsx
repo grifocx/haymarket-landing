@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Info } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { ServiceCard } from '../components/ServiceCard';
 import { BackToTop } from '../components/BackToTop';
@@ -27,6 +28,26 @@ export function Services() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Expert bike maintenance and repair services to keep you rolling smoothly. From quick tune-ups to complete overhauls, our certified mechanics are here to help. Here are some of our most popular service offerings:
           </p>
+        </div>
+      </section>
+
+      <section className="py-12 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white border-l-4 border-[#73BB44] rounded-lg shadow-md p-6">
+            <div className="flex items-start gap-4">
+              <div className="bg-[#73BB44]/10 p-3 rounded-lg flex-shrink-0">
+                <Info className="w-6 h-6 text-[#73BB44]" />
+              </div>
+              <div>
+                <h3 className="font-montserrat text-xl font-bold text-[#144D3A] mb-3">
+                  E-Bike Service Requirements
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  To ensure the highest quality service and safety, we service e-bikes with a standard removable seat post and functional bicycle drivetrain from major bicycle manufacturers. We are unable to service scooters, electric motorcycles, throttle-only 'mopeds,' or models with integrated foot-pegs instead of pedals.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

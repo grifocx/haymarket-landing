@@ -148,7 +148,7 @@ export function Home() {
               <p className="text-gray-600 leading-relaxed mb-4">
                 Power up your ride with expert e-bike sales and service.
               </p>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 mb-4">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#73BB44] rounded-full"></div>
                   Premium e-bike sales & demos
@@ -162,6 +162,12 @@ export function Home() {
                   Motor & electrical system repairs
                 </li>
               </ul>
+              <p className="text-sm text-gray-500 italic border-t border-gray-200 pt-4">
+                We service e-bikes from major bicycle manufacturers with standard bicycle components.{' '}
+                <Link to="/services" className="text-[#73BB44] hover:text-[#5fa535] underline">
+                  View requirements
+                </Link>
+              </p>
             </div>
 
             <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-2 border border-gray-200">
