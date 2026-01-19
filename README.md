@@ -355,6 +355,42 @@ All SEO implementations are backend-only with no visual changes to the website a
 - Smooth cross-page navigation to specific sections
 - Better user experience when navigating between pages and sections
 
+### Session 8: E-Bike Service Requirements Notice (Latest - January 19, 2026)
+
+**Service Policy Communication:**
+- Added informational notice about e-bike service requirements
+- Positioned prominently on Services page between hero and service cards
+- Added brief mention on Home page E-Bike Specialists section with link
+- Styled as subtle, professional informational callout with Info icon
+
+**Services Page Notice:**
+- Full detailed requirements in bordered callout box
+- Green accent color matching e-bike branding
+- Clear explanation of serviceable e-bike types
+- Lists exclusions: scooters, electric motorcycles, throttle-only mopeds, models with foot-pegs
+
+**Home Page Integration:**
+- Brief disclaimer note at bottom of E-Bike Specialists card
+- Links to full requirements on Services page
+- Maintains card layout without disrupting existing design
+
+**Hash Navigation Enhancement:**
+- Added `#ebike-requirements` anchor ID to Services page notice section
+- Implemented useEffect hook for hash navigation on Services page
+- Link from Home page scrolls directly to requirements section
+- Smooth user experience when viewing full details
+
+**Files Modified:**
+- src/pages/Services.tsx - Added requirements notice section, hash navigation
+- src/pages/Home.tsx - Added brief notice with link to full requirements
+- Both updated to use Lucide React Info icon
+
+**Impact:**
+- Clear communication of service policies before customers contact shop
+- Reduces confusion and wasted trips for unsupported vehicle types
+- Professional, informational presentation without being overly restrictive
+- Maintains focus on legitimate e-bikes with standard bicycle components
+
 ## Store Information
 
 **Haymarket Bicycles**

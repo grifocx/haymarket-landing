@@ -409,11 +409,75 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
 
 ---
 
-**Last Updated**: January 5, 2026
+**Last Updated**: January 19, 2026
 
 ---
 
-## Latest Update - January 5, 2026
+## Latest Update - January 19, 2026
+
+### E-Bike Service Requirements Notice ✅
+
+**1. Service Policy Communication**
+- Added informational notice explaining e-bike service requirements
+- Positioned prominently on Services page between hero section and service cards
+- Added brief mention on Home page E-Bike Specialists section
+- Styled as subtle, professional callout with Info icon from Lucide React
+- Green accent color (#73BB44) matching e-bike branding
+- Risk: None
+- Impact: Clear communication of service policies to customers
+
+**2. Services Page Notice Section**
+- Created dedicated section with id="ebike-requirements"
+- Full detailed requirements in bordered callout box with left accent border
+- Explains serviceable e-bike types: standard removable seat post and functional bicycle drivetrain
+- Lists exclusions: scooters, electric motorcycles, throttle-only 'mopeds', models with foot-pegs
+- Professional layout with icon and clear typography
+- Risk: None
+- Impact: Reduces confusion and wasted trips for unsupported vehicle types
+
+**3. Home Page Integration**
+- Added brief disclaimer note at bottom of E-Bike Specialists service card
+- Short summary with link to view full requirements on Services page
+- Maintains card layout without disrupting existing design
+- Italic text styling with subtle border separator
+- Risk: None
+- Impact: Early awareness of service limitations
+
+**4. Hash Navigation Enhancement**
+- Added useEffect hook to Services page for hash navigation support
+- Implements scrollToSection utility when navigating with hash fragments
+- Link from Home page (#ebike-requirements) scrolls directly to notice section
+- 100ms delay ensures DOM is ready before scrolling
+- Smooth user experience when viewing full details
+- Risk: None
+- Impact: Seamless navigation to specific policy information
+
+### Technical Details
+
+**Files Modified:**
+- `src/pages/Services.tsx` - Added requirements notice section, hash navigation, Info icon import
+- `src/pages/Home.tsx` - Added brief notice with link to Services page requirements
+
+**Implementation:**
+- Services page notice uses bg-white with border-l-4 border-[#73BB44]
+- Info icon in rounded bg container with 10% opacity background
+- Link from Home uses text-[#73BB44] matching brand color
+- Hash navigation integrated with react-router-dom's useLocation hook
+- Reuses existing scrollToSection helper function
+
+**Build Verification:**
+- ✅ Production build successful
+- ✅ All components compile without errors
+- ✅ Hash navigation tested and working
+- ✅ Link routing verified across pages
+
+### Summary
+
+Implemented clear, professional communication about e-bike service requirements. The notice appears prominently on the Services page with full details, and includes a brief mention on the Home page that links to the full policy. This helps set proper expectations and reduces confusion for customers seeking service for non-bicycle electric vehicles.
+
+---
+
+## Previous Update - January 5, 2026
 
 ### Navigation & User Flow Improvements ✅
 
