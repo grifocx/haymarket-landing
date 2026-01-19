@@ -146,7 +146,7 @@ export function Home() {
               </div>
               <h3 className="font-montserrat text-2xl font-bold text-[#144D3A] mb-4">E-Bike Specialists</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Power up your ride with expert e-bike sales and service.
+                Power up your ride with knowledgeable e-bike sales and service.
               </p>
               <ul className="space-y-2 text-gray-600 mb-4">
                 <li className="flex items-center gap-2">
