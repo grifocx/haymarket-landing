@@ -302,9 +302,10 @@ All SEO implementations are backend-only with no visual changes to the website a
 - Added keyboard support (Enter/Space) for mobile menu items
 
 **SEO Enhancements:**
-- ~~Installed and configured react-helmet-async for dynamic meta tags~~ (Rolled back due to deployment issues)
-- ~~Added page-specific titles and descriptions~~ (Removed - caused build failures in production)
-- Static SEO implementation remains via index.html meta tags
+- Installed and configured react-helmet-async for dynamic meta tags
+- Added page-specific titles and descriptions for all pages
+- HelmetProvider wrapper in main.tsx for SEO context
+- SEO component for reusable meta tag management
 
 **User Experience:**
 - Created BackToTop button (appears after 300px scroll)
@@ -581,7 +582,7 @@ This SOP outlines the process for adding, updating, and managing product images 
 
 All product catalog images are stored in:
 ```
-/public/catalog/
+/public/
 ```
 
 #### Image Specifications
@@ -611,15 +612,15 @@ All product catalog images are stored in:
    - Avoid spaces or special characters
 
 **Step 2: Save Image to Public Folder**
-1. Place the image file in `/public/catalog/`
+1. Place the image file in `/public/`
 2. Verify the file name matches your naming convention
 
 **Step 3: Update Product Data**
 1. Open `/src/products.ts`
 2. Locate the product object you want to update
-3. Update the `imageUrl` field with the new path:
+3. Update the `imageUrl` field with the filename:
    ```typescript
-   imageUrl: '/catalog/your-image-name.jpg'
+   imageUrl: 'your-image-name.jpg'
    ```
 
 **Step 4: Test the Display**
@@ -644,7 +645,7 @@ All product catalog images are stored in:
     '700c wheels with tubeless ready tires',
     'Hydraulic disc brakes'
   ],
-  imageUrl: '/catalog/velocity-pro-carbon.jpg',
+  imageUrl: 'velocity-pro-carbon.jpg',
   highlightColor: '#F36E32'
 }
 ```
@@ -652,9 +653,9 @@ All product catalog images are stored in:
 #### Troubleshooting
 
 **Image Not Displaying:**
-- Verify the file exists in `/public/catalog/`
+- Verify the file exists in `/public/`
 - Check that the filename in `imageUrl` exactly matches the file (including extension)
-- Ensure the path starts with `/catalog/` not `public/catalog/`
+- Ensure the filename does not include a path prefix (just the filename)
 - Clear browser cache and refresh
 
 **Image Quality Issues:**
@@ -671,17 +672,17 @@ All product catalog images are stored in:
 
 | Attribute | Value |
 |-----------|-------|
-| Storage Path | `/public/catalog/` |
-| URL Format | `/catalog/filename.jpg` |
+| Storage Path | `/public/` |
+| URL Format | `filename.jpg` |
 | Min Width | 800px |
 | Max File Size | 500KB recommended |
-| Format | JPG preferred |
+| Format | JPG or PNG |
 | Card Height | 256px (fixed) |
 | Card Width | Responsive (fluid) |
 
 ## Notes
 
-- Product images are stored locally in `/public/catalog/`
+- Product images are stored locally in `/public/`
 - The site is fully responsive and works on all device sizes
 - Smooth scroll behavior is implemented for navigation
 - The design avoids purple/indigo colors per project requirements
