@@ -90,3 +90,40 @@ Each ride displays: ride name, day, time, short description, distance, and a lin
 - The route URL for each ride will contain all additional info riders need (difficulty, RSVP, pace, etc.) — no extra fields needed in the database or UI
 - The number of rides displayed is fully dynamic — the page will render however many rides exist in the database (3, 5, or any number)
 - No admin UI is needed at this time; rides can be managed directly in the Supabase dashboard
+
+---
+
+## Managing Rides in the Supabase Dashboard
+
+### Adding a New Ride
+
+1. Go to your Supabase project dashboard at [supabase.com](https://supabase.com)
+2. Click **Table Editor** in the left sidebar
+3. Select the `community_rides` table
+4. Click **Insert row** (or the "+" button)
+5. Fill in the fields:
+   - `name` — e.g., "Sunday Social Ride"
+   - `day` — e.g., "Sunday"
+   - `time` — e.g., "9:00 AM"
+   - `description` — short blurb about the ride
+   - `distance` — e.g., "20 miles"
+   - `route_url` — paste the link to the ride details/RSVP page
+   - `display_order` — set a number to control where it appears on the page (1 = first, 2 = second, etc.)
+6. Click **Save** — the ride will appear on the website immediately
+
+### Editing an Existing Ride
+
+1. In the **Table Editor**, open the `community_rides` table
+2. Click any cell in the row you want to edit
+3. Type your changes directly in the cell
+4. Click outside the cell or press Enter to save — changes are live instantly
+
+### Removing a Ride
+
+1. In the **Table Editor**, find the row you want to delete
+2. Check the checkbox on the left side of the row
+3. Click **Delete** — the ride disappears from the website immediately
+
+### Reordering Rides
+
+Update the `display_order` number on each row — the page always sorts by this value, lowest first.
