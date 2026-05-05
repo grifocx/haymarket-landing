@@ -63,7 +63,7 @@ export const featuredProducts: Product[] = [
     description: 'Exercise, commute, or ride for fun with the wide range of speeds, reliable disc brakes that let you stop on a dime, and loads of mounts for accessories.',
     features: [
       'Step-through frame for easy mounting',
-      'Comfortable wide saddle',
+      'Comfortable saddle',
       'Rear rack and basket compatible',
       '9-speed for versatile riding'
     ],
