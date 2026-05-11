@@ -48,7 +48,7 @@ export function Home() {
             Haymarket's Neighborhood Bicycle Shop
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-            Serving Northern Virginia's cycling community for 18 years with expert service, quality bikes, and a community of cycling enthusiasts.
+            Serving Northern Virginia's cycling community for 19 years with expert service, quality bikes, and a community of cycling enthusiasts.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <button onClick={() => scrollToSection('services')} aria-label="View our services" className="font-montserrat bg-[#F36E32] text-white px-8 py-4 rounded-full hover:bg-[#e05d21] transition-all transform hover:scale-105 font-bold text-lg shadow-lg min-h-[3rem]">
