@@ -284,7 +284,7 @@ export function Home() {
               </p>
               <div className="flex items-center gap-8">
                 <div className="text-center">
-                  <div className="font-montserrat text-4xl font-extrabold text-[#F36E32] mb-2">18+</div>
+                  <div className="font-montserrat text-4xl font-extrabold text-[#F36E32] mb-2">19+</div>
                   <div className="font-montserrat text-gray-600 font-bold">Years Experience</div>
                 </div>
                 <div className="text-center">
