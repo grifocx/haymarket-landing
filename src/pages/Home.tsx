@@ -1,4 +1,4 @@
-import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Zap } from 'lucide-react';
+import { Bike, MapPin, Clock, Phone, Mail, Wrench, ShoppingBag, Users, Star, Zap, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Layout } from '../components/Layout';
@@ -6,6 +6,8 @@ import { PhoneModal } from '../components/PhoneModal';
 import { BackToTop } from '../components/BackToTop';
 import { StoreHours } from '../components/StoreHours';
 import { SEO } from '../components/SEO';
+import { ReviewCard } from '../components/ReviewCard';
+import { reviews, totalReviewCount } from '../reviews';
 import { isMobileDevice, scrollToSection } from '../utils/helpers';
 
 export function Home() {
@@ -264,6 +266,45 @@ export function Home() {
             >
               View Full Catalog
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-montserrat text-5xl font-extrabold text-[#144D3A] mb-4">What Our Customers Say</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
+              Real feedback from real riders in the Haymarket community
+            </p>
+            <a
+              href="https://reviews.listen360.com/haymarket-bicycles"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white border-2 border-[#144D3A] text-[#144D3A] px-6 py-2 rounded-full font-montserrat font-bold text-sm hover:bg-[#144D3A] hover:text-white transition-all"
+            >
+              <Star className="w-4 h-4 fill-current text-[#F5E100]" />
+              {totalReviewCount.toLocaleString()} Reviews on Listen360
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {reviews.map((review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <a
+              href="https://reviews.listen360.com/haymarket-bicycles"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-montserrat inline-flex items-center gap-2 bg-[#144D3A] text-white px-10 py-4 rounded-full hover:bg-[#0d3326] transition-all transform hover:scale-105 font-bold text-lg shadow-lg"
+            >
+              Read All {totalReviewCount.toLocaleString()} Reviews
+              <ExternalLink className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </section>
