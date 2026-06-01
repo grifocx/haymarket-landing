@@ -43,10 +43,9 @@ Browse the recent reviews and pick 8–12 that best represent the shop. Good can
 
 ### Step 2 — Open the reviews data file
 
-Open `src/reviews.ts` in your editor. You will see an array of review objects:
+Open `src/reviews.ts` in your editor. You will see the `reviews` array already declared at the top of the file. Each entry looks like this:
 
 ```typescript
-export const reviews: Review[] = [
   {
     id: '1',
     name: 'Darren Bernard',
@@ -54,8 +53,6 @@ export const reviews: Review[] = [
     text: 'Best local bike shop, hands-down...',
     rating: 5,
   },
-  // ...
-];
 ```
 
 ### Step 3 — Add or replace reviews

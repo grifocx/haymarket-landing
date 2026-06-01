@@ -260,12 +260,12 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
   - Risk: Low
   - Impact: DRY principle, consistency
 
-- [ ] **Build testimonials carousel** - *High Effort*
-  - Create carousel component
-  - Add navigation controls
-  - Make it responsive and accessible
-  - Risk: Medium (complex interaction)
-  - Impact: Enhanced social proof
+- [x] **Build reviews section** - *High Effort* ✅ COMPLETED
+  - Created ReviewCard component with star ratings, reviewer name, date, and full text
+  - Built curated reviews data file (src/reviews.ts) with 9 hand-picked Listen360 reviews
+  - Added Reviews section to Home page between Featured Products and Our Story
+  - Created reviews-update-guide.md for quarterly non-developer refresh workflow
+  - Impact: Social proof, trust signals, replaces planned testimonials carousel
 
 - [ ] **Implement product image gallery** - *High Effort*
   - Multi-image support for product cards
@@ -360,11 +360,11 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
   - Impact: Better social media sharing
 
 - [ ] **Add AggregateRating schema** - *High Effort*
-  - Collect customer reviews
-  - Implement rating schema markup
-  - Display ratings on site
+  - Review data now available in src/reviews.ts (9 curated 5-star reviews, 1,097 total on Listen360)
+  - Implement rating schema markup using existing review data
+  - Display aggregate rating in search results
   - Risk: Low
-  - Impact: Better search result appearance
+  - Impact: Better search result appearance (star rating in SERP)
 
 ---
 
@@ -406,11 +406,49 @@ This roadmap outlines all planned improvements and maintenance tasks for the Hay
 
 ---
 
-**Last Updated**: January 19, 2026
+**Last Updated**: June 1, 2026
 
 ---
 
-## Latest Update - January 19, 2026
+## Latest Update - June 1, 2026
+
+### Customer Reviews Section ✅
+
+**1. Reviews Data File**
+- Created `src/reviews.ts` with `Review` interface (`id`, `name`, `date`, `text`, `rating`)
+- 9 hand-picked 5-star reviews from the Listen360 public page
+- Reviews selected for themes: staff knowledge, friendliness, service speed, pricing, and community feel
+- Exported `totalReviewCount` constant (1,097) for use in UI badge and CTA
+
+**2. ReviewCard Component**
+- Created `src/components/ReviewCard.tsx`
+- Displays filled star icons (Lucide Star), reviewer name, date, and full review text
+- Consistent styling with existing ProductCard and ServiceCard components
+
+**3. Home Page Reviews Section**
+- Inserted between Featured Products and Our Story sections (`id="reviews"`)
+- Responsive 1/2/3 column grid
+- Badge linking to Listen360 with live total count
+- Bottom CTA button: "Read All 1,097 Reviews" linking to Listen360
+
+**4. Documentation**
+- Created `reviews-update-guide.md` with step-by-step quarterly refresh instructions for non-developers
+
+**Files Created:**
+- `src/reviews.ts`
+- `src/components/ReviewCard.tsx`
+- `reviews-update-guide.md`
+
+**Files Modified:**
+- `src/pages/Home.tsx` — Reviews section added
+
+**Build Verification:**
+- Production build successful
+- All components compile without errors
+
+---
+
+## Previous Update - January 19, 2026
 
 ### E-Bike Service Requirements Notice ✅
 

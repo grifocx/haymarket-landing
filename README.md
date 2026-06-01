@@ -26,6 +26,7 @@ src/
 │   ├── StoreHours.tsx       # Real-time store open/closed indicator
 │   ├── LoadingSpinner.tsx   # Route transition loading component
 │   ├── ProductCard.tsx      # Reusable product display component
+│   ├── ReviewCard.tsx       # Reusable customer review display component
 │   └── ServiceCard.tsx      # Reusable service display component
 ├── pages/
 │   ├── Home.tsx             # Main landing page with all sections
@@ -34,6 +35,7 @@ src/
 ├── utils/
 │   └── helpers.ts           # Utility functions (formatting, scroll, device detection)
 ├── products.ts              # Product data and types
+├── reviews.ts               # Curated customer review data and types
 ├── services.ts              # Service data and types
 ├── theme.ts                 # Centralized theme configuration
 ├── App.tsx                  # Main app with lazy-loaded routes
@@ -139,15 +141,21 @@ Professional loading state for route transitions:
    - Product cards with images, names, prices, and categories
    - Link to full catalog page
 
-6. **Our Story Section**
+6. **Reviews Section**
+   - 9 hand-picked customer reviews from Listen360
+   - Star rating display, reviewer name, date, and full review text
+   - Badge linking to the full Listen360 page with total review count (1,097)
+   - Data sourced from `src/reviews.ts`; see `reviews-update-guide.md` for update instructions
+
+7. **Our Story Section**
    - Company history and values
    - Statistics showcasing 18 years in business, community focus, and expert staff
    - High-quality visuals
 
-7. **Contact Section**
+8. **Contact Section**
    - Store location: 4414 Costello Way, Haymarket, VA 20169
    - Phone: (703) 754-1911
-   - Email: info@vhaymarketbicycles.com
+   - Email: info@haymarketbicycles.com
    - Store hours:
      - Monday: Closed
      - Tuesday - Saturday: 11AM - 6PM
@@ -392,6 +400,14 @@ All SEO implementations are backend-only with no visual changes to the website a
 - Professional, informational presentation without being overly restrictive
 - Maintains focus on legitimate e-bikes with standard bicycle components
 
+### Session 9: Customer Reviews Section (June 1, 2026)
+- Created `src/reviews.ts` with `Review` interface and 9 hand-picked reviews from Listen360
+- Built `ReviewCard` component with star rating display (Lucide Star icon), reviewer name, date, and full text
+- Added Reviews section to Home page between Featured Products and Our Story
+- Badge displays total review count (1,097) linking to Listen360 public page
+- Reviews filtered for themes: staff knowledge, friendliness, service speed, and pricing
+- Created `reviews-update-guide.md` with quarterly refresh instructions for non-developers
+
 ## Store Information
 
 **Haymarket Bicycles**
@@ -566,11 +582,11 @@ You can test the structured data implementation using:
 ## Future Enhancements
 
 Potential features to add:
-- Customer testimonials carousel
 - Blog for cycling tips and news
 - Google Maps embed on contact section
-- Event calendar for group rides and community events
+- Community Rides section (weekly group rides, Supabase-backed) — see `groupride.md` for full plan
 - e-bike landing page for SEO
+- AggregateRating schema markup (reviews data now available in `src/reviews.ts`)
   
 ## Managing Product Catalog Images
 
