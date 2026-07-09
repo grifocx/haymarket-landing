@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect, ReactNode } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,11 +10,13 @@ interface LayoutProps {
 export function Layout({ children, showNavigation = true }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
 
   const scrollToSection = (id: string) => {
     if (!isHome) {
-      window.location.href = `/#${id}`;
+      navigate(`/#${id}`);
+      setMobileMenuOpen(false);
       return;
     }
     const element = document.getElementById(id);
