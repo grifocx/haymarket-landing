@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 interface SEOProps {
   title?: string;
   description?: string;
-  keywords?: string;
   ogImage?: string;
   canonicalUrl?: string;
   noindex?: boolean;
@@ -12,7 +11,6 @@ interface SEOProps {
 export function SEO({
   title = 'Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007',
   description = 'Haymarket Bicycles - Northern Virginia\'s trusted bike shop since 2007. Expert repairs, quality bikes, custom builds & fitting services in Haymarket, VA. Visit us today!',
-  keywords = 'bike shop Haymarket VA, bicycle repair Haymarket, bike service Northern Virginia, electric bikes Haymarket, road bikes Virginia, mountain bikes Gainesville, bike fitting Haymarket, bicycle shop near me, Trek bikes Virginia, Specialized bikes Haymarket',
   ogImage = 'https://www.haymarketbicycles.com/Haymarket Bicycles Logo 2024_Patch - Color - Horizontal.png',
   canonicalUrl = 'https://www.haymarketbicycles.com',
   noindex = false,
@@ -21,7 +19,6 @@ export function SEO({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonicalUrl} />
 
       {noindex && <meta name="robots" content="noindex, nofollow" />}

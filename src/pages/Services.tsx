@@ -25,7 +25,6 @@ export function Services() {
       <SEO
         title="Bike Repair & Service | Haymarket Bicycles | Expert Bicycle Maintenance in VA"
         description="Professional bicycle repair and maintenance services in Haymarket, VA. From tune-ups to complete overhauls, wheel building, custom builds, and professional fitting. Certified mechanics serving Northern Virginia since 2007."
-        keywords="bike repair Haymarket VA, bicycle service Northern Virginia, bike tune-up Haymarket, wheel truing Gainesville, custom bike builds Virginia, professional bike fitting, bicycle maintenance Haymarket, bike mechanic near me"
         canonicalUrl="https://www.haymarketbicycles.com/services"
       />
 
