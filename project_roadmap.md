@@ -708,3 +708,96 @@ All low-risk, low and medium effort tasks have been completed. The codebase is n
 - ✅ Improved performance with lazy loading
 - ✅ Better UX with real-time store hours and back-to-top button
 - ✅ Production build successful
+
+---
+
+## Code Review Session (July 9, 2026)
+
+External code review of the full repository. Nine fixes shipped as individual commits; typecheck, lint, and production build verified after each.
+
+### Completed ✅
+
+- [x] **Canonical host consistency (www)** - *Low Effort* ✅ COMPLETED
+  - All canonical/OG/JSON-LD/sitemap/robots URLs now use https://www.haymarketbicycles.com (the indexed host)
+  - Risk: None (requires Netlify primary domain = www, apex 301s automatically)
+  - Impact: Stops canonical signal leak; strongest SEO fix of the session
+
+- [x] **Fix broken 404 page styling** - *Low Effort* ✅ COMPLETED
+  - primary-* Tailwind classes were undefined; Back to Home button was invisible
+  - Rebuilt with brand palette, wrapped in Layout (nav + footer), pt-32 for fixed nav
+  - Risk: None
+  - Impact: Functional, on-brand error page
+
+- [x] **Timezone-aware store hours** - *Low Effort* ✅ COMPLETED
+  - isStoreOpen() now pinned to America/New_York via Intl.DateTimeFormat (DST-safe)
+  - Verified against six known UTC instants incl. Sunday/Monday boundaries and midnight
+  - Risk: None
+  - Impact: Correct Open/Closed badge for all visitors
+
+- [x] **Wire ProductCard CTA** - *Low Effort* ✅ COMPLETED
+  - "Contact Us for Details" was a dead button; now a Link to /#contact with per-product aria-label
+  - Risk: None
+  - Impact: Catalog visitors can actually reach contact
+
+- [x] **SPA navigation for cross-page section links** - *Low Effort* ✅ COMPLETED
+  - Layout used window.location.href (full reload); now useNavigate()
+  - Risk: Low
+  - Impact: Faster nav, no white flash
+
+- [x] **Schema/meta cleanup** - *Low Effort* ✅ COMPLETED
+  - Removed self-serving Review schema, nav-shaped BreadcrumbList, keywords meta site-wide
+  - Remaining JSON-LD (BikeStore, Organization, Service, FAQPage) validated
+  - Risk: None
+  - Impact: Cleaner structured data, no spammy-markup risk
+
+- [x] **Proper og-image + URL-safe image refs** - *Low Effort* ✅ COMPLETED
+  - New 1200x630 og-image.png; og:site_name, dimensions, alt added
+  - Schema image/logo point to logo-horizontal.png (no spaces in filename)
+  - Risk: None
+  - Impact: Working, correctly-sized social share cards
+
+- [x] **Product image optimization** - *Medium Effort* ✅ COMPLETED
+  - 5 product PNGs (9.6 MB) converted to 1200px WebP q82 (278 KB, ~97% smaller)
+  - loading="lazy", decoding="async", intrinsic dimensions on ProductCard
+  - dist output: 9.9 MB -> 828 KB
+  - Risk: None (visual quality verified at card display size)
+  - Impact: Dramatically better LCP on /catalog, especially mobile
+
+- [x] **Content corrections** - *Low Effort* ✅ COMPLETED
+  - Trek FX step-through claim removed (Verve is the step-through line)
+  - $6,499 formatting; "Our staff brings decades..." grammar fix (was visible in Google snippet)
+  - Risk: None
+  - Impact: Accuracy and professionalism
+
+### New Open Tasks
+
+- [ ] **Prerender routes for per-page meta** - *Medium-High Effort*
+  - Social scrapers don't execute JS; /services and /catalog shares currently show homepage metadata, and the static canonical conflicts with Helmet's on subpages
+  - Evaluate vite-ssg or vite-plugin-prerender; strip route-specific tags from index.html once done
+  - Risk: Medium (build pipeline change; verify Netlify deploy)
+  - Impact: Correct share cards and canonicals per route; biggest remaining SEO item
+
+- [ ] **Netlify _headers file for production security headers** - *Low Effort*
+  - vite.config.ts header plugin only affects the dev server
+  - Risk: Low
+  - Impact: Real security headers in production
+
+- [ ] **Verify Netlify primary domain is www** - *Low Effort*
+  - Site configuration -> Domain management; apex must 301 to www
+  - Risk: None
+  - Impact: Required companion to the canonical host fix
+
+- [ ] **Align NAP across Google Business Profile, Yelp, Instagram bio** - *Low Effort (non-code)*
+  - Yelp shows Tue-Sat 12-6; Instagram bio shows M-Sa 10-6; website says Tue-Sat 11-6, Sun 12-5
+  - Risk: None
+  - Impact: Local SEO entity consistency; arguably as valuable as any code fix
+
+- [ ] **Self-host or preload Montserrat** - *Low Effort*
+  - Removes render-blocking Google Fonts round trip
+  - Risk: Low
+  - Impact: Faster first paint
+
+- [ ] **Replace og-image with storefront/bike photo** - *Low Effort*
+  - Current card is logo-on-white; a photo makes stronger share previews
+  - Risk: None
+  - Impact: Better click-through from shared links

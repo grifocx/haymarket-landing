@@ -98,7 +98,7 @@ Real-time store status indicator:
 
 **Features:**
 - Displays "Open Now" (green) or "Closed" (gray)
-- Calculates based on current browser time and day
+- Calculates in the store's timezone (America/New_York) via Intl.DateTimeFormat, so out-of-area visitors see correct status; DST handled automatically
 - Store hours: Mon closed, Tue-Sat 11AM-6PM, Sun 12PM-5PM
 - Updates automatically based on time
 - Integrated into home page hero section
@@ -408,13 +408,37 @@ All SEO implementations are backend-only with no visual changes to the website a
 - Reviews filtered for themes: staff knowledge, friendliness, service speed, and pricing
 - Created `reviews-update-guide.md` with quarterly refresh instructions for non-developers
 
+### Session 10: Code Review Fixes (July 9, 2026)
+
+Full code review with nine fixes, one commit each:
+
+**Bug Fixes:**
+- Restyled 404 page: `primary-*` Tailwind classes were never defined in tailwind.config.js, leaving the "Back to Home" button invisible (white on transparent). Rebuilt with brand palette and wrapped in Layout for nav/footer parity
+- Store hours indicator now computes in America/New_York instead of the visitor's local time (out-of-zone visitors previously saw incorrect Open/Closed status)
+- Wired the dead "Contact Us for Details" button on ProductCard to `/#contact` with a per-product aria-label
+- Cross-page section navigation uses react-router `useNavigate` instead of `window.location.href` (no more full page reload)
+
+**SEO:**
+- Canonical host consistency: all URLs (canonical, Open Graph, JSON-LD, sitemap, robots.txt) now use `https://www.haymarketbicycles.com`, matching the host Google has indexed. Netlify primary domain must remain www
+- Removed self-serving Review schema (ineligible for rich results on the business's own site), navigation-shaped BreadcrumbList, and the keywords meta tag site-wide
+- Added a proper 1200x630 `og-image.png` with `og:site_name`, image dimensions, and alt; schema image/logo now reference URL-safe `logo-horizontal.png` (original logo filenames contain spaces, which some scrapers reject)
+
+**Performance:**
+- Product images converted to 1200px WebP: 9.6 MB -> 278 KB (~97% reduction); added `loading="lazy"`, `decoding="async"`, and intrinsic dimensions to ProductCard
+
+**Content:**
+- Trek FX card no longer claims a step-through frame (that's the Verve line)
+- Price formatting consistency ($6,499) and Story section grammar fix ("Our staff brings decades...")
+
+**Known Follow-ups:** see Future Enhancements below.
+
 ## Store Information
 
 **Haymarket Bicycles**
 - Address: 4414 Costello Way, Haymarket, VA 20169
 - Phone: (703) 754-1911
 - Email: info@haymarketbicycles.com
-- Website: https://haymarketbicycles.com
+- Website: https://www.haymarketbicycles.com (canonical host; Netlify should keep www as the primary domain so the apex 301-redirects)
 - Established: 2007
 
 **Store Hours:**
@@ -566,7 +590,7 @@ This website follows WCAG 2.1 Level AA accessibility guidelines:
 The website is fully optimized for search engines with comprehensive on-page SEO:
 
 - **Local Search Optimization**: Structured data targeting "bike shop Haymarket VA" and related searches
-- **Schema.org Markup**: LocalBusiness, Organization, Service, FAQ, Review, and BreadcrumbList schemas
+- **Schema.org Markup**: BikeStore (LocalBusiness), Organization, Service, and FAQ schemas. Review and BreadcrumbList schemas were removed July 2026: Google excludes self-serving review markup on a business's own site from rich results, and the breadcrumb block modeled site navigation rather than a page trail. Per-page breadcrumbs can return once prerendering is added.
 - **Social Media Ready**: Open Graph and Twitter Card tags for enhanced social sharing
 - **Technical SEO**: robots.txt and sitemap.xml for proper indexing
 - **Mobile Optimization**: Theme colors and mobile web app tags for better mobile experience
@@ -586,7 +610,12 @@ Potential features to add:
 - Google Maps embed on contact section
 - Community Rides section (weekly group rides, Supabase-backed) — see `groupride.md` for full plan
 - e-bike landing page for SEO
-- AggregateRating schema markup (reviews data now available in `src/reviews.ts`)
+- AggregateRating schema markup (reviews data now available in `src/reviews.ts`) — note: on-site aggregate ratings for the business itself are treated as self-serving by Google; prioritize Google Business Profile reviews instead
+- Prerender routes (e.g. vite-ssg or vite-plugin-prerender) so each page ships static HTML with its own meta tags; social scrapers don't execute JS, so shared links for /services and /catalog currently show homepage metadata
+- Production security headers via Netlify `_headers` file (the vite.config.ts header plugin only affects the dev server)
+- Self-host Montserrat (or preload) to remove the render-blocking Google Fonts round trip
+- Replace og-image.png (logo on white) with a storefront or bike-lineup photo for a stronger share card
+- Align store hours across Google Business Profile, Yelp, and the Instagram bio to match the website (NAP consistency)
   
 ## Managing Product Catalog Images
 
@@ -604,11 +633,12 @@ All product catalog images are stored in:
 #### Image Specifications
 
 **Recommended Image Properties:**
-- **Format**: JPG (for photos) or PNG (if transparency needed)
-- **Dimensions**: 800-1200px wide minimum
+- **Format**: WebP (preferred, ~80-85 quality). JPG acceptable; avoid PNG for photos — the original product PNGs totaled 9.6 MB before the July 2026 WebP conversion brought them to 278 KB
+- **Dimensions**: 1200px wide (matches the intrinsic width set on ProductCard)
 - **Aspect Ratio**: 16:9 or 4:3 work best, but any aspect ratio is supported
-- **File Size**: Keep under 500KB per image for optimal web performance
+- **File Size**: Keep under 150KB per image; WebP at 1200px typically lands at 40-70KB
 - **Image Composition**: Center the bike in the frame (the display crops from center)
+- **Conversion**: macOS one-liner with ImageMagick: `magick input.png -resize 1200x -quality 82 output.webp`
 
 **Technical Details:**
 - Images automatically resize to fit a 256px height card (`h-64` in Tailwind)
@@ -636,7 +666,7 @@ All product catalog images are stored in:
 2. Locate the product object you want to update
 3. Update the `imageUrl` field with the filename:
    ```typescript
-   imageUrl: 'your-image-name.jpg'
+   imageUrl: 'your-image-name.webp'
    ```
 
 **Step 4: Test the Display**
@@ -689,10 +719,10 @@ All product catalog images are stored in:
 | Attribute | Value |
 |-----------|-------|
 | Storage Path | `/public/` |
-| URL Format | `filename.jpg` |
-| Min Width | 800px |
-| Max File Size | 500KB recommended |
-| Format | JPG or PNG |
+| URL Format | `filename.webp` |
+| Target Width | 1200px |
+| Max File Size | 150KB recommended |
+| Format | WebP (preferred) or JPG |
 | Card Height | 256px (fixed) |
 | Card Width | Responsive (fluid) |
 
