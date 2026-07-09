@@ -11,7 +11,7 @@ interface SEOProps {
 export function SEO({
   title = 'Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007',
   description = 'Haymarket Bicycles - Northern Virginia\'s trusted bike shop since 2007. Expert repairs, quality bikes, custom builds & fitting services in Haymarket, VA. Visit us today!',
-  ogImage = 'https://www.haymarketbicycles.com/Haymarket Bicycles Logo 2024_Patch - Color - Horizontal.png',
+  ogImage = 'https://www.haymarketbicycles.com/og-image.png',
   canonicalUrl = 'https://www.haymarketbicycles.com',
   noindex = false,
 }: SEOProps) {
