@@ -12,7 +12,7 @@ export function Catalog() {
         title="Featured Bikes Catalog | Haymarket Bicycles | Quality Bikes in Haymarket, VA"
         description="Browse our curated selection of premium bicycles at Haymarket Bicycles. Featuring road bikes, mountain bikes, electric bikes, and more. Expert guidance to help you find the perfect bike for your riding style in Northern Virginia."
         keywords="buy bikes Haymarket VA, Trek bikes Virginia, road bikes Haymarket, mountain bikes Gainesville, electric bikes Northern Virginia, bike shop catalog, bicycle sales Haymarket, premium bikes Virginia"
-        canonicalUrl="https://haymarketbicycles.com/catalog"
+        canonicalUrl="https://www.haymarketbicycles.com/catalog"
       />
 
       <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">

@@ -1,5 +1,5 @@
 # Haymarket Bicycles - Robots.txt
-# https://haymarketbicycles.com
+# https://www.haymarketbicycles.com
 
 User-agent: *
 Allow: /
@@ -7,7 +7,7 @@ Disallow: /admin/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://haymarketbicycles.com/sitemap.xml
+Sitemap: https://www.haymarketbicycles.com/sitemap.xml
 
 # Crawl-delay for all bots
 Crawl-delay: 1
