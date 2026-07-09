@@ -24,16 +24,38 @@ export function isMobileDevice(): boolean {
          window.innerWidth < 768;
 }
 
+const STORE_TIMEZONE = 'America/New_York';
+
+const DAY_NAME_TO_INDEX: Record<string, number> = {
+  Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+};
+
+function getStoreLocalParts(): { day: number; hours: number; minutes: number } {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: STORE_TIMEZONE,
+    weekday: 'short',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  }).formatToParts(new Date());
+
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
+
+  return {
+    day: DAY_NAME_TO_INDEX[get('weekday')] ?? 0,
+    // Intl may return "24" for midnight with hour12: false; normalize to 0
+    hours: parseInt(get('hour'), 10) % 24,
+    minutes: parseInt(get('minute'), 10),
+  };
+}
+
 export function getCurrentDayOfWeek(): number {
-  return new Date().getDay();
+  return getStoreLocalParts().day;
 }
 
 export function getCurrentTime(): { hours: number; minutes: number } {
-  const now = new Date();
-  return {
-    hours: now.getHours(),
-    minutes: now.getMinutes()
-  };
+  const { hours, minutes } = getStoreLocalParts();
+  return { hours, minutes };
 }
 
 export function isStoreOpen(): boolean {
