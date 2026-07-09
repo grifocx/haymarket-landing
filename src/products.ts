@@ -29,7 +29,7 @@ export const featuredProducts: Product[] = [
     id: '2',
     name: 'Trek Fuel EX 9.8 XT DI2 Gen 7',
     category: 'Mountain Bikes',
-    price: '$6499',
+    price: '$6,499',
     description: 'Conquer any terrain with confidence. Full suspension design and aggressive geometry make this bike ready for the toughest trails.',
     features: [
       '29" wheels with aggressive tread',
@@ -62,7 +62,7 @@ export const featuredProducts: Product[] = [
     price: '$899',
     description: 'Exercise, commute, or ride for fun with the wide range of speeds, reliable disc brakes that let you stop on a dime, and loads of mounts for accessories.',
     features: [
-      'Step-through frame for easy mounting',
+      'Lightweight aluminum frame',
       'Comfortable wide saddle',
       'Rear rack and basket compatible',
       '9-speed for versatile riding'
