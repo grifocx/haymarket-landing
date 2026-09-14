@@ -801,3 +801,54 @@ External code review of the full repository. Nine fixes shipped as individual co
   - Current card is logo-on-white; a photo makes stronger share previews
   - Risk: None
   - Impact: Better click-through from shared links
+
+---
+
+## Fall 2026 Upgrade Path
+
+Remaining items from the 20-point site audit (September 2026). 12 of 20 items were already implemented; the 8th item (Sticky mobile CTA bar) was completed this session. The following 7 items are pending.
+
+- [ ] **Contact form with error states** - *Medium Effort*
+  - Add a contact form to the Contact section (name, email, message) with validation
+  - Show clear inline error messages when fields are missing or invalid (e.g., "Please enter your email address")
+  - Pairs with the thank-you page below
+  - Risk: Low
+  - Impact: Visitors can reach out directly from the site without needing to call or email
+
+- [ ] **Thank-you / confirmation page** - *Low Effort*
+  - Create a `/thank-you` page shown after contact form submission
+  - Confirm message was received and set expectations for response time
+  - Depends on the contact form being built first
+  - Risk: None
+  - Impact: Professional follow-through after visitor inquiry
+
+- [ ] **Privacy policy page** - *Low Effort*
+  - Create a `/privacy` page covering what information the site collects (contact form submissions, analytics cookies if added), how it is used, and contact details for privacy questions
+  - Link it in the footer
+  - Risk: None
+  - Impact: Legal compliance, visitor trust
+
+- [ ] **Terms and conditions page** - *Low Effort*
+  - Create a `/terms` page covering site usage terms, disclaimers about bike service and product availability, and limitation of liability
+  - Link it in the footer alongside the privacy policy
+  - Risk: None
+  - Impact: Legal protection, professional credibility
+
+- [ ] **Cookie consent banner** - *Low Effort*
+  - Add a dismissible cookie banner at the bottom of the screen informing visitors about cookie usage with an "Accept" button
+  - Becomes more important once analytics is installed (analytics typically uses cookies)
+  - Risk: None
+  - Impact: GDPR/ePrivacy compliance, visitor transparency
+
+- [ ] **Analytics installation** - *Low Effort*
+  - Install a web analytics tool (Google Analytics 4, Google Tag Manager, or a privacy-friendly alternative like Plausible or Fathom) by adding the tracking script to index.html
+  - Enables visibility into visitor counts, page views, and traffic sources
+  - Risk: Low
+  - Impact: Data-driven decisions about content and marketing
+
+- [ ] **Image compression and modern format conversion** - *Medium Effort*
+  - Compress the five product PNGs (currently 1-4 MB each) and convert to WebP or AVIF format for dramatically smaller file sizes at the same visual quality
+  - Significantly improves page load times, especially on mobile
+  - Note: A previous session converted these to WebP but the original PNGs are still in the project at full size
+  - Risk: None
+  - Impact: Faster page loads, better Core Web Vitals, improved mobile experience

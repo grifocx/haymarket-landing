@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect, ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { StickyMobileCTA } from './StickyMobileCTA';
 
 interface LayoutProps {
   children: ReactNode;
@@ -160,7 +161,7 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
 
       <main>{children}</main>
 
-      <footer className="bg-[#144D3A] py-12 px-4">
+      <footer className="bg-[#144D3A] py-12 px-4 pb-24 md:pb-12">
         <div className="max-w-7xl mx-auto">
           {isHome ? (
             <>
@@ -253,6 +254,8 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
           )}
         </div>
       </footer>
+
+      <StickyMobileCTA />
     </div>
   );
 }
