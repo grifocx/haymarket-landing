@@ -1,436 +1,68 @@
 # Haymarket Bicycles Website
 
-A modern, responsive website for Haymarket Bicycles - Northern Virginia's neighborhood bicycle shop since 2007.
+A modern, responsive marketing website for Haymarket Bicycles — Northern Virginia's neighborhood bicycle shop since 2007.
 
-## Project Overview
-
-This is a single-page React application built with Vite, TypeScript, and Tailwind CSS. The website showcases Haymarket Bicycles' services, products, and store information with a clean, professional design.
+- **Live site:** https://www.haymarketbicycles.com (canonical host; Netlify must keep `www` as the primary domain so the apex 301-redirects)
+- **Hosting:** Netlify (auto-deploys on push; build command `npm run build`, publish directory `dist`)
+- **Status:** Production. Static content site — no database, no backend.
 
 ## Technology Stack
 
-- **React 18** - UI framework
-- **TypeScript** - Type-safe JavaScript
-- **Vite** - Fast build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Router DOM** - Client-side routing
-- **Lucide React** - Icon library
+| Tool | Purpose |
+|------|---------|
+| React 18 | UI framework |
+| TypeScript | Type safety |
+| Vite | Build tool and dev server |
+| Tailwind CSS | Utility-first styling |
+| React Router DOM | Client-side routing |
+| react-helmet-async | Per-page meta tags |
+| Lucide React | Icons |
+| Montserrat (Google Fonts) | Headings, nav, buttons — matches the logo typeface |
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── Layout.tsx           # Shared layout with navigation and footer
-│   ├── PhoneModal.tsx       # Desktop phone number modal with focus trap
+│   ├── Layout.tsx           # Shared nav + footer (all pages)
+│   ├── PhoneModal.tsx       # Desktop phone modal with focus trap
+│   ├── StickyMobileCTA.tsx  # Mobile sticky call/action bar
 │   ├── BackToTop.tsx        # Floating scroll-to-top button
-│   ├── StoreHours.tsx       # Real-time store open/closed indicator
-│   ├── LoadingSpinner.tsx   # Route transition loading component
-│   ├── ProductCard.tsx      # Reusable product display component
-│   ├── ReviewCard.tsx       # Reusable customer review display component
-│   └── ServiceCard.tsx      # Reusable service display component
+│   ├── StoreHours.tsx       # Real-time Open/Closed indicator
+│   ├── LoadingSpinner.tsx   # Route transition loader
+│   ├── SEO.tsx              # Reusable per-page meta tags
+│   ├── ProductCard.tsx / ServiceCard.tsx / ReviewCard.tsx
+│   └── ErrorBoundary.tsx
 ├── pages/
-│   ├── Home.tsx             # Main landing page with all sections
-│   ├── Catalog.tsx          # Full product catalog page
-│   └── Services.tsx         # Detailed services page
-├── utils/
-│   └── helpers.ts           # Utility functions (formatting, scroll, device detection)
+│   ├── Home.tsx             # Hero, services, products, reviews, story, contact
+│   ├── Catalog.tsx          # Full product catalog
+│   ├── Services.tsx         # Detailed services + e-bike requirements notice
+│   └── NotFound.tsx         # 404 page
+├── utils/helpers.ts         # Formatting, scroll, device detection, store hours
 ├── products.ts              # Product data and types
-├── reviews.ts               # Curated customer review data and types
 ├── services.ts              # Service data and types
-├── theme.ts                 # Centralized theme configuration
-├── App.tsx                  # Main app with lazy-loaded routes
-└── main.tsx                 # Application entry point
+├── reviews.ts               # Curated customer reviews from Listen360
+├── theme.ts                 # Centralized brand color/spacing configuration
+├── App.tsx                  # Lazy-loaded routes with Suspense
+└── main.tsx                 # Entry point (HelmetProvider)
+public/                      # Product images, logos, robots.txt, sitemap.xml
 ```
 
-## Key Components
-
-### Layout Component
-
-The `Layout` component provides a shared structure for all pages:
-
-**Features:**
-- Unified navigation bar with logo and menu items
-- Responsive mobile menu with hamburger toggle
-- Keyboard navigation support (Enter/Space keys for menu items)
-- Smart routing for both internal sections and cross-page navigation
-- Shared footer with social media links and quick links
-- Consistent branding and user experience across all pages
-
-**Navigation Behavior:**
-- Home page: Smooth scroll to sections
-- Other pages: Navigation links return to home with section anchors
-- Mobile menu: Auto-closes on selection, ESC key support
-- Fully accessible with ARIA labels and keyboard support
-
-### PhoneModal Component
-
-Desktop-optimized phone interaction with advanced accessibility:
-
-**Features:**
-- Desktop-only modal with device detection
-- Copy-to-clipboard functionality with visual feedback
-- Direct "Call Now" button with tel: link
-- **Focus trap** - Tab navigation cycles within modal
-- Automatic focus management - focuses close button on open
-- Returns focus to trigger element on close
-- ESC key support for closing
-
-**Accessibility (WCAG 2.1 Level AA):**
-- Complete focus trap implementation
-- ARIA labels on all interactive elements
-- Keyboard-only navigation fully supported
-- Screen reader friendly
-
-### BackToTop Component
-
-Floating button for easy page navigation:
-
-**Features:**
-- Appears after scrolling 300px down
-- Smooth scroll animation to top
-- Fixed position in bottom-right corner
-- Fully accessible with aria-label
-- Fade-in animation when visible
-
-### StoreHours Component
-
-Real-time store status indicator:
-
-**Features:**
-- Displays "Open Now" (green) or "Closed" (gray)
-- Calculates in the store's timezone (America/New_York) via Intl.DateTimeFormat, so out-of-area visitors see correct status; DST handled automatically
-- Store hours: Mon closed, Tue-Sat 11AM-6PM, Sun 12PM-5PM
-- Updates automatically based on time
-- Integrated into home page hero section
-
-### LoadingSpinner Component
-
-Professional loading state for route transitions:
-
-**Features:**
-- Animated bike icon with bounce effect
-- Shows during lazy-loaded route transitions
-- Consistent with brand design
-- Improves perceived performance
-
-## Features Implemented
-
-### Homepage Sections
-
-1. **Navigation Bar**
-   - Fixed header with smooth scroll navigation
-   - Mobile-responsive hamburger menu
-   - Links to Services, Products, Our Story, and Contact sections
-
-2. **Hero Section**
-   - Prominent headline: "Haymarket's Neighborhood Bicycle Shop Since 2007"
-   - Emphasizes 18 years of service to Northern Virginia's cycling community
-   - Call-to-action buttons for shopping and services
-
-3. **Info Bar**
-   - Quick access to store location, hours, and phone number
-   - Responsive grid layout
-
-4. **Services Section**
-   - Three service categories: Repairs & Maintenance, Custom Builds, and Bike Fitting
-   - Detailed service descriptions with bullet points
-   - Links to full Services page
-
-5. **Featured Products Section**
-   - Displays 3 featured bikes from the catalog
-   - Product cards with images, names, prices, and categories
-   - Link to full catalog page
-
-6. **Reviews Section**
-   - 9 hand-picked customer reviews from Listen360
-   - Star rating display, reviewer name, date, and full review text
-   - Badge linking to the full Listen360 page with total review count (1,097)
-   - Data sourced from `src/reviews.ts`; see `reviews-update-guide.md` for update instructions
-
-7. **Our Story Section**
-   - Company history and values
-   - Statistics showcasing 18 years in business, community focus, and expert staff
-   - High-quality visuals
-
-8. **Contact Section**
-   - Store location: 4414 Costello Way, Haymarket, VA 20169
-   - Phone: (703) 754-1911
-   - Email: info@haymarketbicycles.com
-   - Store hours:
-     - Monday: Closed
-     - Tuesday - Saturday: 11AM - 6PM
-     - Sunday: 12PM - 5PM
-   - Four-card grid layout with icons
-   - "Call Us Now" button with direct phone link
-
-### Additional Pages
-
-- **Catalog Page**: Full product listing with filtering and categorization
-- **Services Page**: Detailed service offerings with expanded descriptions
-
-## Design System
-
-### Color Palette
-
-The color scheme is based on Haymarket Bicycles' official brand guidelines:
-
-- **Primary Green (Deep Forest)**: `#144D3A` - Main brand color, used for headings and primary text
-- **Secondary Green (Lime)**: `#73BB44` - Accent and highlights, hover states
-- **Orange (Vibrant Coral)**: `#F36E32` - Primary call-to-action buttons and key accents
-- **Bright Yellow**: `#F5E100` - Secondary accents and highlights
-- **Lime Green**: `#CBD92A` - Additional accent color for variety
-- **White/Gray**: Background colors and text contrast
-
-These colors are derived from the official Haymarket Bicycles logo and brand identity, ensuring complete visual consistency across all touchpoints.
-
-### Typography
-
-**Primary Font: Montserrat**
-
-The site uses **Montserrat** throughout to match the official logo typeface. This Google Font provides excellent readability and brand consistency.
-
-**Font Weights Used:**
-- **Montserrat Regular (400)**: Button text, labels, and UI elements
-- **Montserrat Bold (700)**: Subheadings (h2, h3), navigation links, smaller headings
-- **Montserrat Extra Bold (800)**: Main page headings (h1) - matches the exact weight used in the logo
-
-**Font Application:**
-- All headings, navigation, buttons, and labels use Montserrat
-- Body text uses system fonts for optimal readability
-- Font loaded via Google Fonts CDN with preconnect for performance
-
-**Typography Hierarchy:**
-- H1 headings: Montserrat Extra Bold 800 (5xl-7xl sizes)
-- H2/H3 headings: Montserrat Bold 700 (2xl-5xl sizes)
-- Navigation & buttons: Montserrat Bold 700
-- Labels & statistics: Montserrat Bold 700
-- Body paragraphs: System fonts (default)
-
-### Design Principles
-
-- Responsive design with mobile-first approach
-- Smooth transitions and hover effects
-- Card-based layouts for content organization
-- Generous white space for readability
-- Colorful accent icons for visual interest
-- Bold typography for confident brand presence
-- Professional color application matching official brand guidelines
-
-## Development Changes Made
-
-### Session 1: Contact Section Redesign
-- Removed contact form to simplify user experience
-- Redesigned contact section into four equal cards
-- Added colorful circular icon backgrounds
-- Implemented hover effects for interactivity
-- Added direct "Call Us Now" button with tel: link
-- Updated store hours throughout the site
-
-### Session 2: Content Updates
-- Updated hero headline to emphasize "Haymarket's Neighborhood Bicycle Shop Since 2007"
-- Changed tagline to highlight 18 years of service to Northern Virginia
-- Updated services section title to "Professional Bicycle Services in Haymarket"
-- Changed contact section to "Visit Us at Haymarket Bicycles"
-- Emphasized convenient location serving Haymarket, Gainesville, and Northern Virginia
-
-### Session 3: Brand Color Implementation
-- Implemented official Haymarket Bicycles brand colors throughout the site
-- Primary Green (`#144D3A`): Applied to all headings, primary text, and main brand elements
-- Secondary Green (`#73BB44`): Used for hover states and interactive elements
-- Orange (`#F36E32`): Call-to-action buttons and key accent elements
-- Bright Yellow (`#F5E100`): Secondary highlights and accent badges
-- Lime Green (`#CBD92A`): Additional variety in icons and cards
-- Ensured consistent color application across all pages and components
-- Colors extracted from official logo files to maintain brand integrity
-
-### Session 4: Typography System Implementation
-- Integrated **Montserrat** font family to match official logo typeface
-- Added Google Fonts CDN link with preconnect optimization
-- Configured Tailwind CSS to support `font-montserrat` utility class
-- Implemented three font weights:
-  - Regular 400: Button text and labels
-  - Bold 700: Subheadings, navigation, and secondary elements
-  - Extra Bold 800: Main h1 headings (matching logo exactly)
-- Applied Montserrat to all headings, navigation links, buttons, and UI labels
-- Kept system fonts for body text to optimize readability
-- Updated all page components (Home, Catalog, Services) and card components
-- Created clear typographic hierarchy with consistent weight application
-
-### Session 5: Comprehensive SEO Implementation
-- **Meta Tags & HTML Head Optimization**
-  - Updated page title to "Haymarket Bicycles | Premier Bike Shop in Haymarket, VA Since 2007"
-  - Added comprehensive meta description targeting local searches
-  - Implemented meta keywords with location-specific terms
-  - Added canonical URL to prevent duplicate content issues
-  - Implemented geo-location meta tags with coordinates (38.813737, -77.642422)
-  - Added theme-color and Apple mobile web app meta tags
-
-- **Social Media Optimization**
-  - Implemented Open Graph meta tags for Facebook, LinkedIn, and other platforms
-  - Added Twitter Card meta tags for enhanced Twitter previews
-  - Configured social media image previews using brand logo
-
-- **Structured Data (Schema.org) Markup**
-  - Added BikeStore LocalBusiness schema with complete business information
-  - Implemented Organization schema with social media profiles
-  - Added Service schema for bicycle repair and maintenance offerings
-  - Implemented BreadcrumbList schema for improved navigation in search results
-  - Added FAQPage schema with 4 common customer questions and answers
-  - Implemented Review schema for customer testimonial
-
-- **Technical SEO Files**
-  - Created `robots.txt` with proper crawl directives and sitemap reference
-  - Generated comprehensive `sitemap.xml` with all pages, priorities, and lastmod dates
-  - Configured proper crawl rules for major search engines (Google, Bing, DuckDuckGo)
-
-- **Image SEO Optimization**
-  - Added descriptive alt text to all logo images with location keywords
-  - Implemented width and height attributes to prevent layout shift
-  - Optimized alt text for Services page: "Bicycle Repair Services in Haymarket, VA"
-  - Optimized alt text for Catalog page: "Quality Bikes for Sale in Northern Virginia"
-
-- **Local SEO Enhancement**
-  - Emphasized Haymarket, VA and Northern Virginia location throughout metadata
-  - Added structured data for area served (Haymarket, Gainesville)
-  - Implemented NAP (Name, Address, Phone) consistency across all schema markup
-  - Included opening hours, geo-coordinates, and contact information in LocalBusiness schema
-
-All SEO implementations are backend-only with no visual changes to the website appearance or user experience.
-
-### Session 6: Architecture & Performance Improvements
-
-**Code Quality & Maintainability:**
-- Created shared Layout component eliminating navigation/footer duplication
-- Built utility functions library (src/utils/helpers.ts) with:
-  - Phone number formatting
-  - Scroll behaviors (scrollToSection, scrollToTop)
-  - Device detection (isMobileDevice)
-  - Store hours calculation (isStoreOpen)
-- Implemented advanced focus trap in PhoneModal with automatic focus management
-- Added keyboard support (Enter/Space) for mobile menu items
-
-**SEO Enhancements:**
-- Installed and configured react-helmet-async for dynamic meta tags
-- Added page-specific titles and descriptions for all pages
-- HelmetProvider wrapper in main.tsx for SEO context
-- SEO component for reusable meta tag management
-
-**User Experience:**
-- Created BackToTop button (appears after 300px scroll)
-- Built real-time StoreHours indicator component
-- Implemented LoadingSpinner for route transitions
-- Optimized all touch targets to minimum 48x48px (exceeds WCAG 44px requirement)
-
-**Performance:**
-- Implemented React.lazy for code splitting:
-  - Home: 24.75 kB (gzip: 5.46 kB)
-  - Catalog: 6.04 kB (gzip: 2.42 kB)
-  - Services: 4.77 kB (gzip: 1.79 kB)
-- Added Suspense boundaries for smooth loading
-- Added width/height to logo images to prevent layout shift
-- Improved Core Web Vitals scores
-
-### Session 7: Navigation & User Flow Improvements (Latest - January 5, 2026)
-
-**Service Card Updates:**
-- Changed button text from "Book This Service" to "Contact for Service"
-- Converted button to Link component routing to /#contact
-- Improved call-to-action clarity and user flow consistency
-- Users now navigate to contact section when clicking service cards
-
-**Cross-Page Contact Navigation:**
-- Fixed "Contact Us Today" button on Services page to link to /#contact
-- Fixed "Contact Us Today" button on Catalog page to link to /#contact
-- Standardized contact navigation across all pages
-- Ensures consistent user experience throughout the site
-
-**Hash Navigation Implementation:**
-- Added useEffect hook to Home page for hash-based navigation
-- Automatically scrolls to correct section when navigating with hash fragments
-- Supports /#contact, /#services, /#products, and /#story anchors
-- Integrated with react-router-dom's useLocation hook
-- 100ms delay ensures DOM is ready before scrolling
-- Enables seamless navigation from any page to specific Home sections
-
-**Files Modified:**
-- src/components/ServiceCard.tsx - Updated button component and text
-- src/pages/Services.tsx - Fixed CTA button routing
-- src/pages/Catalog.tsx - Fixed CTA button routing
-- src/pages/Home.tsx - Added hash navigation handler
-
-**Impact:**
-- Clearer call-to-action messaging on service cards
-- Consistent contact flow from all pages
-- Smooth cross-page navigation to specific sections
-- Better user experience when navigating between pages and sections
-
-### Session 8: E-Bike Service Requirements Notice (Latest - January 19, 2026)
-
-**Service Policy Communication:**
-- Added informational notice about e-bike service requirements
-- Positioned prominently on Services page between hero and service cards
-- Added brief mention on Home page E-Bike Specialists section with link
-- Styled as subtle, professional informational callout with Info icon
-
-**Services Page Notice:**
-- Full detailed requirements in bordered callout box
-- Green accent color matching e-bike branding
-- Clear explanation of serviceable e-bike types
-- Lists exclusions: scooters, electric motorcycles, throttle-only mopeds, models with foot-pegs
-
-**Home Page Integration:**
-- Brief disclaimer note at bottom of E-Bike Specialists card
-- Links to full requirements on Services page
-- Maintains card layout without disrupting existing design
-
-**Hash Navigation Enhancement:**
-- Added `#ebike-requirements` anchor ID to Services page notice section
-- Implemented useEffect hook for hash navigation on Services page
-- Link from Home page scrolls directly to requirements section
-- Smooth user experience when viewing full details
-
-**Files Modified:**
-- src/pages/Services.tsx - Added requirements notice section, hash navigation
-- src/pages/Home.tsx - Added brief notice with link to full requirements
-- Both updated to use Lucide React Info icon
-
-**Impact:**
-- Clear communication of service policies before customers contact shop
-- Reduces confusion and wasted trips for unsupported vehicle types
-- Professional, informational presentation without being overly restrictive
-- Maintains focus on legitimate e-bikes with standard bicycle components
-
-### Session 9: Customer Reviews Section (June 1, 2026)
-- Created `src/reviews.ts` with `Review` interface and 9 hand-picked reviews from Listen360
-- Built `ReviewCard` component with star rating display (Lucide Star icon), reviewer name, date, and full text
-- Added Reviews section to Home page between Featured Products and Our Story
-- Badge displays total review count (1,097) linking to Listen360 public page
-- Reviews filtered for themes: staff knowledge, friendliness, service speed, and pricing
-- Created `reviews-update-guide.md` with quarterly refresh instructions for non-developers
-
-### Session 10: Code Review Fixes (July 9, 2026)
-
-Full code review with nine fixes, one commit each:
-
-**Bug Fixes:**
-- Restyled 404 page: `primary-*` Tailwind classes were never defined in tailwind.config.js, leaving the "Back to Home" button invisible (white on transparent). Rebuilt with brand palette and wrapped in Layout for nav/footer parity
-- Store hours indicator now computes in America/New_York instead of the visitor's local time (out-of-zone visitors previously saw incorrect Open/Closed status)
-- Wired the dead "Contact Us for Details" button on ProductCard to `/#contact` with a per-product aria-label
-- Cross-page section navigation uses react-router `useNavigate` instead of `window.location.href` (no more full page reload)
-
-**SEO:**
-- Canonical host consistency: all URLs (canonical, Open Graph, JSON-LD, sitemap, robots.txt) now use `https://www.haymarketbicycles.com`, matching the host Google has indexed. Netlify primary domain must remain www
-- Removed self-serving Review schema (ineligible for rich results on the business's own site), navigation-shaped BreadcrumbList, and the keywords meta tag site-wide
-- Added a proper 1200x630 `og-image.png` with `og:site_name`, image dimensions, and alt; schema image/logo now reference URL-safe `logo-horizontal.png` (original logo filenames contain spaces, which some scrapers reject)
-
-**Performance:**
-- Product images converted to 1200px WebP: 9.6 MB -> 278 KB (~97% reduction); added `loading="lazy"`, `decoding="async"`, and intrinsic dimensions to ProductCard
-
-**Content:**
-- Trek FX card no longer claims a step-through frame (that's the Verve line)
-- Price formatting consistency ($6,499) and Story section grammar fix ("Our staff brings decades...")
-
-**Known Follow-ups:** see Future Enhancements below.
+## Key Pages & Sections
+
+- **Home** — hero with live store-hours badge, info bar, services, featured products, reviews (Listen360), our story, contact. Supports hash navigation (`/#contact`, `/#services`, `/#products`, `/#story`).
+- **Catalog** — full product listing.
+- **Services** — service offerings, e-bike service requirements notice (`#ebike-requirements`).
+- **Contact** — no contact form; visitors call (703) 754-1911 or email info@haymarketbicycles.com. A contact form is on the roadmap.
+
+## Documentation
+
+| File | Purpose |
+|------|---------|
+| `CHANGELOG.md` | Project history — all completed work, in order |
+| `ROADMAP.md` | All open and planned work, organized by priority |
+| `features-implementation-guide.md` | Build spec for the next two features (Local Rides + Maintenance Video Guides) |
+| `reviews-update-guide.md` | Staff guide: how to refresh the customer reviews quarterly |
 
 ## Store Information
 
@@ -438,297 +70,94 @@ Full code review with nine fixes, one commit each:
 - Address: 4414 Costello Way, Haymarket, VA 20169
 - Phone: (703) 754-1911
 - Email: info@haymarketbicycles.com
-- Website: https://www.haymarketbicycles.com (canonical host; Netlify should keep www as the primary domain so the apex 301-redirects)
 - Established: 2007
 
-**Store Hours:**
+**Store hours** (used in StoreHours component and schema markup):
 - Monday: Closed
-- Tuesday - Saturday: 11:00 AM - 6:00 PM
-- Sunday: 12:00 PM - 5:00 PM
+- Tuesday – Saturday: 11:00 AM – 6:00 PM
+- Sunday: 12:00 PM – 5:00 PM
 
-**Social Media:**
-- Facebook: https://www.facebook.com/HaymarketBicycles/
-- Instagram: https://www.instagram.com/haymarketbikes
-- TikTok: https://www.tiktok.com/@haymarketbicycles
+**Social:** [Facebook](https://www.facebook.com/HaymarketBicycles/) · [Instagram](https://www.instagram.com/haymarketbikes) · [TikTok](https://www.tiktok.com/@haymarketbicycles)
+
+## Design System
+
+### Brand Colors (from the official logo)
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Deep Forest Green | `#144D3A` | Headings, primary text |
+| Lime Green | `#73BB44` | Accents, hover states |
+| Coral Orange | `#F36E32` | Primary CTA buttons |
+| Bright Yellow | `#F5E100` | Secondary accents, badges |
+| Lime | `#CBD92A` | Additional accent variety |
+
+All colors are also defined in `src/theme.ts` (components still use hardcoded hex values; migrating to theme tokens is a roadmap item).
+
+### Typography
+
+- **Montserrat** for headings, navigation, and buttons — Extra Bold 800 for H1, Bold 700 for H2/H3, Regular 400 for labels
+- **System fonts** for body text (readability + performance)
+- Loaded via Google Fonts CDN with preconnect
+
+### Accessibility
+
+WCAG 2.1 Level AA: full keyboard navigation (ESC closes modal/menu, Enter/Space activates items, focus trap in PhoneModal), ARIA labels on all controls, 48px minimum touch targets, timezone-correct store hours (America/New_York), semantic HTML with descriptive alt text.
+
+## SEO
+
+- Per-page titles/descriptions via `SEO.tsx` (react-helmet-async)
+- Canonical URLs on `https://www.haymarketbicycles.com`
+- Schema.org: BikeStore (LocalBusiness), Organization, Service, FAQPage
+- Open Graph + Twitter cards with a 1200×630 `og-image.png`
+- `robots.txt` and `sitemap.xml` in `/public`
+
+Known SEO gap: pages ship homepage meta tags when shared (social scrapers don't run JS). Prerendering is the top SEO item on the roadmap.
 
 ## Running the Project
 
-### Development
 ```bash
-npm install
-npm run dev
+npm install        # Install dependencies
+npm run dev        # Start dev server (runs automatically in this environment)
+npm run build      # Production build to dist/
+npm run preview    # Preview the production build
+npm run typecheck  # TypeScript check
+npm run lint       # ESLint
 ```
 
-### Build for Production
-```bash
-npm run build
-```
+## Deployment (Netlify)
 
-### Preview Production Build
-```bash
-npm run preview
-```
+1. Connect the Git repository
+2. Build command: `npm run build` · Publish directory: `dist`
+3. Ensure the primary domain is **www** (apex redirects to it)
+4. SPA routing is handled by `_redirects`
 
-### Type Checking
-```bash
-npm run typecheck
-```
+### Post-deploy checklist
 
-### Linting
-```bash
-npm run lint
-```
+- [ ] All pages load; nav links work
+- [ ] Phone/email links work on mobile
+- [ ] Store-hours badge shows the correct Open/Closed state
+- [ ] Google Rich Results Test passes on Home and Services
+- [ ] Sitemap submitted to Google Search Console
+- [ ] Share a page link and verify the Open Graph preview
 
-## Deployment Guide
+## Managing Product Images
 
-### Prerequisites
-- Node.js 18+ installed
-- npm or yarn package manager
-- Web hosting service (Netlify, Vercel, AWS, etc.)
-
-### Production Build Steps
-
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Run Type Checking**
-   ```bash
-   npm run typecheck
-   ```
-   Fix any type errors before proceeding.
-
-3. **Run Linting**
-   ```bash
-   npm run lint
-   ```
-   Address any linting issues.
-
-4. **Build for Production**
-   ```bash
-   npm run build
-   ```
-   This creates an optimized production build in the `dist/` directory.
-
-5. **Preview Production Build (Optional)**
-   ```bash
-   npm run preview
-   ```
-   Test the production build locally before deployment.
-
-### Deployment Platforms
-
-**Netlify (Recommended):**
-- Connect your Git repository
-- Build command: `npm run build`
-- Publish directory: `dist`
-- Automatic deployments on push
-
-**Vercel:**
-- Import your Git repository
-- Framework preset: Vite
-- Build command: `npm run build`
-- Output directory: `dist`
-
-**Traditional Hosting:**
-- Upload contents of `dist/` folder to web server
-- Configure server to serve `index.html` for all routes (SPA routing)
-- Ensure `.htaccess` or nginx config handles client-side routing
-
-### Post-Deployment Checklist
-- [ ] Verify all pages load correctly
-- [ ] Test mobile responsiveness
-- [ ] Check all navigation links
-- [ ] Verify phone numbers and email links work
-- [ ] Test contact form (if applicable)
-- [ ] Validate SEO tags with Google Rich Results Test
-- [ ] Submit sitemap.xml to Google Search Console
-- [ ] Test social media sharing (Open Graph tags)
-
-## Accessibility Features
-
-This website follows WCAG 2.1 Level AA accessibility guidelines:
-
-### Keyboard Navigation
-- All interactive elements are keyboard accessible
-- Tab order follows logical reading flow
-- ESC key closes modal dialogs and mobile menu
-- Enter/Space keys activate buttons and links
-- Focus indicators visible on all interactive elements
-
-### Screen Reader Support
-- Semantic HTML structure with proper heading hierarchy
-- ARIA labels on all icon buttons and controls
-- Descriptive alt text on all images
-- Proper form labels and error messages
-- Landmark regions for easy navigation
-
-### Visual Accessibility
-- Color contrast ratios meet WCAG AA standards
-- Text remains readable at 200% zoom
-- No information conveyed by color alone
-- Sufficient white space and typography hierarchy
-- Responsive design works on all screen sizes
-
-### Mobile Accessibility
-- Touch targets minimum 44x44px
-- Pinch-to-zoom enabled
-- Viewport properly configured
-- No horizontal scrolling required
-- Optimized for screen readers on mobile devices
-
-### Testing Recommendations
-- Use WAVE browser extension for automated accessibility testing
-- Test with keyboard navigation only
-- Test with screen readers (NVDA, JAWS, VoiceOver)
-- Verify color contrast with browser DevTools
-- Test on multiple devices and browsers
-
-## SEO & Search Engine Optimization
-
-The website is fully optimized for search engines with comprehensive on-page SEO:
-
-- **Local Search Optimization**: Structured data targeting "bike shop Haymarket VA" and related searches
-- **Schema.org Markup**: BikeStore (LocalBusiness), Organization, Service, and FAQ schemas. Review and BreadcrumbList schemas were removed July 2026: Google excludes self-serving review markup on a business's own site from rich results, and the breadcrumb block modeled site navigation rather than a page trail. Per-page breadcrumbs can return once prerendering is added.
-- **Social Media Ready**: Open Graph and Twitter Card tags for enhanced social sharing
-- **Technical SEO**: robots.txt and sitemap.xml for proper indexing
-- **Mobile Optimization**: Theme colors and mobile web app tags for better mobile experience
-- **Image SEO**: Descriptive alt text with location keywords on all images
-
-### Testing Your SEO
-
-You can test the structured data implementation using:
-- [Google Rich Results Test](https://search.google.com/test/rich-results)
-- [Schema Markup Validator](https://validator.schema.org/)
-- [Open Graph Debugger](https://developers.facebook.com/tools/debug/)
-
-## Future Enhancements
-
-Potential features to add:
-- Blog for cycling tips and news
-- Google Maps embed on contact section
-- Community Rides section (weekly group rides, Supabase-backed) — see `groupride.md` for full plan
-- e-bike landing page for SEO
-- AggregateRating schema markup (reviews data now available in `src/reviews.ts`) — note: on-site aggregate ratings for the business itself are treated as self-serving by Google; prioritize Google Business Profile reviews instead
-- Prerender routes (e.g. vite-ssg or vite-plugin-prerender) so each page ships static HTML with its own meta tags; social scrapers don't execute JS, so shared links for /services and /catalog currently show homepage metadata
-- Production security headers via Netlify `_headers` file (the vite.config.ts header plugin only affects the dev server)
-- Self-host Montserrat (or preload) to remove the render-blocking Google Fonts round trip
-- Replace og-image.png (logo on white) with a storefront or bike-lineup photo for a stronger share card
-- Align store hours across Google Business Profile, Yelp, and the Instagram bio to match the website (NAP consistency)
-  
-## Managing Product Catalog Images
-
-### Standard Operating Procedure (SOP)
-
-This SOP outlines the process for adding, updating, and managing product images in the catalog.
-
-#### Image Storage Location
-
-All product catalog images are stored in:
-```
-/public/
-```
-
-#### Image Specifications
-
-**Recommended Image Properties:**
-- **Format**: WebP (preferred, ~80-85 quality). JPG acceptable; avoid PNG for photos — the original product PNGs totaled 9.6 MB before the July 2026 WebP conversion brought them to 278 KB
-- **Dimensions**: 1200px wide (matches the intrinsic width set on ProductCard)
-- **Aspect Ratio**: 16:9 or 4:3 work best, but any aspect ratio is supported
-- **File Size**: Keep under 150KB per image; WebP at 1200px typically lands at 40-70KB
-- **Image Composition**: Center the bike in the frame (the display crops from center)
-- **Conversion**: macOS one-liner with ImageMagick: `magick input.png -resize 1200x -quality 82 output.webp`
-
-**Technical Details:**
-- Images automatically resize to fit a 256px height card (`h-64` in Tailwind)
-- CSS `object-cover` class crops and scales images to fill the container
-- Width is responsive and adjusts to screen size
-- Images maintain aspect ratio while filling the card
-
-#### Adding or Updating Product Images
-
-**Step 1: Prepare Your Image**
-1. Edit/crop your image to showcase the bike prominently
-2. Ensure the bike is centered in the frame
-3. Optimize file size (compress if needed to stay under 500KB)
-4. Name the file descriptively using lowercase and hyphens
-   - Good: `velocity-pro-carbon.jpg`
-   - Good: `trailblazer-elite-mountain.jpg`
-   - Avoid spaces or special characters
-
-**Step 2: Save Image to Public Folder**
-1. Place the image file in `/public/`
-2. Verify the file name matches your naming convention
-
-**Step 3: Update Product Data**
-1. Open `/src/products.ts`
-2. Locate the product object you want to update
-3. Update the `imageUrl` field with the filename:
-   ```typescript
-   imageUrl: 'your-image-name.webp'
-   ```
-
-**Step 4: Test the Display**
-1. Run the dev server (`npm run dev`)
-2. Navigate to the catalog page
-3. Verify the image displays correctly
-4. Check that the image quality is acceptable
-5. Ensure the bike is properly centered in the card
-
-#### Example Product Entry
-
-```typescript
-{
-  id: '1',
-  name: 'Velocity Pro Carbon Road Bike',
-  category: 'Road Bikes',
-  price: '$3,299',
-  description: 'Experience the perfect blend of speed and comfort...',
-  features: [
-    'Lightweight carbon fiber frame',
-    'Shimano 105 groupset',
-    '700c wheels with tubeless ready tires',
-    'Hydraulic disc brakes'
-  ],
-  imageUrl: 'velocity-pro-carbon.jpg',
-  highlightColor: '#F36E32'
-}
-```
-
-#### Troubleshooting
-
-**Image Not Displaying:**
-- Verify the file exists in `/public/`
-- Check that the filename in `imageUrl` exactly matches the file (including extension)
-- Ensure the filename does not include a path prefix (just the filename)
-- Clear browser cache and refresh
-
-**Image Quality Issues:**
-- Use higher resolution source images (1200px wide minimum)
-- Ensure JPG quality is set to 80-90% when saving
-- Avoid heavily compressed images
-
-**Image Appears Cropped Incorrectly:**
-- Recenter the bike in your source image before saving
-- Remember: vertical center is most important (card has fixed height)
-- The card crops to 256px height, keeping center-most content
-
-#### Quick Reference
+Product images live in `/public/` and are referenced by filename in `src/products.ts`.
 
 | Attribute | Value |
 |-----------|-------|
-| Storage Path | `/public/` |
-| URL Format | `filename.webp` |
-| Target Width | 1200px |
-| Max File Size | 150KB recommended |
-| Format | WebP (preferred) or JPG |
-| Card Height | 256px (fixed) |
-| Card Width | Responsive (fluid) |
+| Format | WebP preferred (~quality 82); avoid PNG for photos |
+| Dimensions | 1200px wide |
+| Max size | 150 KB recommended |
+| Naming | lowercase-hyphens, no spaces (e.g. `trek-domane.webp`) |
+| Display | 256px-tall card (`h-64`), center-cropped via `object-cover` |
+
+Conversion one-liner (ImageMagick): `magick input.png -resize 1200x -quality 82 output.webp`
+
+**Note:** the original product PNGs are still in the project at full size and are what the site currently serves — converting them to WebP is an open roadmap item (see `ROADMAP.md`).
 
 ## Notes
 
-- Product images are stored locally in `/public/`
-- The site is fully responsive and works on all device sizes
-- Smooth scroll behavior is implemented for navigation
-- The design avoids purple/indigo colors per project requirements
+- Product, service, and review data are static TypeScript files — see `reviews-update-guide.md` and `features-implementation-guide.md` for non-developer editing workflows
+- No database: Supabase was removed in November 2025 and the site is fully static
+- The design avoids purple/indigo colors per brand requirements

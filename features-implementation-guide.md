@@ -22,14 +22,6 @@ This guide is written so implementation can proceed once two pieces of content a
 ## Table of Contents
 
 1. [Legacy Database Cleanup](#1-legacy-database-cleanup)
-2. [Local Rides Page](#2-local-rides-page)
-3. [Maintenance Video Guides Page](#3-maintenance-video-guides-page)
-4. [Home Page Teasers](#4-home-page-teasers)
-5. [Navigation, Footer & Routing](#5-navigation-footer--routing)
-6. [SEO & Structured Data](#6-seo--structured-data)
-7. [Staff Content Update Guide](#7-staff-content-update-guide)
-8. [Build Verification](#8-build-verification)
-9. [Content Checklist (Prepare Before Implementing)](#9-content-checklist-prepare-before-implementing)
 
 ---
 
@@ -38,18 +30,16 @@ This guide is written so implementation can proceed once two pieces of content a
 Before building the new features, scrub every remaining database reference so the project
 reflects a simple, database-free, Netlify-hosted site.
 
-### Files to Update
+### Cleanup Status (September 2026)
 
-| File | Action |
-|------|--------|
-| `groupride.md` | **Delete entirely.** This is the old Supabase-backed Community Rides plan. The new Local Rides page replaces it with a static approach. |
-| `README.md` | Remove the Future Enhancements line that reads: `Community Rides section (weekly group rides, Supabase-backed) — see groupride.md for full plan`. Replace with a reference to the new Local Rides and Maintenance Guides features. |
-| `project_roadmap.md` | Historical entries under "Remove unused Supabase dependencies" and the November 2025 summary reference Supabase. These are completed-task logs — update the wording to note the project is now fully database-free, or remove the Supabase-specific lines. Add new entries documenting the Local Rides and Maintenance Guides features once built. |
-| `.env` | Remove any leftover `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, or other database connection variables. The site does not use a database; these are dead config. |
+| File | Action | Status |
+|------|--------|--------|
+| `groupride.md` | Delete — old Supabase-backed Community Rides plan, superseded by this guide | **Done** |
+| `project_roadmap.md` | Delete — its open items were consolidated into `ROADMAP.md`, its history into `CHANGELOG.md` | **Done** |
+| `.env` | Remove leftover `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` | **Done** |
+| `README.md` | Rewritten without Supabase references; docs table now lists `CHANGELOG.md` and `ROADMAP.md` | **Done** |
 
-### Verification
-
-After cleanup, search the entire project (excluding `node_modules`) for the terms
+Remaining: after implementation, search the project (excluding `node_modules`) for
 `supabase`, `database`, and `community ride` to confirm no stray references remain in
 code, config, or documentation.
 
@@ -603,17 +593,11 @@ Common first guides that provide the most value to customers:
 | `src/pages/Home.tsx` | Add two teaser sections; extend hash navigation for `#rides` and `#maintenance` |
 | `src/components/Layout.tsx` | Add Rides and Guides to Home nav (desktop + mobile) and footer Quick Links |
 | `public/sitemap.xml` | Add two new `<url>` entries |
-| `README.md` | Remove Community Rides / Supabase reference from Future Enhancements; add entries for the new features |
-| `project_roadmap.md` | Clean up Supabase references in historical entries; add new feature entries |
+| `README.md` | Docs table already references the new features via `features-implementation-guide.md` |
+| `ROADMAP.md` / `CHANGELOG.md` | Move the two feature items from "Next Up" to "Completed" with a dated changelog entry once shipped |
 
-### Files to Delete
+### Config Cleaned
 
-| File | Reason |
-|------|--------|
-| `groupride.md` | Replaced by the static Local Rides approach in this guide |
-
-### Config to Clean
-
-| File | Changes |
-|------|---------|
-| `.env` | Remove leftover database connection variables (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, etc.) |
+| File | Changes | Status |
+|------|---------|--------|
+| `.env` | Database connection variables removed | **Done** |
