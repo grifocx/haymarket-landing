@@ -24,9 +24,9 @@ Full implementation spec: `features-implementation-guide.md`. Content to gather 
 
 - [ ] **Contact form with error states** — *Medium* — Name/email/message form in the Contact section with inline validation; pairs with the thank-you page below. (A form existed and was deliberately removed early on — re-add only with the full error-state UX specified in the site audit.)
 - [ ] **Thank-you / confirmation page** (`/thank-you`) — *Low* — Depends on the contact form.
-- [ ] **Privacy policy page** (`/privacy`) — *Low* — Cover contact-form data, analytics cookies if added; footer link.
+- [ ] **Privacy policy page** (`/privacy`) — *Low* — Cover contact-form data, MailerLite (installed October 2026), analytics cookies if added; footer link.
 - [ ] **Terms and conditions page** (`/terms`) — *Low* — Site usage terms, service/product disclaimers; footer link.
-- [ ] **Cookie consent banner** — *Low* — Dismissible banner; becomes necessary once analytics is installed.
+- [ ] **Cookie consent banner** — *Low* — Dismissible banner; now needed since MailerLite (installed October 2026) may set cookies, and before analytics is added.
 - [ ] **Analytics installation** — *Low* — GA4 or a privacy-friendly option (Plausible/Fathom). Install the tracking script in index.html.
 - [ ] **Manual testing checklist** — *Medium* — Browser compatibility, mobile devices, accessibility steps. Partially covered by the README post-deploy checklist.
 

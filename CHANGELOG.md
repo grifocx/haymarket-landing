@@ -4,6 +4,13 @@ All notable changes to the Haymarket Bicycles website, in chronological order. F
 
 ## 2026
 
+### October 2026 — MailerLite Newsletter Tracking
+
+- Added the MailerLite Universal snippet to the shared page head so it loads on every page (Home, Catalog, Services, 404); account `2525753`
+- Snippet loads async in the background, so it does not slow the page down
+- The site itself shows nothing new yet — MailerLite forms/pop-ups created in the MailerLite dashboard will now display on the site automatically
+- Note: the cookie-consent banner and privacy policy page (see `ROADMAP.md`) became more relevant now that a third-party script is present, since MailerLite may set cookies
+
 ### July 2026 — Code Review Fixes (9 fixes)
 
 - **Canonical host consistency** — all URLs (canonical, OG, JSON-LD, sitemap, robots.txt) now use `https://www.haymarketbicycles.com`; Netlify must keep `www` as primary domain
