@@ -1,34 +1,23 @@
-# Haymarket Bicycles - Robots.txt
-# https://www.haymarketbicycles.com
-
+# robots.txt — Haymarket Bicycles
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
-
-# Sitemap location
-Sitemap: https://www.haymarketbicycles.com/sitemap.xml
-
-# Crawl-delay for all bots
-Crawl-delay: 1
-
-# Block specific bot types if needed
-User-agent: AdsBot-Google
+# AI search and AI training crawlers: allowed on purpose
+User-agent: GPTBot
 Allow: /
-
-# Allow search engines to crawl all images
-User-agent: Googlebot-Image
+User-agent: OAI-SearchBot
 Allow: /
-
-# Allow all major search engines
-User-agent: Googlebot
+User-agent: ChatGPT-User
 Allow: /
-
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
 User-agent: Bingbot
 Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
+Sitemap: https://haymarketbicycles.com/sitemap.xml
