@@ -4,6 +4,15 @@ All notable changes to the Haymarket Bicycles website, in chronological order. F
 
 ## 2026
 
+### November 2026 — Generated Sitemap, IndexNow, Unified Footer, About Page
+
+- **Sitemap generated at build time** — `sitemap.xml` is now produced automatically after each build from the route list instead of being hand-maintained in `public/`; each `<lastmod>` comes from the actual modification date of that route's content files (products/services/reviews/page source), so it stays accurate with no manual editing
+- **IndexNow support for Bing/Copilot** — a verification key file lives on the site, and a build plugin pings the IndexNow endpoint with every URL whose content changed since the previous build; runs automatically on Netlify/CI builds, skipped locally, and can be disabled with `DISABLE_INDEXNOW=1`
+- **Unified footer on every page** — the footer now shows the shop name, full address, phone, and hours as plain text, all read from one shared config file (`src/shopInfo.ts`) that matches the JSON-LD values exactly; the old duplicated home-only footer block was removed
+- **New About page** (`/about`) — covers ownership (independent, locally owned), opening (2007), brands carried (Trek, Aventon, Time), services offered, and towns served; every fact is sourced from `content/about.md` (created alongside the page from facts already published on the site — the owner's name is not stated anywhere yet; edit `content/about.md` to add it)
+- About page ships its own static HTML with its own title/description/canonical, and is included in the generated sitemap
+- Not yet linked from navigation — adding it to the nav/footer links is an open item (see `ROADMAP.md`)
+
 ### November 2026 — Static Pre-rendering (SSG) + AI Crawler Policy
 
 - **Every route now ships complete static HTML at build time** using `vite-react-ssg` — crawlers and scrapers without JavaScript see the full page text (verified output: Home 75 KB, Catalog 28 KB, Services 25 KB)

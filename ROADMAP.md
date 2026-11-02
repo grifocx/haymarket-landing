@@ -11,10 +11,15 @@ Full implementation spec: `features-implementation-guide.md`. Content to gather 
 - [ ] **Local Rides page** (`/rides`) — *Medium* — Static, evergreen staff-favorite routes (3–5) with distance, difficulty, surface, and a link to RideWithGPS/Strava/Komoot. New `src/rides.ts` + `RideCard` + page component. Home teaser section and nav links included in the spec.
 - [ ] **Maintenance Video Guides page** (`/maintenance`) — *Medium* — Embedded YouTube how-to videos (flat tire, chain care, saddle height, brakes…), grouped by category, with HowTo structured data. New `src/maintenance.ts` + `MaintenanceCard` + page component. Home teaser included in the spec.
 - [ ] **Legacy database cleanup** — *Low* — Pre-implementation step from the features guide §1: delete `groupride.md`, strip the remaining Supabase references from docs, and confirm `.env` has no database variables. (The `.env` Supabase variables were removed September 2026.)
+- [ ] **Fill in `content/about.md` owner details** — *Low* (non-code) — The About page states only what this file says; the owner's name is not currently recorded anywhere on the site. Add it (plus any other facts worth stating) and sync `src/pages/About.tsx`.
 
 ## High Priority
 
 - [x] **Prerender routes for per-page meta** — *Done November 2026* — Implemented with vite-react-ssg; every route ships its own static HTML with per-route title/description/canonical/OG tags (see `src/pageMeta.ts`). Residual cleanup: remove the now-unused `react-helmet-async` dependency and its Vite alias in `vite.config.ts`.
+- [ ] **Link the About page from navigation** — *Low* — `/about` exists and ships static HTML, but nothing links to it yet; add it to the desktop/mobile menus and/or footer links.
+- [ ] **Custom 404 status for unknown URLs** — *Low-Medium* — The SPA fallback (`_redirects`) serves the app shell with HTTP 200 for any unknown URL, so crawlers see home-page content under junk URLs. Serve a real 404 (Netlify `404.html` or a status-200 only for known routes) so soft-404s stop; visitors' behavior is unchanged.
+- [ ] **Trim per-page JSON-LD** — *Low* — All four schema blocks (BikeStore, Organization, Service, FAQPage) ship on every page including 404 fallback; FAQPage describes content not present on catalog/services. Emit only the schemas relevant to each route.
+- [ ] **Fix sitemap host in robots.txt** — *Low* — `Sitemap:` line points at `https://haymarketbicycles.com/sitemap.xml` (apex); should use the canonical `www` host.
 - [ ] **Remove unused react-helmet-async dependency** — *Low* — Follow-up to the pre-rendering work: drop the package from `dependencies`, remove the ESM alias from `vite.config.ts`, and verify the build still passes.
 - [ ] **Convert product images to WebP** — *Low-Medium* — The five product PNGs (9.6 MB total) are still what the site serves. Convert to 1200px WebP q82 (~97% smaller) and update `src/products.ts`; optionally remove the originals after verifying. One-liner in README's image guide.
 - [ ] **Netlify `_headers` for production security headers** — *Low* — The vite.config.ts header plugin only affects the dev server; production currently ships no security headers.

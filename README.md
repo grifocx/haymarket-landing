@@ -33,11 +33,14 @@ src/
 │   ├── ProductCard.tsx / ServiceCard.tsx / ReviewCard.tsx
 │   └── ErrorBoundary.tsx
 ├── pages/
+│   ├── pages/
 │   ├── Home.tsx             # Hero, services, products, reviews, story, contact
 │   ├── Catalog.tsx          # Full product catalog
 │   ├── Services.tsx         # Detailed services + e-bike requirements notice
+│   ├── About.tsx            # Ownership, brands, services, towns served
 │   └── NotFound.tsx         # 404 page
 ├── utils/helpers.ts         # Formatting, scroll, device detection, store hours
+├── shopInfo.ts              # Single source of truth: name/address/phone/hours (footer + JSON-LD)
 ├── products.ts              # Product data and types
 ├── services.ts              # Service data and types
 ├── reviews.ts               # Curated customer reviews from Listen360
@@ -45,6 +48,8 @@ src/
 ├── theme.ts                 # Centralized brand color/spacing configuration
 ├── App.tsx                  # Route definitions (lazy per-page loading)
 └── main.tsx                 # Entry point (ViteReactSSG)
+content/                     # Source-of-truth copy (about.md) for content pages
+plugins/                     # Build plugins: sitemap generation, IndexNow ping
 public/                      # Product images, logos, robots.txt, sitemap.xml, _redirects
 ```
 
@@ -53,6 +58,7 @@ public/                      # Product images, logos, robots.txt, sitemap.xml, _
 - **Home** — hero with live store-hours badge, info bar, services, featured products, reviews (Listen360), our story, contact. Supports hash navigation (`/#contact`, `/#services`, `/#products`, `/#story`).
 - **Catalog** — full product listing.
 - **Services** — service offerings, e-bike service requirements notice (`#ebike-requirements`).
+- **About** — ownership, brands carried, services offered, towns served. Facts sourced from `content/about.md`.
 - **Contact** — no contact form; visitors call (703) 754-1911 or email info@haymarketbicycles.com. A contact form is on the roadmap.
 
 ## Documentation
@@ -106,11 +112,14 @@ WCAG 2.1 Level AA: full keyboard navigation (ESC closes modal/menu, Enter/Space 
 ## SEO
 
 - **Static pre-rendering (SSG)**: every route ships a complete HTML file at build time with its own `<title>`, meta description, canonical URL, and Open Graph/Twitter tags — no JavaScript required to see page content or metadata. Per-route copy lives in `src/pageMeta.ts`
+- **Generated sitemap**: `dist/sitemap.xml` is built automatically from the route list, with per-route `<lastmod>` dates taken from the content files' modification times — never edit the sitemap by hand
+- **IndexNow**: on Netlify/CI builds, changed URLs are submitted to IndexNow (used by Bing/Copilot); the key file is `public/{key}.txt`
 - Canonical URLs on `https://www.haymarketbicycles.com`
 - Schema.org: BikeStore (LocalBusiness), Organization, Service, FAQPage
 - Open Graph + Twitter cards with a 1200×630 `og-image.png`
 - `robots.txt` allows all crawlers including AI bots (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended — allowed on purpose), plus `sitemap.xml` in `/public`
 - Pages still hydrate into a normal React app after load, so interactivity is unchanged
+- Shop name/address/phone/hours in the footer come from `src/shopInfo.ts`, which matches the JSON-LD — update that one file to change them everywhere
 
 ## Running the Project
 
@@ -136,6 +145,9 @@ npm run lint       # ESLint
 - [ ] Phone/email links work on mobile
 - [ ] Store-hours badge shows the correct Open/Closed state
 - [ ] Each page's HTML has its own title/canonical (view-source on `/catalog` and `/services` — should not say "Premier Bike Shop … Since 2007")
+- [ ] Generated `dist/sitemap.xml` lists every route with a current `<lastmod>`
+- [ ] Build log shows the IndexNow ping (Netlify/CI only)
+- [ ] Footer on every page shows the same name/address/phone/hours as the JSON-LD
 - [ ] Google Rich Results Test passes on Home and Services
 - [ ] Sitemap submitted to Google Search Console
 - [ ] Share a page link and verify the Open Graph preview shows that page's title/description
@@ -159,5 +171,7 @@ Conversion one-liner (ImageMagick): `magick input.png -resize 1200x -quality 82 
 ## Notes
 
 - Product, service, and review data are static TypeScript files — see `reviews-update-guide.md` and `features-implementation-guide.md` for non-developer editing workflows
+- About-page facts live in `content/about.md`; the page must only state what that file states
+- Footer shop details come from `src/shopInfo.ts` — one file drives footer text and JSON-LD
 - No database: Supabase was removed in November 2025 and the site is fully static
 - The design avoids purple/indigo colors per brand requirements
