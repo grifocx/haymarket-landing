@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import type { Plugin } from 'vite';
 import { getPageMeta, BASE_URL } from './src/pageMeta';
+import { sitemapPlugin } from './plugins/sitemap';
+import { indexNowPlugin } from './plugins/indexnow';
 
 const securityHeaders = {
   'X-Content-Type-Options': 'nosniff',
@@ -57,7 +59,7 @@ function injectHeadTags(html: string, route: string): string {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), securityHeadersPlugin()],
+  plugins: [react(), securityHeadersPlugin(), sitemapPlugin(), indexNowPlugin()],
   resolve: {
     alias: {
       // react-helmet-async ships CJS as "main"; force its ESM build so the

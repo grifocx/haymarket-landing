@@ -26,6 +26,12 @@ export const pageMeta: Record<string, PageMeta> = {
       'Professional bicycle repair and maintenance services in Haymarket, VA. From tune-ups to complete overhauls, wheel building, custom builds, and professional fitting. Certified mechanics serving Northern Virginia since 2007.',
     canonicalPath: '/services',
   },
+  '/about': {
+    title: 'About Us | Haymarket Bicycles | Locally Owned Bike Shop Since 2007',
+    description:
+      "Learn about Haymarket Bicycles — an independent, locally owned bike shop in Haymarket, VA since 2007. Carrying Trek, Aventon, and Time. Serving Haymarket, Gainesville, and Northern Virginia.",
+    canonicalPath: '/about',
+  },
 };
 
 export function getPageMeta(route: string): PageMeta {

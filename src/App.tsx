@@ -27,6 +27,10 @@ export const routes: RouteRecord[] = [
         lazy: () => import('./pages/Services').then((m) => ({ Component: m.Services })),
       },
       {
+        path: 'about',
+        lazy: () => import('./pages/About').then((m) => ({ Component: m.About })),
+      },
+      {
         path: '*',
         lazy: () => import('./pages/NotFound').then((m) => ({ Component: m.default })),
       },

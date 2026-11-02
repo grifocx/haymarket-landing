@@ -2,6 +2,7 @@ import { Menu, X } from 'lucide-react';
 import { useState, useEffect, ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { StickyMobileCTA } from './StickyMobileCTA';
+import { shopInfo, fullAddress } from '../shopInfo';
 
 interface LayoutProps {
   children: ReactNode;
@@ -163,19 +164,31 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
 
       <footer className="bg-[#144D3A] py-12 px-4 pb-24 md:pb-12">
         <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <div className="mb-4">
+                <span className="font-montserrat text-xl font-bold text-white">
+                  {shopInfo.name}
+                </span>
+              </div>
+              <p className="text-white/70 leading-relaxed">
+                Your trusted partner for all things cycling. Quality bikes, expert service, passionate people.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-montserrat text-white font-bold text-lg mb-4">Store Information</h4>
+              <address className="not-italic text-white/70 leading-relaxed">
+                <p>{fullAddress}</p>
+                <p className="mt-1">
+                  <a href={shopInfo.phoneHref} className="hover:text-[#73BB44] transition-colors">{shopInfo.phoneDisplay}</a>
+                  {' · '}{shopInfo.hoursPlain}
+                </p>
+              </address>
+            </div>
+          </div>
           {isHome ? (
             <>
-              <div className="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                  <div className="mb-4">
-                    <span className="font-montserrat text-xl font-bold text-white">
-                      Haymarket Bicycles
-                    </span>
-                  </div>
-                  <p className="text-white/70 leading-relaxed">
-                    Your trusted partner for all things cycling. Quality bikes, expert service, passionate people.
-                  </p>
-                </div>
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div>
                   <h4 className="font-montserrat text-white font-bold text-lg mb-4">Quick Links</h4>
                   <ul className="space-y-2">
@@ -207,9 +220,6 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                 </div>
                 <div>
                   <h4 className="font-montserrat text-white font-bold text-lg mb-4">Connect</h4>
-                  <p className="text-white/70 mb-2">
-                    Follow us for cycling tips, events, and special offers!
-                  </p>
                   <div className="flex gap-4 mt-4">
                     <a
                       href="https://www.facebook.com/HaymarketBicycles/"
@@ -243,12 +253,7 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
               </div>
             </>
           ) : (
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="font-montserrat text-xl font-bold text-white">
-                  Haymarket Bicycles
-                </span>
-              </div>
+            <div className="border-t border-white/20 pt-8 text-center">
               <p className="text-white/60">© 2026 Haymarket Bicycles. All rights reserved.</p>
             </div>
           )}
