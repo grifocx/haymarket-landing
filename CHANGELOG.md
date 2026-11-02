@@ -4,6 +4,18 @@ All notable changes to the Haymarket Bicycles website, in chronological order. F
 
 ## 2026
 
+### November 2026 — Static Pre-rendering (SSG) + AI Crawler Policy
+
+- **Every route now ships complete static HTML at build time** using `vite-react-ssg` — crawlers and scrapers without JavaScript see the full page text (verified output: Home 75 KB, Catalog 28 KB, Services 25 KB)
+- **Per-route head tags baked in at build time** — each generated HTML file carries its own `<title>`, meta description, canonical URL, and Open Graph/Twitter tags from a new shared config (`src/pageMeta.ts`); wording is identical to the previous runtime tags
+- **Removed react-helmet-async usage** — the shared `SEO` component and its runtime meta injection are gone (head tags moved to build time); the package still sits in `dependencies` pending a cleanup pass, along with its Vite alias in `vite.config.ts`
+- **robots.txt: AI crawlers allowed on purpose** — explicit Allow rules for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, Applebot-Extended, and Bingbot, plus the standard `User-agent: *` allow-all and the sitemap reference
+- **Build command changed** to `vite-react-ssg build` (Netlify config unchanged — it runs `npm run build`); the dev server is unchanged (`vite`, plain client-side rendering)
+- **react-router-dom moved 7 → 6** (vite-react-ssg peer requirement; the site only uses APIs identical in both versions, so no code changes were needed beyond the route definitions)
+- **Restored `_redirects` to `public/`** — it had gone missing from the project source (only the built copy survived). SPA fallback unchanged: unknown URLs serve the app shell and show the 404 page
+- Unknown URLs keep the existing behavior — the site loads and visitors see the Not Found page; no hard-404 status change
+- Route definitions restructured for the pre-renderer (`src/App.tsx`) with lazy per-page loading preserved; React still hydrates each page so menus, modals, and smooth scrolling work exactly as before
+
 ### October 2026 — MailerLite Newsletter Tracking
 
 - Added the MailerLite Universal snippet to the shared page head so it loads on every page (Home, Catalog, Services, 404); account `2525753`

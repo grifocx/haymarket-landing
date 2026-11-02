@@ -14,7 +14,8 @@ Full implementation spec: `features-implementation-guide.md`. Content to gather 
 
 ## High Priority
 
-- [ ] **Prerender routes for per-page meta** — *Medium-High* — Social scrapers don't run JS, so `/services` and `/catalog` shares currently show homepage metadata; static canonicals also conflict with Helmet's on subpages. Evaluate vite-ssg or vite-plugin-prerender; strip route-specific tags from index.html once done. Biggest remaining SEO item.
+- [x] **Prerender routes for per-page meta** — *Done November 2026* — Implemented with vite-react-ssg; every route ships its own static HTML with per-route title/description/canonical/OG tags (see `src/pageMeta.ts`). Residual cleanup: remove the now-unused `react-helmet-async` dependency and its Vite alias in `vite.config.ts`.
+- [ ] **Remove unused react-helmet-async dependency** — *Low* — Follow-up to the pre-rendering work: drop the package from `dependencies`, remove the ESM alias from `vite.config.ts`, and verify the build still passes.
 - [ ] **Convert product images to WebP** — *Low-Medium* — The five product PNGs (9.6 MB total) are still what the site serves. Convert to 1200px WebP q82 (~97% smaller) and update `src/products.ts`; optionally remove the originals after verifying. One-liner in README's image guide.
 - [ ] **Netlify `_headers` for production security headers** — *Low* — The vite.config.ts header plugin only affects the dev server; production currently ships no security headers.
 - [ ] **Verify Netlify primary domain is www** — *Low* (non-code) — Site configuration → Domain management; apex must 301 to www. Required companion to the canonical-host fix.
@@ -56,4 +57,4 @@ Full implementation spec: `features-implementation-guide.md`. Content to gather 
 
 - **Priority rule:** quick wins first, then medium items, plan high-effort features carefully.
 - **Risk guide:** No risk = docs/content · Low = no significant UX change · Medium = needs cross-device/browser testing.
-- **Sequencing suggestion:** legacy cleanup → ship the two feature pages → prerendering → WebP conversion → security headers → analytics + cookie banner (+ privacy/terms pages) → contact form.
+- **Sequencing suggestion:** legacy cleanup → ship the two feature pages → WebP conversion → security headers → analytics + cookie banner (+ privacy/terms pages) → contact form. (Prerendering shipped November 2026.)

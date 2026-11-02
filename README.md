@@ -13,9 +13,9 @@ A modern, responsive marketing website for Haymarket Bicycles — Northern Virgi
 | React 18 | UI framework |
 | TypeScript | Type safety |
 | Vite | Build tool and dev server |
+| vite-react-ssg | Build-time static pre-rendering (SSG) |
 | Tailwind CSS | Utility-first styling |
-| React Router DOM | Client-side routing |
-| react-helmet-async | Per-page meta tags |
+| React Router DOM (v6) | Client-side routing |
 | Lucide React | Icons |
 | Montserrat (Google Fonts) | Headings, nav, buttons — matches the logo typeface |
 
@@ -30,7 +30,6 @@ src/
 │   ├── BackToTop.tsx        # Floating scroll-to-top button
 │   ├── StoreHours.tsx       # Real-time Open/Closed indicator
 │   ├── LoadingSpinner.tsx   # Route transition loader
-│   ├── SEO.tsx              # Reusable per-page meta tags
 │   ├── ProductCard.tsx / ServiceCard.tsx / ReviewCard.tsx
 │   └── ErrorBoundary.tsx
 ├── pages/
@@ -42,10 +41,11 @@ src/
 ├── products.ts              # Product data and types
 ├── services.ts              # Service data and types
 ├── reviews.ts               # Curated customer reviews from Listen360
+├── pageMeta.ts              # Per-route title/description/canonical (baked in at build time)
 ├── theme.ts                 # Centralized brand color/spacing configuration
-├── App.tsx                  # Lazy-loaded routes with Suspense
-└── main.tsx                 # Entry point (HelmetProvider)
-public/                      # Product images, logos, robots.txt, sitemap.xml
+├── App.tsx                  # Route definitions (lazy per-page loading)
+└── main.tsx                 # Entry point (ViteReactSSG)
+public/                      # Product images, logos, robots.txt, sitemap.xml, _redirects
 ```
 
 ## Key Pages & Sections
@@ -105,13 +105,12 @@ WCAG 2.1 Level AA: full keyboard navigation (ESC closes modal/menu, Enter/Space 
 
 ## SEO
 
-- Per-page titles/descriptions via `SEO.tsx` (react-helmet-async)
+- **Static pre-rendering (SSG)**: every route ships a complete HTML file at build time with its own `<title>`, meta description, canonical URL, and Open Graph/Twitter tags — no JavaScript required to see page content or metadata. Per-route copy lives in `src/pageMeta.ts`
 - Canonical URLs on `https://www.haymarketbicycles.com`
 - Schema.org: BikeStore (LocalBusiness), Organization, Service, FAQPage
 - Open Graph + Twitter cards with a 1200×630 `og-image.png`
-- `robots.txt` and `sitemap.xml` in `/public`
-
-Known SEO gap: pages ship homepage meta tags when shared (social scrapers don't run JS). Prerendering is the top SEO item on the roadmap.
+- `robots.txt` allows all crawlers including AI bots (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended — allowed on purpose), plus `sitemap.xml` in `/public`
+- Pages still hydrate into a normal React app after load, so interactivity is unchanged
 
 ## Running the Project
 
@@ -136,9 +135,10 @@ npm run lint       # ESLint
 - [ ] All pages load; nav links work
 - [ ] Phone/email links work on mobile
 - [ ] Store-hours badge shows the correct Open/Closed state
+- [ ] Each page's HTML has its own title/canonical (view-source on `/catalog` and `/services` — should not say "Premier Bike Shop … Since 2007")
 - [ ] Google Rich Results Test passes on Home and Services
 - [ ] Sitemap submitted to Google Search Console
-- [ ] Share a page link and verify the Open Graph preview
+- [ ] Share a page link and verify the Open Graph preview shows that page's title/description
 
 ## Managing Product Images
 

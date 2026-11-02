@@ -28,7 +28,7 @@ export const routes: RouteRecord[] = [
       },
       {
         path: '*',
-        lazy: () => import('./pages/NotFound').then((m) => ({ Component: m.NotFound })),
+        lazy: () => import('./pages/NotFound').then((m) => ({ Component: m.default })),
       },
     ],
   },
