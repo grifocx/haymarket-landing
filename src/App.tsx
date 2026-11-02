@@ -1,25 +1,35 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import { LoadingSpinner } from './components/LoadingSpinner';
+import { StrictMode } from 'react';
+import { Outlet } from 'react-router-dom';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import type { RouteRecord } from 'vite-react-ssg';
 
-const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
-const Catalog = lazy(() => import('./pages/Catalog').then(module => ({ default: module.Catalog })));
-const Services = lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
-const NotFound = lazy(() => import('./pages/NotFound'));
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Suspense fallback={<LoadingSpinner />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+export const routes: RouteRecord[] = [
+  {
+    path: '/',
+    element: (
+      <StrictMode>
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
+      </StrictMode>
+    ),
+    children: [
+      {
+        index: true,
+        lazy: () => import('./pages/Home').then((m) => ({ Component: m.Home })),
+      },
+      {
+        path: 'catalog',
+        lazy: () => import('./pages/Catalog').then((m) => ({ Component: m.Catalog })),
+      },
+      {
+        path: 'services',
+        lazy: () => import('./pages/Services').then((m) => ({ Component: m.Services })),
+      },
+      {
+        path: '*',
+        lazy: () => import('./pages/NotFound').then((m) => ({ Component: m.NotFound })),
+      },
+    ],
+  },
+];

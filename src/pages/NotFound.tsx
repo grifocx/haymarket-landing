@@ -1,16 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Home, Wrench, Package } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { SEO } from '../components/SEO';
 
 export default function NotFound() {
   return (
     <Layout>
-      <SEO
-        title="404 Page Not Found | Haymarket Bicycles"
-        description="The page you're looking for could not be found. Visit our home page to explore our bike shop services and products."
-        noindex={true}
-      />
       <div className="pt-32 pb-20 min-h-[60vh] flex items-center justify-center px-4">
         <div className="text-center max-w-2xl">
           <div className="mb-8">

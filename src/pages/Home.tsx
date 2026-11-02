@@ -5,7 +5,6 @@ import { Layout } from '../components/Layout';
 import { PhoneModal } from '../components/PhoneModal';
 import { BackToTop } from '../components/BackToTop';
 import { StoreHours } from '../components/StoreHours';
-import { SEO } from '../components/SEO';
 import { ReviewCard } from '../components/ReviewCard';
 import { reviews, totalReviewCount } from '../reviews';
 import { isMobileDevice, scrollToSection } from '../utils/helpers';
@@ -32,7 +31,6 @@ export function Home() {
 
   return (
     <Layout>
-      <SEO />
 
       <section className="pt-32 pb-20 px-4 bg-white relative overflow-hidden">
         <div

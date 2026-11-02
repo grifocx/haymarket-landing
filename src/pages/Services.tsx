@@ -4,7 +4,6 @@ import { Info } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { ServiceCard } from '../components/ServiceCard';
 import { BackToTop } from '../components/BackToTop';
-import { SEO } from '../components/SEO';
 import { bikeServices } from '../services';
 import { scrollToSection } from '../utils/helpers';
 
@@ -22,11 +21,6 @@ export function Services() {
 
   return (
     <Layout>
-      <SEO
-        title="Bike Repair & Service | Haymarket Bicycles | Expert Bicycle Maintenance in VA"
-        description="Professional bicycle repair and maintenance services in Haymarket, VA. From tune-ups to complete overhauls, wheel building, custom builds, and professional fitting. Certified mechanics serving Northern Virginia since 2007."
-        canonicalUrl="https://www.haymarketbicycles.com/services"
-      />
 
       <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">
         <div
