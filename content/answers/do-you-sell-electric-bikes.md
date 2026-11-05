@@ -8,7 +8,7 @@ updated: 2026-11-05
 related: [what-brands-do-you-carry, which-e-bikes-do-you-service]
 ---
 
-Yes. Haymarket Bicycles carries Aventon electric bikes.
+Yes. Haymarket Bicycles carries Trek, Aventon, and Aima electric bikes.
 
 We also support the e-bikes we sell after the purchase, with e-bike service, e-bike tire and tube repair, and professional assembly of new e-bikes from the box.
 
