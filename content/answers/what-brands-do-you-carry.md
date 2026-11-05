@@ -14,6 +14,7 @@ Haymarket Bicycles is an independent, locally owned shop, and the brands we carr
 - **Cannondale** — road, mountain, and e-bike models
 - **Orbea** — Spanish road, gravel, and e-bike brands, including custom MyO ordering where you choose the paint and component spec
 - **Aventon** — electric bikes
+- **Aima** - electric bikes
 - **Time** — gravel bikes, including the Time ADHX
 
 Being independent means we pick brands on quality and how well they serve our customers — not on a corporate quota. Whatever you buy here, it gets set up right, fitted to you, and backed by our service department.
