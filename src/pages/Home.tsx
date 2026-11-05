@@ -6,6 +6,7 @@ import { PhoneModal } from '../components/PhoneModal';
 import { BackToTop } from '../components/BackToTop';
 import { StoreHours } from '../components/StoreHours';
 import { ReviewCard } from '../components/ReviewCard';
+import { CommonQuestions } from '../components/CommonQuestions';
 import { reviews, totalReviewCount } from '../reviews';
 import { isMobileDevice, scrollToSection } from '../utils/helpers';
 
@@ -267,6 +268,8 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <CommonQuestions topics={['featured']} heading="Common questions" />
 
       <section id="reviews" className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">

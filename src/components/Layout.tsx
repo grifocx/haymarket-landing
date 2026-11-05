@@ -69,8 +69,7 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
               </Link>
 
               {isHome ? (
-                <>
-                  <div className="hidden md:flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-8">
                     <button
                       onClick={(e) => handleNavClick(e, 'services')}
                       aria-label="Navigate to services section"
@@ -107,32 +106,48 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                       Contact Us
                     </button>
                   </div>
-
-                  <button
-                    className="md:hidden text-[#144D3A]"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    onKeyDown={(e) => handleKeyDown(e, () => setMobileMenuOpen(!mobileMenuOpen))}
-                    aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-                    aria-expanded={mobileMenuOpen}
-                  >
-                    {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                  </button>
-                </>
               ) : (
-                <Link
-                  to="/"
-                  aria-label="Navigate back to home page"
-                  className="font-montserrat flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold"
-                >
-                  ← Back to Home
-                </Link>
+                <div className="flex items-center gap-6">
+                  <Link
+                    to="/"
+                    aria-label="Navigate back to home page"
+                    className="font-montserrat flex items-center gap-2 text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold"
+                  >
+                    ← Back to Home
+                  </Link>
+                  <Link
+                    to="/answers"
+                    aria-label="Navigate to the answers page"
+                    className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold hidden sm:inline"
+                  >
+                    Answers
+                  </Link>
+                </div>
               )}
+
+              <button
+                className="md:hidden text-[#144D3A]"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                onKeyDown={(e) => handleKeyDown(e, () => setMobileMenuOpen(!mobileMenuOpen))}
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
             </div>
           </div>
 
-          {mobileMenuOpen && isHome && (
+          {mobileMenuOpen && (
             <div className="md:hidden bg-white border-t border-gray-200">
               <div className="px-4 py-4 space-y-3">
+                {!isHome && (
+                  <Link
+                    to="/"
+                    className="block w-full text-left text-[#144D3A] hover:text-[#73BB44] py-2 font-medium"
+                  >
+                    Home
+                  </Link>
+                )}
                 <button
                   onClick={(e) => handleNavClick(e, 'services')}
                   onKeyDown={(e) => handleKeyDown(e, () => scrollToSection('services'))}
@@ -200,7 +215,7 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
               </address>
             </div>
           </div>
-          {isHome ? (
+          {(
             <>
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div>
@@ -271,10 +286,6 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                 <p className="text-white/60">© 2026 Haymarket Bicycles. All rights reserved.</p>
               </div>
             </>
-          ) : (
-            <div className="border-t border-white/20 pt-8 text-center">
-              <p className="text-white/60">© 2026 Haymarket Bicycles. All rights reserved.</p>
-            </div>
           )}
         </div>
       </footer>

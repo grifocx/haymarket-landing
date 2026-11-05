@@ -3,6 +3,7 @@ import { Layout } from '../components/Layout';
 import { ProductCard } from '../components/ProductCard';
 import { BackToTop } from '../components/BackToTop';
 import { featuredProducts } from '../products';
+import { CommonQuestions } from '../components/CommonQuestions';
 
 export function Catalog() {
   return (
@@ -32,6 +33,8 @@ export function Catalog() {
           </div>
         </div>
       </section>
+
+      <CommonQuestions topics={['buying']} heading="Common questions before you buy" />
 
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">

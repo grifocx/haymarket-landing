@@ -3,6 +3,7 @@ import path from 'node:path';
 import type { Plugin } from 'vite';
 import { pageMeta, BASE_URL } from '../src/pageMeta';
 import { loadAnswers } from './answers';
+import { TOPICS } from '../src/answersData';
 
 // which source file's mtime drives lastmod for each route
 const routeSourceFile: Record<string, string[]> = {
@@ -46,6 +47,11 @@ export function sitemapPlugin(): Plugin {
         return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastModForRoute(root, route)}</lastmod>\n  </url>`;
       });
 
+      const topicUrls = TOPICS.map(
+        (topic) =>
+          `  <url>\n    <loc>${BASE_URL}/answers/topic/${topic}</loc>\n    <lastmod>${lastModForRoute(root, '/answers')}</lastmod>\n  </url>`
+      );
+
       const answerUrls = loadAnswers(root).map(
         (answer) =>
           `  <url>\n    <loc>${BASE_URL}/answers/${answer.slug}</loc>\n    <lastmod>${lastModForAnswer(answer)}</lastmod>\n  </url>`
@@ -53,6 +59,7 @@ export function sitemapPlugin(): Plugin {
 
       const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[
         ...staticUrls,
+        ...topicUrls,
         ...answerUrls,
       ].join('\n')}\n</urlset>\n`;
       fs.writeFileSync(path.join(outDir, 'sitemap.xml'), xml, 'utf-8');

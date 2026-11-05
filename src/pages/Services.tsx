@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout';
 import { ServiceCard } from '../components/ServiceCard';
 import { BackToTop } from '../components/BackToTop';
 import { bikeServices } from '../services';
+import { CommonQuestions } from '../components/CommonQuestions';
 import { scrollToSection } from '../utils/helpers';
 
 export function Services() {
@@ -66,6 +67,8 @@ export function Services() {
           </div>
         </div>
       </section>
+
+      <CommonQuestions topics={['service-repair']} heading="Common questions about service" />
 
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">

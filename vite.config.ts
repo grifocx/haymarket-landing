@@ -5,6 +5,7 @@ import { getPageMeta, BASE_URL } from './src/pageMeta';
 import { sitemapPlugin } from './plugins/sitemap';
 import { indexNowPlugin } from './plugins/indexnow';
 import { loadAnswers } from './plugins/answers';
+import { TOPICS, TOPIC_LABELS } from './src/answersData';
 
 function toScriptTag(json: unknown): string {
   const serialized = JSON.stringify(json)
@@ -66,6 +67,31 @@ function injectHeadTags(html: string, route: string): string {
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/` },
           { '@type': 'ListItem', position: 2, name: 'Answers', item: `${BASE_URL}/answers` },
+        ],
+      },
+    ];
+  } else if (normalizedRoute.startsWith('/answers/topic/')) {
+    const topicSlug = normalizedRoute.replace(/^\/answers\/topic\//, '');
+    const topics = TOPICS as readonly string[];
+    if (!topics.includes(topicSlug)) {
+      throw new Error(`Unknown answer topic "${topicSlug}" (route ${normalizedRoute})`);
+    }
+    const topic = topicSlug as (typeof TOPICS)[number];
+    const topicLabel = TOPIC_LABELS[topic];
+    const url = `${BASE_URL}/answers/topic/${topicSlug}`;
+    meta = {
+      title: `${topicLabel} — Bike Answers | Haymarket Bicycles`,
+      description: `Questions and answers from Haymarket Bicycles about ${topicLabel.toLowerCase()} — straight from the shop in Haymarket, VA.`,
+      canonicalPath: `/answers/topic/${topicSlug}`,
+    };
+    jsonLd = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Answers', item: `${BASE_URL}/answers` },
+          { '@type': 'ListItem', position: 3, name: topicLabel, item: url },
         ],
       },
     ];
