@@ -11,6 +11,8 @@ The shop opened in 2007 and has served Northern Virginia's cycling community for
 ## Brands we carry
 
 - Trek (road, mountain, city)
+- Cannondale (road, mountain, e-bike models)
+- Orbea (custom MyO ordering — paint and component spec)
 - Aventon (electric)
 - Time (gravel)
 

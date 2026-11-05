@@ -12,6 +12,7 @@ Full implementation spec: `features-implementation-guide.md`. Content to gather 
 - [ ] **Maintenance Video Guides page** (`/maintenance`) — *Medium* — Embedded YouTube how-to videos (flat tire, chain care, saddle height, brakes…), grouped by category, with HowTo structured data. New `src/maintenance.ts` + `MaintenanceCard` + page component. Home teaser included in the spec.
 - [ ] **Legacy database cleanup** — *Low* — Pre-implementation step from the features guide §1: delete `groupride.md`, strip the remaining Supabase references from docs, and confirm `.env` has no database variables. (The `.env` Supabase variables were removed September 2026.)
 - [ ] **Fill in `content/about.md` owner details** — *Low* (non-code) — The About page states only what this file says; the owner's name is not currently recorded anywhere on the site. Add it (plus any other facts worth stating) and sync `src/pages/About.tsx`.
+- [ ] **Quarterly answers accuracy pass** — *Low* (non-code) — 24 answer pages now state prices, turnaround expectations, e-bike system support, and policies. Review them each quarter against reality (see `answers-update-guide.md`); prices must also stay in sync with `src/services.ts`. Several answers deliberately hedge where facts were unconfirmed — e-bike diagnostic fee, repair turnaround, loaner/pickup policy, kids' trade-in — confirm or correct those first.
 
 ## High Priority
 
@@ -62,4 +63,4 @@ Full implementation spec: `features-implementation-guide.md`. Content to gather 
 
 - **Priority rule:** quick wins first, then medium items, plan high-effort features carefully.
 - **Risk guide:** No risk = docs/content · Low = no significant UX change · Medium = needs cross-device/browser testing.
-- **Sequencing suggestion:** legacy cleanup → ship the two feature pages → WebP conversion → security headers → analytics + cookie banner (+ privacy/terms pages) → contact form. (Prerendering shipped November 2026.)
+- **Sequencing suggestion:** quarterly answers accuracy pass → ship the two feature pages → WebP conversion → security headers → analytics + cookie banner (+ privacy/terms pages) → contact form. (Prerendering and the Answers hub shipped November 2026.)

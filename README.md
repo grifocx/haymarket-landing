@@ -30,15 +30,20 @@ src/
 │   ├── BackToTop.tsx        # Floating scroll-to-top button
 │   ├── StoreHours.tsx       # Real-time Open/Closed indicator
 │   ├── LoadingSpinner.tsx   # Route transition loader
+│   ├── CommonQuestions.tsx  # Accordion of answer links, shown per-topic context
 │   ├── ProductCard.tsx / ServiceCard.tsx / ReviewCard.tsx
 │   └── ErrorBoundary.tsx
 ├── pages/
-│   ├── pages/
-│   ├── Home.tsx             # Hero, services, products, reviews, story, contact
-│   ├── Catalog.tsx          # Full product catalog
-│   ├── Services.tsx         # Detailed services + e-bike requirements notice
+│   ├── Home.tsx             # Hero, services, products, reviews, common questions, story, contact
+│   ├── Catalog.tsx          # Full product catalog + buying questions
+│   ├── Services.tsx         # Detailed services + e-bike requirements notice + service questions
 │   ├── About.tsx            # Ownership, brands, services, towns served
+│   ├── Answers.tsx          # Answers index with client-side search
+│   ├── AnswerTopicPage.tsx  # One page per topic (5 topics)
+│   ├── AnswerPage.tsx       # One page per answer (24 answers, from Markdown)
 │   └── NotFound.tsx         # 404 page
+├── answers.ts / answersData.ts  # Answer loader + frontmatter parser/validator
+├── answerTopics.ts          # Topic labels, icons, colors, and per-topic call-to-action
 ├── utils/helpers.ts         # Formatting, scroll, device detection, store hours
 ├── shopInfo.ts              # Single source of truth: name/address/phone/hours (footer + JSON-LD)
 ├── products.ts              # Product data and types
@@ -48,17 +53,20 @@ src/
 ├── theme.ts                 # Centralized brand color/spacing configuration
 ├── App.tsx                  # Route definitions (lazy per-page loading)
 └── main.tsx                 # Entry point (ViteReactSSG)
-content/                     # Source-of-truth copy (about.md) for content pages
-plugins/                     # Build plugins: sitemap generation, IndexNow ping
+content/
+├── about.md                 # Source-of-truth copy for the About page
+└── answers/                 # 24 answer Markdown files — each one is a page (see answers-update-guide.md)
+plugins/                     # Build plugins: answer loading, sitemap generation, IndexNow ping
 public/                      # Product images, logos, robots.txt, sitemap.xml, _redirects
 ```
 
 ## Key Pages & Sections
 
-- **Home** — hero with live store-hours badge, info bar, services, featured products, reviews (Listen360), our story, contact. Supports hash navigation (`/#contact`, `/#services`, `/#products`, `/#story`).
-- **Catalog** — full product listing.
-- **Services** — service offerings, e-bike service requirements notice (`#ebike-requirements`).
+- **Home** — hero with live store-hours badge, info bar, services, featured products, reviews (Listen360), common questions, our story, contact. Supports hash navigation (`/#contact`, `/#services`, `/#products`, `/#story`).
+- **Catalog** — full product listing, plus a "Common questions before you buy" block (buying-topic answers).
+- **Services** — service offerings, e-bike service requirements notice (`#ebike-requirements`), plus a "Common questions about service" block (service-repair answers).
 - **About** — ownership, brands carried, services offered, towns served. Facts sourced from `content/about.md`.
+- **Answers** (`/answers`) — Q&A hub: searchable index, 5 topic pages (`/answers/topic/<topic>`), and one page per question (`/answers/<slug>`, 24 answers). Each answer page ships its own FAQPage structured data. Content is Markdown files in `content/answers/` — see `answers-update-guide.md`.
 - **Contact** — no contact form; visitors call (703) 754-1911 or email info@haymarketbicycles.com. A contact form is on the roadmap.
 
 ## Documentation
@@ -67,6 +75,7 @@ public/                      # Product images, logos, robots.txt, sitemap.xml, _
 |------|---------|
 | `CHANGELOG.md` | Project history — all completed work, in order |
 | `ROADMAP.md` | All open and planned work, organized by priority |
+| `answers-update-guide.md` | Staff guide: how to add and edit the Q&A answer files (no code needed) |
 | `features-implementation-guide.md` | Build spec for the next two features (Local Rides + Maintenance Video Guides) |
 | `reviews-update-guide.md` | Staff guide: how to refresh the customer reviews quarterly |
 
@@ -115,7 +124,7 @@ WCAG 2.1 Level AA: full keyboard navigation (ESC closes modal/menu, Enter/Space 
 - **Generated sitemap**: `dist/sitemap.xml` is built automatically from the route list, with per-route `<lastmod>` dates taken from the content files' modification times — never edit the sitemap by hand
 - **IndexNow**: on Netlify/CI builds, changed URLs are submitted to IndexNow (used by Bing/Copilot); the key file is `public/{key}.txt`
 - Canonical URLs on `https://www.haymarketbicycles.com`
-- Schema.org: BikeStore (LocalBusiness), Organization, Service, FAQPage
+- Schema.org: BikeStore (LocalBusiness), Organization, Service, FAQPage (site-wide block, replaced on answer pages by per-question FAQPage schema; topic/index pages get BreadcrumbList)
 - Open Graph + Twitter cards with a 1200×630 `og-image.png`
 - `robots.txt` allows all crawlers including AI bots (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended — allowed on purpose), plus `sitemap.xml` in `/public`
 - Pages still hydrate into a normal React app after load, so interactivity is unchanged
@@ -171,6 +180,7 @@ Conversion one-liner (ImageMagick): `magick input.png -resize 1200x -quality 82 
 ## Notes
 
 - Product, service, and review data are static TypeScript files — see `reviews-update-guide.md` and `features-implementation-guide.md` for non-developer editing workflows
+- Answer content is Markdown in `content/answers/` — see `answers-update-guide.md`; the build validates every file (unique slugs, valid topics, 155-char descriptions, real `related` links) and fails with a named error if one is wrong
 - About-page facts live in `content/about.md`; the page must only state what that file states
 - Footer shop details come from `src/shopInfo.ts` — one file drives footer text and JSON-LD
 - No database: Supabase was removed in November 2025 and the site is fully static

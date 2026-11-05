@@ -1,8 +1,24 @@
 # Changelog
 
-All notable changes to the Haymarket Bicycles website, in chronological order. Future work lives in `ROADMAP.md`; day-to-day staff content workflows live in `reviews-update-guide.md` and `features-implementation-guide.md`.
+All notable changes to the Haymarket Bicycles website, in chronological order. Future work lives in `ROADMAP.md`; day-to-day staff content workflows live in `reviews-update-guide.md`, `answers-update-guide.md`, and `features-implementation-guide.md`.
 
 ## 2026
+
+### November 2026 — Answers Content Hub (24 Q&A pages)
+
+- **New `/answers` section** — a question-and-answer hub for local search and customer questions: an index page with client-side search, five topic pages, and one dedicated page per question, all pre-rendered as static HTML with per-page title/description/canonical/OG tags
+- **24 answers across 5 topics** — service-repair (7), e-bikes (5), buying (6), bike-fit (2), riding-local (2); pricing and shop facts sourced from `src/services.ts`, `src/shopInfo.ts`, and `content/about.md`
+- **Content lives in Markdown, not code** — each answer is one file in `content/answers/` with YAML frontmatter (`title`, `slug`, `topic`, `description`, `answer_summary`, `updated`, `related`, optional `featured`); adding or editing an answer requires no code changes and rebuilds on Netlify automatically
+- **Build-time validation** — every answer file is checked at build: unique slugs, valid topic values, real `updated` dates, `related` slugs must point at existing files, description max 155 characters; the build fails with a clear per-file error message
+- **Per-answer FAQPage structured data** — each answer page ships a schema.org FAQPage built from its question and `answer_summary`, replacing the site-wide FAQPage block on those routes (tempered-regex strip in `vite.config.ts`); topic and index pages ship BreadcrumbList instead
+- **Topic system** — single config (`src/answerTopics.ts`) defines each topic's label, tagline, icon, color, and call-to-action; topic CTAs link to `/services` or open a phone call depending on topic
+- **Common questions blocks** — new `CommonQuestions` component surfaces answers contextually: featured answers on Home, service-repair on Services, buying on Catalog; each is an accordion linking to the full answer page
+- **Answers in nav and footer** — desktop, mobile, and footer links added to `Layout.tsx`
+- **Sitemap and IndexNow** — all 30 answer URLs (index + 5 topic pages + 24 answers) included in the generated sitemap with per-file `lastmod`; IndexNow pings changed answer URLs on deploy
+- **Search** — client-side search on the Answers index matches question titles and summaries
+- **Related answers** — hand-curated `related` slug lists cross-link answers; "Related answers" section on each answer page
+- **Staff workflow guide** — new `answers-update-guide.md` covers the file format, the five topics, how to add/edit answers, and every build validation rule
+- **Brand-list correction** — `content/about.md` and the About page now list all five brands (Trek, Cannondale, Orbea incl. custom MyO ordering, Aventon, Time); the new Cannondale/Orbea answer reflects the owner-supplied fact that both are sold (Cannondale floor stock/order, Orbea via MyO custom builds)
 
 ### November 2026 — Generated Sitemap, IndexNow, Unified Footer, About Page
 
