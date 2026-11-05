@@ -27,6 +27,8 @@ export function About() {
             <h2 className="font-montserrat text-2xl font-bold text-[#144D3A] mb-4">Brands We Carry</h2>
             <ul className="space-y-2 text-gray-600">
               <li>Trek — road, mountain, and city bikes</li>
+              <li>Cannondale — road, mountain, and e-bike models</li>
+              <li>Orbea — custom MyO ordering (paint and spec)</li>
               <li>Aventon — electric bikes</li>
               <li>Time — gravel bikes</li>
             </ul>
