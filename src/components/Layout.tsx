@@ -85,6 +85,13 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                     >
                       Products
                     </button>
+                    <Link
+                      to="/answers"
+                      aria-label="Navigate to the answers page"
+                      className="font-montserrat text-[#144D3A] hover:text-[#73BB44] transition-colors font-bold"
+                    >
+                      Answers
+                    </Link>
                     <button
                       onClick={(e) => handleNavClick(e, 'story')}
                       aria-label="Navigate to our story section"
@@ -140,6 +147,13 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                 >
                   Products
                 </button>
+                <Link
+                  to="/answers"
+                  aria-label="Navigate to the answers page"
+                  className="block w-full text-left text-[#144D3A] hover:text-[#73BB44] py-2 font-medium"
+                >
+                  Answers
+                </Link>
                 <button
                   onClick={(e) => handleNavClick(e, 'story')}
                   onKeyDown={(e) => handleKeyDown(e, () => scrollToSection('story'))}
@@ -207,6 +221,11 @@ export function Layout({ children, showNavigation = true }: LayoutProps) {
                       >
                         Products
                       </button>
+                    </li>
+                    <li>
+                      <Link to="/answers" className="text-white/70 hover:text-[#73BB44] transition-colors">
+                        Answers
+                      </Link>
                     </li>
                     <li>
                       <button

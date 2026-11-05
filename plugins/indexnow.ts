@@ -3,6 +3,7 @@ import path from 'node:path';
 import https from 'node:https';
 import type { Plugin } from 'vite';
 import { pageMeta, BASE_URL } from '../src/pageMeta';
+import { loadAnswers } from './answers';
 
 const INDEXNOW_KEY = 'caceea23bf8cbf9745cb827c4cfd7027';
 const INDEXNOW_ENDPOINT = 'api.indexnow.org';
@@ -21,32 +22,58 @@ function readState(root: string): State {
   }
 }
 
+const STATIC_CONTENT_FILES = [
+  'src/pages/Home.tsx',
+  'src/pages/Catalog.tsx',
+  'src/pages/Services.tsx',
+  'src/products.ts',
+  'src/services.ts',
+  'src/reviews.ts',
+];
+
+const ANSWERS_FILES = ['src/pages/Answers.tsx', 'src/pages/AnswerPage.tsx'];
+
+function newestMtime(root: string, files: string[]): number {
+  let newest = 0;
+  for (const f of files) {
+    try {
+      const m = fs.statSync(path.join(root, f)).mtimeMs;
+      if (m > newest) newest = m;
+    } catch {
+      // missing file: skip
+    }
+  }
+  return newest;
+}
+
 function changedUrls(root: string): string[] {
   const prev = readState(root);
   const next: State = {};
   const changed: string[] = [];
 
   for (const route of Object.keys(pageMeta)) {
-    const files = [
-      'src/pages/Home.tsx',
-      'src/pages/Catalog.tsx',
-      'src/pages/Services.tsx',
-      'src/products.ts',
-      'src/services.ts',
-      'src/reviews.ts',
-    ];
-    let newest = 0;
-    for (const f of files) {
-      try {
-        const m = fs.statSync(path.join(root, f)).mtimeMs;
-        if (m > newest) newest = m;
-      } catch {
-        // missing file: skip
-      }
-    }
+    const newest = route === '/answers' ? newestMtime(root, ANSWERS_FILES) : newestMtime(root, STATIC_CONTENT_FILES);
     next[route] = newest;
     if (!prev[route] || newest > prev[route]) {
       changed.push(route === '/' ? `${BASE_URL}/` : `${BASE_URL}${route}`);
+    }
+  }
+
+  for (const answer of loadAnswers(root)) {
+    const route = `/answers/${answer.slug}`;
+    const newest = fs.statSync(path.join(root, answer.sourceFile)).mtimeMs;
+    next[route] = newest;
+    if (!prev[route] || newest > prev[route]) {
+      changed.push(`${BASE_URL}${route}`);
+    }
+  }
+
+  // page component changes touch every answers URL
+  const answersNewest = newestMtime(root, ANSWERS_FILES);
+  if (answersNewest > 0 && prev['/answers'] && answersNewest > prev['/answers']) {
+    for (const answer of loadAnswers(root)) {
+      const url = `${BASE_URL}/answers/${answer.slug}`;
+      if (!changed.includes(url)) changed.push(url);
     }
   }
 

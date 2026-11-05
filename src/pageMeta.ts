@@ -32,6 +32,12 @@ export const pageMeta: Record<string, PageMeta> = {
       "Learn about Haymarket Bicycles — an independent, locally owned bike shop in Haymarket, VA since 2007. Carrying Trek, Aventon, and Time. Serving Haymarket, Gainesville, and Northern Virginia.",
     canonicalPath: '/about',
   },
+  '/answers': {
+    title: 'Bike Answers & FAQs | Haymarket Bicycles',
+    description:
+      'Straight answers from Haymarket Bicycles about bike service and repair, e-bikes, buying a bike, bike fit, and riding locally in Haymarket, VA.',
+    canonicalPath: '/answers',
+  },
 };
 
 export function getPageMeta(route: string): PageMeta {
