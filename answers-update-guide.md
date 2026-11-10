@@ -78,7 +78,7 @@ genuinely none.
    characters, an `answer_summary` that answers the question in one or two sentences, and
    today's date in `updated`.
 3. **Write the body.** Keep it direct — answer first, detail second. Use the shop's real
-   prices, hours, and address (they live in `src/services.ts` and `src/shopInfo.ts`).
+   prices, hours, and address (they live in `content/service-prices.json` and `src/shopInfo.ts`).
    End with a call to action: "Call (703) 754-1911" or a link to the relevant page.
 4. **Check `related` links** — every slug you list must already exist as a file, and it is
    polite to add your new slug to the `related` list of the answers you linked.
@@ -121,6 +121,7 @@ Read the error — it names the file and the problem. Fix the file and rebuild.
   detail is unknown ("rush service?", "loaner bikes?"), say what *is* known and invite a
   call — do not invent a promise.
 - **Prices stay in sync.** Tune-up, e-bike service, flat repair, and fitting prices also
-  live in `src/services.ts`. If a price changes, update both the answer files and that
+  live in `content/service-prices.json`. If a price changes, update that file — the services
+  page, the "Prices updated" stamp, and the search-engine data all rebuild from it
   data file.
 - **Match the existing voice**: friendly, plain-spoken, honest, no hype.

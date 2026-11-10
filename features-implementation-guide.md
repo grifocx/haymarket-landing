@@ -54,7 +54,7 @@ that rarely change.
 ### 2a. Data File — `src/rides.ts`
 
 Create a new data file following the exact pattern of `src/products.ts` and
-`src/services.ts`:
+`src/serviceData.ts`:
 
 ```typescript
 export interface Ride {
@@ -99,7 +99,7 @@ export const localRides: Ride[] = [
 ### Brand Color Rotation
 
 Rotate `highlightColor` across rides using the existing brand palette so cards have
-visual variety, exactly as `ProductCard` and `ServiceCard` do today:
+visual variety, exactly as `ProductCard` does today:
 
 | Order | Color | Hex |
 |-------|-------|-----|
@@ -113,13 +113,13 @@ These colors are defined in `src/theme.ts` under `theme.colors`.
 
 ### 2b. Card Component — `src/components/RideCard.tsx`
 
-Create a card component following the styling conventions of `ServiceCard.tsx`:
+Create a card component following the styling conventions of `ProductCard.tsx`:
 
 - White card with `rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2`
-- Top border accent using `border-t-4` with the ride's `highlightColor` (same pattern as `ServiceCard`)
+- Top border accent using `border-t-4` with the ride's `highlightColor` (same pattern as `ProductCard`)
 - Display: ride name (Montserrat bold, `text-[#144D3A]`), description, distance, difficulty, and surface
 - Use Lucide React icons: `MapPin` for distance/surface, `Mountain` or `Gauge` for difficulty, `Route` or `ExternalLink` for the route link
-- Route link button: orange (`#F36E32`) button styled like the ServiceCard CTA, with `target="_blank" rel="noopener noreferrer"` so it opens in a new tab
+- Route link button: orange (`#F36E32`) button styled like the ProductCard CTA, with `target="_blank" rel="noopener noreferrer"` so it opens in a new tab
 - Fully responsive, minimum 48×48px touch targets on the button (matches existing accessibility standard)
 - Import all icons used at the top of the file (e.g., `import { MapPin, Gauge, ExternalLink } from 'lucide-react'`)
 
@@ -128,7 +128,7 @@ Create a card component following the styling conventions of `ServiceCard.tsx`:
 Create a full page component following the structure of `src/pages/Services.tsx`:
 
 - Wrap in `<Layout>` (imported from `../components/Layout`)
-- Include `<SEO>` component at the top with page-specific title and description (see Section 6)
+- Head tags are handled at build time — add the route to `src/pageMeta.ts` (see Section 6)
 - Hero section with page heading and a short intro paragraph explaining these are
   staff-favorite local routes, evergreen recommendations (not scheduled events)
 - Responsive grid of `<RideCard>` components: 1 column on mobile, 2 columns on tablet,
@@ -218,7 +218,7 @@ The video ID is `ABC123xyz` (everything after the last `/`).
 
 Create a card component with these elements:
 
-- Same card styling as `ServiceCard` (white, `rounded-xl`, `shadow-lg`, `hover:shadow-2xl`,
+- Same card styling as `ProductCard` (white, `rounded-xl`, `shadow-lg`, `hover:shadow-2xl`,
   `hover:-translate-y-2`, `border-t-4` with `highlightColor`)
 - **Video embed area** at the top of the card: a responsive 16:9 YouTube iframe using the
   video ID:
@@ -252,7 +252,7 @@ Create a card component with these elements:
 Create a full page component following the structure of `src/pages/Services.tsx`:
 
 - Wrap in `<Layout>`
-- Include `<SEO>` component with page-specific title and description (see Section 6)
+- Head tags are handled at build time — add the route to `src/pageMeta.ts` (see Section 6)
 - Hero section with page heading and a short intro: "Learn basic bike maintenance at
   home with our short video guides. Save a trip to the shop and keep your bike running
   smooth."
@@ -368,25 +368,25 @@ where the full menu lives.
 
 ### 6a. Page Meta Tags
 
-Use the existing `<SEO>` component (`src/components/SEO.tsx`) at the top of each new
-page. The component accepts `title`, `description`, and `canonicalUrl` props.
+Add entries to `src/pageMeta.ts` for the two new routes. Head tags (title, description,
+canonical, Open Graph/Twitter) are baked in at build time from this config — no runtime
+component needed.
 
-**Local Rides page:**
-```tsx
-<SEO
-  title="Local Rides | Haymarket Bicycles"
-  description="Staff-favorite cycling routes around Haymarket and Northern Virginia. Road, gravel, and trail rides with distance, difficulty, and route maps."
-  canonicalUrl="https://www.haymarketbicycles.com/rides"
-/>
-```
+Add to the `pageMeta` object:
 
-**Maintenance Guides page:**
-```tsx
-<SEO
-  title="Bike Maintenance Video Guides | Haymarket Bicycles"
-  description="Learn basic bike maintenance at home with our short video guides. Flat tires, chain care, tire pressure, seat adjustment, and more from Haymarket Bicycles."
-  canonicalUrl="https://www.haymarketbicycles.com/maintenance"
-/>
+```typescript
+'/rides': {
+  title: 'Local Rides | Haymarket Bicycles',
+  description:
+    'Staff-favorite cycling routes around Haymarket and Northern Virginia. Road, gravel, and trail rides with distance, difficulty, and route maps.',
+  canonicalPath: '/rides',
+},
+'/maintenance': {
+  title: 'Bike Maintenance Video Guides | Haymarket Bicycles',
+  description:
+    'Learn basic bike maintenance at home with our short video guides. Flat tires, chain care, tire pressure, seat adjustment, and more from Haymarket Bicycles.',
+  canonicalPath: '/maintenance',
+},
 ```
 
 ### 6b. HowTo Structured Data (Maintenance Guides)
@@ -395,8 +395,10 @@ Add HowTo schema markup to the Maintenance page for each guide. This makes the g
 eligible for rich results in Google search (step-by-step instructions displayed
 directly in search results).
 
-Inject a JSON-LD `<script>` tag using `react-helmet-async` (already in the project).
-For each guide, output a HowTo object with:
+Inject a JSON-LD `<script>` tag at build time. Follow the pattern used for answer
+pages and the services price table: add a branch in `injectHeadTags` in
+`vite.config.ts` (or a small build plugin like `plugins/services.ts`) that reads the
+maintenance data and emits the schema. For each guide, output a HowTo object with:
 - `name`: the guide title
 - `description`: the guide summary
 - `tool`: each item in the `tools` array
@@ -425,31 +427,16 @@ Example shape:
 ```
 
 Render an array of HowTo objects (one per guide) inside a single `<script
-type="application/ld+json">` tag via the `SEO` component or directly with `Helmet`.
+type="application/ld+json">` tag in the built HTML for `/maintenance` only.
 
-### 6c. Sitemap — `public/sitemap.xml`
+### 6c. Sitemap — generated automatically
 
-Add two new `<url>` entries following the existing format:
-
-```xml
-<!-- Local Rides Page -->
-<url>
-  <loc>https://www.haymarketbicycles.com/rides</loc>
-  <lastmod>2026-08-02</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-
-<!-- Maintenance Guides Page -->
-<url>
-  <loc>https://www.haymarketbicycles.com/maintenance</loc>
-  <lastmod>2026-08-02</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-```
-
-Update the `lastmod` date to the actual implementation date.
+The sitemap is built at build time from `src/pageMeta.ts` (`plugins/sitemap.ts`). Once
+the two new routes have `pageMeta` entries (Section 6a) and route definitions in
+`src/App.tsx`, add them to `routeSourceFile` in `plugins/sitemap.ts` so their
+`<lastmod>` dates track the right source files (e.g. `src/rides.ts`,
+`src/maintenance.ts`). No hand-editing of `public/sitemap.xml` — that file is a legacy
+copy and is overwritten in `dist/` on every build.
 
 ---
 

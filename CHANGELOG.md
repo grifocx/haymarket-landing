@@ -13,6 +13,8 @@ All notable changes to the Haymarket Bicycles website, in chronological order. F
 - **Removed the stale site-wide service catalog schema** (OfferCatalog with outdated, price-less entries from an old page version) that shipped on every page; BikeStore business schema unchanged and kept on every page
 - **Build-time validation** of the JSON (unique ids/names, positive prices, required text fields, string-typed optional fields) — the build fails with a file-and-field-named error
 - Sitemap `/services` `lastmod` and IndexNow watchlist now track `content/service-prices.json`
+- **Follow-up cleanup (November 2026)** — with the table replacing the cards, the now-unused `ServiceCard` component and the `src/services.ts` adapter were removed; service data flows from `content/service-prices.json` through `src/serviceData.ts` (parser/validator) and `src/serviceIndex.ts` (runtime loader) only
+- Docs corrected to match: the answers staff guide and the features implementation guide now point at `content/service-prices.json` instead of the removed file, and the features guide's SEO section was rewritten for the current build-time meta/schema pattern (the `<SEO>` component and hand-edited sitemap instructions predated the pre-rendering work)
 
 ### November 2026 — Answers Content Hub (24 Q&A pages)
 

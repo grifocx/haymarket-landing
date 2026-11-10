@@ -31,7 +31,7 @@ src/
 │   ├── StoreHours.tsx       # Real-time Open/Closed indicator
 │   ├── LoadingSpinner.tsx   # Route transition loader
 │   ├── CommonQuestions.tsx  # Accordion of answer links, shown per-topic context
-│   ├── ProductCard.tsx / ServiceCard.tsx / ReviewCard.tsx
+│   ├── ProductCard.tsx / ReviewCard.tsx
 │   └── ErrorBoundary.tsx
 ├── pages/
 │   ├── Home.tsx             # Hero, services, products, reviews, common questions, story, contact
@@ -47,7 +47,6 @@ src/
 ├── utils/helpers.ts         # Formatting, scroll, device detection, store hours
 ├── shopInfo.ts              # Single source of truth: name/address/phone/hours (footer + JSON-LD)
 ├── products.ts              # Product data and types
-├── services.ts              # Card view of the service packages (reads service-prices.json)
 ├── serviceData.ts           # Service package parser/validator (shared by build + runtime)
 ├── serviceIndex.ts          # Runtime loader for service-prices.json
 ├── reviews.ts               # Curated customer reviews from Listen360
@@ -160,7 +159,7 @@ npm run lint       # ESLint
 - [ ] Generated `dist/sitemap.xml` lists every route with a current `<lastmod>`
 - [ ] Build log shows the IndexNow ping (Netlify/CI only)
 - [ ] Footer on every page shows the same name/address/phone/hours as the JSON-LD
-- [ ] Google Rich Results Test passes on Home and Services
+- [ ] Built `/services` HTML validates cleanly at validator.schema.org (12 Service/Offer blocks); Home passes the Google Rich Results Test
 - [ ] Sitemap submitted to Google Search Console
 - [ ] Share a page link and verify the Open Graph preview shows that page's title/description
 
@@ -182,7 +181,7 @@ Conversion one-liner (ImageMagick): `magick input.png -resize 1200x -quality 82 
 
 ## Notes
 
-- Product, service, and review data are static TypeScript files — see `reviews-update-guide.md` and `features-implementation-guide.md` for non-developer editing workflows
+- Product and review data are static TypeScript files, service packages live in `content/service-prices.json` — see `reviews-update-guide.md` and `features-implementation-guide.md` for non-developer editing workflows; a price change is a one-file edit that updates the table, the "Prices updated" stamp, the sitemap date, and the per-package structured data automatically
 - Answer content is Markdown in `content/answers/` — see `answers-update-guide.md`; the build validates every file (unique slugs, valid topics, 155-char descriptions, real `related` links) and fails with a named error if one is wrong
 - About-page facts live in `content/about.md`; the page must only state what that file states
 - Footer shop details come from `src/shopInfo.ts` — one file drives footer text and JSON-LD
