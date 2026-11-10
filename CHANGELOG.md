@@ -4,6 +4,16 @@ All notable changes to the Haymarket Bicycles website, in chronological order. F
 
 ## 2026
 
+### November 2026 — Services Price Table (data-driven)
+
+- **`content/service-prices.json` is now the single source of truth for service packages** — all 12 packages (name, price, what's included, optional `price_note`, optional per-row `turnaround`) migrated from the old hardcoded card data; `src/services.ts` is now a thin adapter over it so Home/Services keep working
+- **Services page rebuilt as a real HTML table** — one row per package (Service / Price / What's included / Turnaround); page-level turnaround statement added above the table ("Typical turnaround: 5 days October–February, 10 days March–July"), with per-row overrides shown only where they differ; the old card grid is gone — on phones the same data renders as stacked cards instead
+- **"Prices updated" stamp** shown on the page, computed from the same file mtimes the generated sitemap uses for the `/services` `lastmod` — page stamp and sitemap date are guaranteed identical by construction (injected as a build-time constant from `plugins/sitemap.ts`'s helper)
+- **Per-package Service + Offer JSON-LD generated from the same JSON** — 12 Service blocks injected only into `/services` static HTML; each links to the site's BikeStore via `provider: {@id: .../#store}`; exact `price`+`priceCurrency` when `price_note` is empty, `priceSpecification.minPrice` when a note like "plus parts" is present (2 packages)
+- **Removed the stale site-wide service catalog schema** (OfferCatalog with outdated, price-less entries from an old page version) that shipped on every page; BikeStore business schema unchanged and kept on every page
+- **Build-time validation** of the JSON (unique ids/names, positive prices, required text fields, string-typed optional fields) — the build fails with a file-and-field-named error
+- Sitemap `/services` `lastmod` and IndexNow watchlist now track `content/service-prices.json`
+
 ### November 2026 — Answers Content Hub (24 Q&A pages)
 
 - **New `/answers` section** — a question-and-answer hub for local search and customer questions: an index page with client-side search, five topic pages, and one dedicated page per question, all pre-rendered as static HTML with per-page title/description/canonical/OG tags

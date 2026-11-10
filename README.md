@@ -47,7 +47,9 @@ src/
 ├── utils/helpers.ts         # Formatting, scroll, device detection, store hours
 ├── shopInfo.ts              # Single source of truth: name/address/phone/hours (footer + JSON-LD)
 ├── products.ts              # Product data and types
-├── services.ts              # Service data and types
+├── services.ts              # Card view of the service packages (reads service-prices.json)
+├── serviceData.ts           # Service package parser/validator (shared by build + runtime)
+├── serviceIndex.ts          # Runtime loader for service-prices.json
 ├── reviews.ts               # Curated customer reviews from Listen360
 ├── pageMeta.ts              # Per-route title/description/canonical (baked in at build time)
 ├── theme.ts                 # Centralized brand color/spacing configuration
@@ -55,6 +57,7 @@ src/
 └── main.tsx                 # Entry point (ViteReactSSG)
 content/
 ├── about.md                 # Source-of-truth copy for the About page
+├── service-prices.json      # All 12 service packages: name, price, price_note, included, turnaround
 └── answers/                 # 24 answer Markdown files — each one is a page (see answers-update-guide.md)
 plugins/                     # Build plugins: answer loading, sitemap generation, IndexNow ping
 public/                      # Product images, logos, robots.txt, sitemap.xml, _redirects
@@ -64,7 +67,7 @@ public/                      # Product images, logos, robots.txt, sitemap.xml, _
 
 - **Home** — hero with live store-hours badge, info bar, services, featured products, reviews (Listen360), common questions, our story, contact. Supports hash navigation (`/#contact`, `/#services`, `/#products`, `/#story`).
 - **Catalog** — full product listing, plus a "Common questions before you buy" block (buying-topic answers).
-- **Services** — service offerings, e-bike service requirements notice (`#ebike-requirements`), plus a "Common questions about service" block (service-repair answers).
+- **Services** — service offerings in a price table built from `content/service-prices.json` (name, price, what's included, turnaround), a "Prices updated" date that always matches the sitemap, e-bike service requirements notice (`#ebike-requirements`), plus a "Common questions about service" block (service-repair answers). Each package also ships its own Service+Offer structured data.
 - **About** — ownership, brands carried, services offered, towns served. Facts sourced from `content/about.md`.
 - **Answers** (`/answers`) — Q&A hub: searchable index, 5 topic pages (`/answers/topic/<topic>`), and one page per question (`/answers/<slug>`, 24 answers). Each answer page ships its own FAQPage structured data. Content is Markdown files in `content/answers/` — see `answers-update-guide.md`.
 - **Contact** — no contact form; visitors call (703) 754-1911 or email info@haymarketbicycles.com. A contact form is on the roadmap.
@@ -124,7 +127,7 @@ WCAG 2.1 Level AA: full keyboard navigation (ESC closes modal/menu, Enter/Space 
 - **Generated sitemap**: `dist/sitemap.xml` is built automatically from the route list, with per-route `<lastmod>` dates taken from the content files' modification times — never edit the sitemap by hand
 - **IndexNow**: on Netlify/CI builds, changed URLs are submitted to IndexNow (used by Bing/Copilot); the key file is `public/{key}.txt`
 - Canonical URLs on `https://www.haymarketbicycles.com`
-- Schema.org: BikeStore (LocalBusiness), Organization, Service, FAQPage (site-wide block, replaced on answer pages by per-question FAQPage schema; topic/index pages get BreadcrumbList)
+- Schema.org: BikeStore (LocalBusiness, `@id` …/#store, every page), Organization, FAQPage (site-wide block, replaced on answer pages by per-question FAQPage schema; topic/index pages get BreadcrumbList), plus one Service + Offer block per service package on /services, generated from `content/service-prices.json`
 - Open Graph + Twitter cards with a 1200×630 `og-image.png`
 - `robots.txt` allows all crawlers including AI bots (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended — allowed on purpose), plus `sitemap.xml` in `/public`
 - Pages still hydrate into a normal React app after load, so interactivity is unchanged

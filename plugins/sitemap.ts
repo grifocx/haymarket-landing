@@ -6,15 +6,14 @@ import { loadAnswers } from './answers';
 import { TOPICS } from '../src/answersData';
 
 // which source file's mtime drives lastmod for each route
-const routeSourceFile: Record<string, string[]> = {
+export const routeSourceFile: Record<string, string[]> = {
   '/': ['src/pages/Home.tsx', 'src/reviews.ts'],
   '/catalog': ['src/pages/Catalog.tsx', 'src/products.ts'],
-  '/services': ['src/pages/Services.tsx', 'src/services.ts'],
+  '/services': ['src/pages/Services.tsx', 'content/service-prices.json'],
   '/answers': ['src/pages/Answers.tsx'],
 };
 
-function lastModForRoute(root: string, route: string): string {
-  const files = routeSourceFile[route] ?? ['src/pages/Home.tsx'];
+export function lastModForFiles(root: string, files: string[]): string {
   let newest = 0;
   for (const f of files) {
     try {
@@ -26,6 +25,10 @@ function lastModForRoute(root: string, route: string): string {
   }
   if (newest === 0) return new Date().toISOString().slice(0, 10);
   return new Date(newest).toISOString().slice(0, 10);
+}
+
+function lastModForRoute(root: string, route: string): string {
+  return lastModForFiles(root, routeSourceFile[route] ?? ['src/pages/Home.tsx']);
 }
 
 // answer pages use the updated date from their own frontmatter

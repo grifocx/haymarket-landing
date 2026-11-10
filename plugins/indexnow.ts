@@ -26,6 +26,7 @@ const STATIC_CONTENT_FILES = [
   'src/pages/Home.tsx',
   'src/pages/Catalog.tsx',
   'src/pages/Services.tsx',
+  'content/service-prices.json',
   'src/products.ts',
   'src/services.ts',
   'src/reviews.ts',

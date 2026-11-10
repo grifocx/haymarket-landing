@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Level 1 Tune-Up",
+    "price": 99,
+    "price_note": "",
+    "included": "Complete safety check, gear adjustment, brake adjustment, tire inspection, and basic cleaning.",
+    "turnaround": ""
+  },
+  {
+    "id": 2,
+    "name": "Level 2 Tune-Up",
+    "price": 159,
+    "price_note": "",
+    "included": "Comprehensive service including full drivetrain cleaning, brake bleeding, wheel truing, and complete bike inspection.",
+    "turnaround": ""
+  },
+  {
+    "id": 3,
+    "name": "Level 3 Tune-Up",
+    "price": 349,
+    "price_note": "",
+    "included": "Everything in Levels 1 and 2, plus deep cleaning and lubrication of chain, cassette, and derailleurs for optimal shifting performance.",
+    "turnaround": ""
+  },
+  {
+    "id": 4,
+    "name": "Drivetrain Cleaning and Ultrasonic Bath",
+    "price": 150,
+    "price_note": "plus parts",
+    "included": "Professional-level deep clean of all drivetrain parts to restore operational efficiency.",
+    "turnaround": ""
+  },
+  {
+    "id": 5,
+    "name": "Flat Tire Repair",
+    "price": 15,
+    "price_note": "",
+    "included": "Quick tube replacement or patch, including tire inspection and proper inflation.",
+    "turnaround": ""
+  },
+  {
+    "id": 6,
+    "name": "Tubeless Tire Setup",
+    "price": 50,
+    "price_note": "",
+    "included": "Install front and rear wheel tubeless tires on bike, charge with sealant, and check pressure.",
+    "turnaround": ""
+  },
+  {
+    "id": 7,
+    "name": "Suspension Service",
+    "price": 150,
+    "price_note": "plus parts",
+    "included": "Fork and shock service including seal replacement, oil change, and adjustment for mountain bikes.",
+    "turnaround": ""
+  },
+  {
+    "id": 8,
+    "name": "Bike Assembly",
+    "price": 185,
+    "price_note": "",
+    "included": "Professional assembly of new bikes from the box, including safety checks and adjustments.",
+    "turnaround": ""
+  },
+  {
+    "id": 9,
+    "name": "E-bike Tire and/or Tube Repair",
+    "price": 35,
+    "price_note": "",
+    "included": "Inspect and replace a tire or tube on an e-bike.",
+    "turnaround": ""
+  },
+  {
+    "id": 10,
+    "name": "E-bike Service Level 1",
+    "price": 149,
+    "price_note": "",
+    "included": "Adjust and inspect all systems and software on your e-bike.",
+    "turnaround": ""
+  },
+  {
+    "id": 11,
+    "name": "E-Bike Assembly",
+    "price": 385,
+    "price_note": "",
+    "included": "Professional assembly of new e-bikes from the box, including safety checks and adjustments.",
+    "turnaround": ""
+  },
+  {
+    "id": 12,
+    "name": "Custom Bike Fitting",
+    "price": 250,
+    "price_note": "",
+    "included": "Professional fitting session to optimize comfort, efficiency, and injury prevention using motion capture technology.",
+    "turnaround": ""
+  }
+]

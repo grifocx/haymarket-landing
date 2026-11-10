@@ -2,9 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import type { Plugin } from 'vite';
 import { getPageMeta, BASE_URL } from './src/pageMeta';
-import { sitemapPlugin } from './plugins/sitemap';
+import { sitemapPlugin, lastModForFiles, routeSourceFile } from './plugins/sitemap';
 import { indexNowPlugin } from './plugins/indexnow';
 import { loadAnswers } from './plugins/answers';
+import { loadServicePackages } from './plugins/services';
+import type { ServicePackage } from './src/serviceData';
 import { TOPICS, TOPIC_LABELS } from './src/answersData';
 
 function toScriptTag(json: unknown): string {
@@ -14,6 +16,33 @@ function toScriptTag(json: unknown): string {
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
   return `<script type="application/ld+json">${serialized}</script>`;
+}
+
+const STORE_ID = `${BASE_URL}/#store`;
+
+function buildServiceJsonLd(packages: ServicePackage[]): unknown[] {
+  return packages.map((pkg) => {
+    const offer: Record<string, unknown> =
+      pkg.price_note === ''
+        ? { '@type': 'Offer', price: pkg.price, priceCurrency: 'USD' }
+        : {
+            '@type': 'Offer',
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              minPrice: pkg.price,
+              priceCurrency: 'USD',
+            },
+          };
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: pkg.name,
+      description: pkg.included,
+      provider: { '@id': STORE_ID },
+      areaServed: ['Haymarket, VA', 'Gainesville, VA', 'Northern Virginia'],
+      offers: offer,
+    };
+  });
 }
 
 // The template ships a site-wide FAQPage schema on every route. On answer
@@ -130,6 +159,10 @@ function injectHeadTags(html: string, route: string): string {
       },
     ];
     stripFaq = true;
+  } else if (normalizedRoute === '/services') {
+    meta = getPageMeta(route);
+    jsonLd = buildServiceJsonLd(loadServicePackages());
+    stripFaq = true;
   } else {
     meta = getPageMeta(route);
   }
@@ -171,6 +204,9 @@ function injectHeadTags(html: string, route: string): string {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), securityHeadersPlugin(), sitemapPlugin(), indexNowPlugin()],
+  define: {
+    __PRICES_UPDATED__: JSON.stringify(lastModForFiles(process.cwd(), routeSourceFile['/services'])),
+  },
   resolve: {
     alias: {
       // react-helmet-async ships CJS as "main"; force its ESM build so the

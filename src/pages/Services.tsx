@@ -2,11 +2,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Info } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { ServiceCard } from '../components/ServiceCard';
 import { BackToTop } from '../components/BackToTop';
-import { bikeServices } from '../services';
+import { servicePackages } from '../serviceIndex';
 import { CommonQuestions } from '../components/CommonQuestions';
 import { scrollToSection } from '../utils/helpers';
+
+function formatPrice(pkg: { price: number; price_note: string }): string {
+  return pkg.price_note ? `$${pkg.price} ${pkg.price_note}` : `$${pkg.price}`;
+}
 
 export function Services() {
   const location = useLocation();
@@ -20,9 +23,10 @@ export function Services() {
     }
   }, [location]);
 
+  const pricesUpdated = __PRICES_UPDATED__;
+
   return (
     <Layout>
-
       <section className="pt-32 pb-16 px-4 bg-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10 bg-center bg-no-repeat bg-cover"
@@ -33,7 +37,15 @@ export function Services() {
             Our Services
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Expert bike maintenance and repair services to keep you rolling smoothly. From quick tune-ups to complete overhauls, our certified mechanics are here to help. Here are some of our most popular service offerings:
+            Expert bike maintenance and repair services to keep you rolling smoothly. From quick tune-ups to complete overhauls, our certified mechanics are here to help.
+          </p>
+        </div>
+      </section>
+
+      <section className="pb-4 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-sm text-gray-500 text-center">
+            Prices updated: {pricesUpdated}
           </p>
         </div>
       </section>
@@ -58,11 +70,51 @@ export function Services() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {bikeServices.map((service) => (
-              <ServiceCard key={service.id} service={service} />
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <p className="font-montserrat text-lg text-[#144D3A] mb-8 text-center">
+            Typical turnaround: 5 days October–February, 10 days March–July.
+          </p>
+
+          {/* Desktop table */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b-2 border-[#144D3A]">
+                  <th scope="col" className="font-montserrat font-bold text-[#144D3A] py-4 pr-4">Service</th>
+                  <th scope="col" className="font-montserrat font-bold text-[#144D3A] py-4 pr-4">Price</th>
+                  <th scope="col" className="font-montserrat font-bold text-[#144D3A] py-4 pr-4">What's included</th>
+                  <th scope="col" className="font-montserrat font-bold text-[#144D3A] py-4">Turnaround</th>
+                </tr>
+              </thead>
+              <tbody>
+                {servicePackages.map((pkg, i) => (
+                  <tr key={pkg.id} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    <th scope="row" className="font-montserrat font-bold text-[#144D3A] py-4 pr-4 align-top">{pkg.name}</th>
+                    <td className="py-4 pr-4 align-top text-[#144D3A] font-semibold whitespace-nowrap">{formatPrice(pkg)}</td>
+                    <td className="py-4 pr-4 align-top text-gray-600 leading-relaxed">{pkg.included}</td>
+                    <td className="py-4 align-top text-gray-600">{pkg.turnaround || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile stacked cards */}
+          <div className="md:hidden space-y-4">
+            {servicePackages.map((pkg) => (
+              <div key={pkg.id} className="bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden">
+                <div className="bg-[#144D3A] px-4 py-3 flex justify-between items-center">
+                  <h3 className="font-montserrat font-bold text-white">{pkg.name}</h3>
+                  <span className="font-montserrat font-bold text-white">{formatPrice(pkg)}</span>
+                </div>
+                <div className="p-4 space-y-2">
+                  <p className="text-gray-600 leading-relaxed">{pkg.included}</p>
+                  {pkg.turnaround && (
+                    <p className="text-sm text-gray-500">Turnaround: {pkg.turnaround}</p>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -86,7 +138,6 @@ export function Services() {
           </Link>
         </div>
       </section>
-
       <BackToTop />
     </Layout>
   );
